@@ -1,0 +1,17 @@
+# Syntax Coloring Map Used By The Arduino IDE
+#
+# Format
+# Four fields separated by TAB.
+# 
+# KEYWORD	KEYWORD_TOKENTYPE	REFERENCE_LINK	RSYNTAXTEXTAREA_TOKENTYPE
+#
+# See the following link for details:
+# https://github.com/arduino/Arduino/wiki/Arduino-IDE-1.5:-Library-specification
+
+# Datatypes (KEYWORD1)
+
+# Methods and Functions (KEYWORD2)
+
+# Instances (KEYWORD2)
+
+# Constants (LITERAL1)
