@@ -5,6 +5,8 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
     #define DIT dotFunction(); dotDelayFunction();
     #define DAH dashFunction(); dotDelayFunction();
 
+    bool hasLetterSpacing = true;
+
     while (1)
     {
         switch (*message)
@@ -179,6 +181,14 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
                 DAH DAH DIT DIT;
                 break;
 
+            case '<':
+                hasLetterSpacing = false;
+                break;
+
+            case '>':
+                hasLetterSpacing = true;
+                break;
+
             default:
                 //Make everything else a delay between words.
                 //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
@@ -187,10 +197,13 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
                 break;
         }
 
-        //Delay between digits and letters.
-        //3 delays total. 1 from end of digit/letter, 2 from here.
-        dotDelayFunction();
-        dotDelayFunction();
+        if (hasLetterSpacing)
+        {
+            //Delay between digits and letters.
+            //3 delays total. 1 from end of digit/letter, 2 from here.
+            dotDelayFunction();
+            dotDelayFunction();
+        }
 
         if (*message == '\0')
         {
