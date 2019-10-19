@@ -5,7 +5,7 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
     #define DIT dotFunction(); dotDelayFunction();
     #define DAH dashFunction(); dotDelayFunction();
 
-    while (*message != '\0')
+    while (1)
     {
         switch (*message)
         {
@@ -191,6 +191,11 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
         //3 delays total. 1 from end of digit/letter, 2 from here.
         dotDelayFunction();
         dotDelayFunction();
+
+        if (*message != '\0')
+        {
+            break;
+        }
         
         message++;
     }
