@@ -192,7 +192,7 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
         dotDelayFunction();
         dotDelayFunction();
 
-        if (*message != '\0')
+        if (*message == '\0')
         {
             break;
         }
