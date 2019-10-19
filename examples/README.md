@@ -1,3 +1,6 @@
 # Examples
 
-Will document and give meaningful names to examples once they are tested on an actual arduino board.
+Here you will find examples of how to use this library.
+
+Check back here often as more examples will be added in the near future.
+
