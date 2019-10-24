@@ -6,6 +6,7 @@
 | **Description** | Build, Run      | Build, Run      |
 | **OS**          | Ubuntu          | Ubuntu          |
 | **Shell**       | pwsh            | pwsh            |
+| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=12) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=13) |
 
 # Sample Output
 
