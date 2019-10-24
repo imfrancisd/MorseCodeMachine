@@ -11,6 +11,8 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
     {
         switch (*message)
         {
+            //Digits 0-9.
+
             case '0':
                 DAH DAH DAH DAH DAH;
                 break;
@@ -50,6 +52,8 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             case '9':
                 DAH DAH DAH DAH DIT;
                 break;
+
+            //Letters A-z and a-z.
 
             case 'A':
             case 'a':
@@ -181,6 +185,66 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
                 DAH DAH DIT DIT;
                 break;
 
+            //Symbols.
+
+            case '"':
+                DIT DAH DIT DIT DAH DIT;
+                break;
+
+            case '&':
+                DIT DAH DIT DIT DIT;
+                break;
+
+            case '\'':
+                DIT DAH DAH DAH DAH DIT;
+                break;
+
+            case '(':
+                DAH DIT DAH DAH DIT;
+                break;
+
+            case ')':
+                DAH DIT DAH DAH DIT DAH;
+                break;
+
+            case '+':
+                DIT DAH DIT DAH DIT;
+                break;
+
+            case ',':
+                DAH DAH DIT DIT DAH DAH;
+                break;
+
+            case '-':
+                DAH DIT DIT DIT DIT DAH;
+                break;
+
+            case '.':
+                DIT DAH DIT DAH DIT DAH;
+                break;
+
+            case '/':
+                DAH DIT DIT DAH DIT;
+                break;
+
+            case ':':
+                DAH DAH DAH DIT DIT DIT;
+                break;
+
+            case '=':
+                DAH DIT DIT DIT DAH;
+                break;
+
+            case '?':
+                DIT DIT DAH DAH DIT DIT;
+                break;
+
+            case '@':
+                DIT DAH DAH DIT DAH DIT;
+                break;
+
+            //Special characters for this library.
+
             case '<':
                 hasLetterSpacing = false;
                 break;
@@ -189,8 +253,9 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
                 hasLetterSpacing = true;
                 break;
 
+            //Make everything else a delay between words, including the '\0'.
+
             default:
-                //Make everything else a delay between words, including the '\0'.
                 //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
                 delayFunction();
                 delayFunction();
