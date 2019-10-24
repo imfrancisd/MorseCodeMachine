@@ -1,9 +1,9 @@
 #include "MorseCodeMachine.h"
 
-void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunction)(), void (*dashFunction)())
+void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
-    #define DIT dotFunction(); dotDelayFunction();
-    #define DAH dashFunction(); dotDelayFunction();
+    #define DIT dotFunction(); delayFunction();
+    #define DAH dashFunction(); delayFunction();
 
     bool hasLetterSpacing = true;
 
@@ -192,8 +192,8 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
             default:
                 //Make everything else a delay between words, including the '\0'.
                 //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-                dotDelayFunction();
-                dotDelayFunction();
+                delayFunction();
+                delayFunction();
                 break;
         }
 
@@ -201,8 +201,8 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
         {
             //Delay between digits and letters.
             //3 delays total. 1 from end of digit/letter, 2 from here.
-            dotDelayFunction();
-            dotDelayFunction();
+            delayFunction();
+            delayFunction();
         }
 
         if (*message == '\0')
