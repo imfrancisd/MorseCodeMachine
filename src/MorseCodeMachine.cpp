@@ -7,7 +7,7 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
 
     bool hasLetterSpacing = true;
 
-    while (1)
+    while (true)
     {
         switch (*message)
         {
