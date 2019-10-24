@@ -190,7 +190,7 @@ void sendMorse(const char message[], void (*dotDelayFunction)(), void (*dotFunct
                 break;
 
             default:
-                //Make everything else a delay between words.
+                //Make everything else a delay between words, including the '\0'.
                 //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
                 dotDelayFunction();
                 dotDelayFunction();

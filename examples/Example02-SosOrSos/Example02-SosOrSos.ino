@@ -22,13 +22,13 @@ void loop()
     //This tells the sendMorse function to send three separate letters.
     //The pattern will be:
     //    . . .   - - -   . . .
-    //Notice how dots and dashes are not spaced equally.
+    //Notice how the dots and the dashes are not spaced equally.
     //The two big gaps separates the three letters.
     sendMorse("SOS", ledDelay, ledDot, ledDash);
 
     //You are going to be creative and send the distress signal as EEETTTEEE.
     //Since E is a dot, and T is a dash, in theory you can send any Morse code
-    //message you want just with those two letters, including SOS.
+    //message you want just with those two letters, including the message SOS.
     //The pattern of EEETTTEEE sent as a single patterns is:
     //    . . . - - - . . .
     //Notice how it looks just like the distress pattern SOS.

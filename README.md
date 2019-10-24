@@ -18,3 +18,12 @@ void loop() {
 }
 ```
 
+# Installing the library
+
+Download the zip file of the latest release here:
+
+https://github.com/imfrancisd/MorseCodeMachine/releases
+
+Install the library by following the directions here:
+
+https://www.arduino.cc/en/guide/libraries
