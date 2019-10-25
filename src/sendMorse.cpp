@@ -1,4 +1,4 @@
-#include "MorseCodeMachine.h"
+#include "sendMorse.h"
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
