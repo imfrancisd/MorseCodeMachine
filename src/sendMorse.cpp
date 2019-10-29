@@ -277,4 +277,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         
         message++;
     }
+
+    #undef DIT
+    #undef DAH
 }
