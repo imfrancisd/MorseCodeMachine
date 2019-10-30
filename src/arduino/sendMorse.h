@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../all/sendMorse.h"
 #include <Arduino.h>
 
 /*
@@ -10,8 +9,7 @@ Name
 
 Description
 
-  Sends a null-terminated string, a String object, or a pointer to a String
-  object as Morse code.
+  Sends a String object or a pointer to a String object as Morse code.
 
 Syntax
 
@@ -52,8 +50,6 @@ Example Code
 
   void loop()
   {
-      sendMorse("<SOS>", ledDelay, ledDot, ledDash);
-      
       String message = "<SOS>";
       sendMorse(message, ledDelay, ledDot, ledDash);
 
