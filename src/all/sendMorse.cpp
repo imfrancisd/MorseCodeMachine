@@ -2,6 +2,11 @@
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
+    if (!(message && delayFunction && dotFunction && dashFunction))
+    {
+        return;
+    }
+
     #define DIT dotFunction(); delayFunction();
     #define DAH dashFunction(); delayFunction();
 

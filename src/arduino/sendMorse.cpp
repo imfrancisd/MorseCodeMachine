@@ -9,5 +9,8 @@ void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunctio
 
 void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
-    sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction);
+    if (message)
+    {
+        sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction);
+    }
 }
