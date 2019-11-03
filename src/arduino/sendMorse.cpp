@@ -14,3 +14,16 @@ void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunctio
         sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction);
     }
 }
+
+void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context)
+{
+    sendMorse(message.c_str(), delayFunction, dotFunction, dashFunction, context);
+}
+
+void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context)
+{
+    if (message)
+    {
+        sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction, context);
+    }
+}

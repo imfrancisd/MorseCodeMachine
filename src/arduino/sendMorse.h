@@ -27,15 +27,24 @@ Parameters
   delayFunction
   A function that delays for a short time.
   The delayFunction will be used to space the dots and dashes between letters and words.
-  This function should be allowed to be called without arguments.
+
+    The delay function can have 0 or 1 parameter:
+    void dly() {}
+    void dly(void *context) {}
 
   dotFunction
   A function that creates a dot (a blinking LED, a beeping speaker, etc.).
-  This function should be allowed to be called without arguments.
+
+    The dot function can have 0 or 1 parameter:
+    void dit() {}
+    void dit(void *context) {}
 
   dashFunction
   A function that creates a dash (a blinking LED, a beeping speaker, etc.).
-  This function should be allowed to be called without arguments.
+
+    The dash function can have 0 or 1 parameter:
+    void dah() {}
+    void dah(void *context) {}
 
 Returns
 
@@ -82,8 +91,12 @@ Notes and Warnings
 
   The duration of dotFunction should be the same as the duration of delayFunction.
   The duration of dashFunction should be three times the duration of delayFunction.
+
+  The delayFunction, dotFunction, and dashFunction must have the same number of parameters.
 */
 
 void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
-
 void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
+
+void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
+void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);

@@ -1,5 +1,7 @@
 #include "sendMorse.h"
 
+static unsigned char charToMorseElements(char c, int &elementCount);
+
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
     if (!(message && delayFunction && dotFunction && dashFunction))
@@ -7,264 +9,48 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         return;
     }
 
-    #define DIT dotFunction(); delayFunction();
-    #define DAH dashFunction(); delayFunction();
-
     bool hasLetterSpacing = true;
 
     while (true)
     {
-        switch (*message)
+        int morseElementCount = 0;
+        unsigned char morseElements = charToMorseElements(*message, morseElementCount);
+
+        if (morseElementCount > 0)
         {
-            //Digits 0-9.
-
-            case '0':
-                DAH DAH DAH DAH DAH;
-                break;
-
-            case '1':
-                DIT DAH DAH DAH DAH;
-                break;
-
-            case '2':
-                DIT DIT DAH DAH DAH;
-                break;
-
-            case '3':
-                DIT DIT DIT DAH DAH;
-                break;
-
-            case '4':
-                DIT DIT DIT DIT DAH;
-                break;
-
-            case '5':
-                DIT DIT DIT DIT DIT;
-                break;
-
-            case '6':
-                DAH DIT DIT DIT DIT;
-                break;
-
-            case '7':
-                DAH DAH DIT DIT DIT;
-                break;
-
-            case '8':
-                DAH DAH DAH DIT DIT;
-                break;
-
-            case '9':
-                DAH DAH DAH DAH DIT;
-                break;
-
-            //Letters A-z and a-z.
-
-            case 'A':
-            case 'a':
-                DIT DAH;
-                break;
-
-            case 'B':
-            case 'b':
-                DAH DIT DIT DIT;
-                break;
-
-            case 'C':
-            case 'c':
-                DAH DIT DAH DIT;
-                break;
-
-            case 'D':
-            case 'd':
-                DAH DIT DIT;
-                break;
-
-            case 'E':
-            case 'e':
-                DIT;
-                break;
-
-            case 'F':
-            case 'f':
-                DIT DIT DAH DIT;
-                break;
-
-            case 'G':
-            case 'g':
-                DAH DAH DIT;
-                break;
-
-            case 'H':
-            case 'h':
-                DIT DIT DIT DIT;
-                break;
-
-            case 'I':
-            case 'i':
-                DIT DIT;
-                break;
-
-            case 'J':
-            case 'j':
-                DIT DAH DAH DAH;
-                break;
-
-            case 'K':
-            case 'k':
-                DAH DIT DAH;
-                break;
-
-            case 'L':
-            case 'l':
-                DIT DAH DIT DIT;
-                break;
-
-            case 'M':
-            case 'm':
-                DAH DAH;
-                break;
-
-            case 'N':
-            case 'n':
-                DAH DIT;
-                break;
-
-            case 'O':
-            case 'o':
-                DAH DAH DAH;
-                break;
-
-            case 'P':
-            case 'p':
-                DIT DAH DAH DIT;
-                break;
-
-            case 'Q':
-            case 'q':
-                DAH DAH DIT DAH;
-                break;
-
-            case 'R':
-            case 'r':
-                DIT DAH DIT;
-                break;
-
-            case 'S':
-            case 's':
-                DIT DIT DIT;
-                break;
-
-            case 'T':
-            case 't':
-                DAH;
-                break;
-
-            case 'U':
-            case 'u':
-                DIT DIT DAH;
-                break;
-
-            case 'V':
-            case 'v':
-                DIT DIT DIT DAH;
-                break;
-
-            case 'W':
-            case 'w':
-                DIT DAH DAH;
-                break;
-
-            case 'X':
-            case 'x':
-                DAH DIT DIT DAH;
-                break;
-
-            case 'Y':
-            case 'y':
-                DAH DIT DAH DAH;
-                break;
-
-            case 'Z':
-            case 'z':
-                DAH DAH DIT DIT;
-                break;
-
-            //Symbols.
-
-            case '"':
-                DIT DAH DIT DIT DAH DIT;
-                break;
-
-            case '&':
-                DIT DAH DIT DIT DIT;
-                break;
-
-            case '\'':
-                DIT DAH DAH DAH DAH DIT;
-                break;
-
-            case '(':
-                DAH DIT DAH DAH DIT;
-                break;
-
-            case ')':
-                DAH DIT DAH DAH DIT DAH;
-                break;
-
-            case '+':
-                DIT DAH DIT DAH DIT;
-                break;
-
-            case ',':
-                DAH DAH DIT DIT DAH DAH;
-                break;
-
-            case '-':
-                DAH DIT DIT DIT DIT DAH;
-                break;
-
-            case '.':
-                DIT DAH DIT DAH DIT DAH;
-                break;
-
-            case '/':
-                DAH DIT DIT DAH DIT;
-                break;
-
-            case ':':
-                DAH DAH DAH DIT DIT DIT;
-                break;
-
-            case '=':
-                DAH DIT DIT DIT DAH;
-                break;
-
-            case '?':
-                DIT DIT DAH DAH DIT DIT;
-                break;
-
-            case '@':
-                DIT DAH DAH DIT DAH DIT;
-                break;
-
-            //Special characters for this library.
-
-            case '<':
-                hasLetterSpacing = false;
-                break;
-
-            case '>':
-                hasLetterSpacing = true;
-                break;
-
+            for (int i = morseElementCount; i > 0; i--)
+            {
+                if (morseElements & 1)
+                {
+                    dashFunction();
+                    delayFunction();
+                }
+                else
+                {
+                    dotFunction();
+                    delayFunction();
+                }
+                morseElements >>= 1;
+            }
+        }
+        else if (*message == '<')
+        {
+            //Special character for this library.
+            //Do not put delay between letters.
+            hasLetterSpacing = false;
+        }
+        else if (*message == '>')
+        {
+            //Special character for this library.
+            //Put delay between letters.
+            hasLetterSpacing = true;
+        }
+        else
+        {
             //Make everything else a delay between words, including the '\0'.
-
-            default:
-                //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-                delayFunction();
-                delayFunction();
-                break;
+            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
+            delayFunction();
+            delayFunction();
         }
 
         if (hasLetterSpacing)
@@ -282,7 +68,364 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         
         message++;
     }
+}
 
-    #undef DIT
-    #undef DAH
+void sendMorse(const char message[], void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context)
+{
+    if (!(message && delayFunction && dotFunction && dashFunction))
+    {
+        return;
+    }
+
+    bool hasLetterSpacing = true;
+
+    while (true)
+    {
+        int morseElementCount = 0;
+        unsigned char morseElements = charToMorseElements(*message, morseElementCount);
+
+        if (morseElementCount > 0)
+        {
+            for (int i = morseElementCount; i > 0; i--)
+            {
+                if (morseElements & 1)
+                {
+                    dashFunction(context);
+                    delayFunction(context);
+                }
+                else
+                {
+                    dotFunction(context);
+                    delayFunction(context);
+                }
+                morseElements >>= 1;
+            }
+        }
+        else if (*message == '<')
+        {
+            //Special character for this library.
+            //Do not put delay between letters.
+            hasLetterSpacing = false;
+        }
+        else if (*message == '>')
+        {
+            //Special character for this library.
+            //Put delay between letters.
+            hasLetterSpacing = true;
+        }
+        else
+        {
+            //Make everything else a delay between words, including the '\0'.
+            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
+            delayFunction(context);
+            delayFunction(context);
+        }
+
+        if (hasLetterSpacing)
+        {
+            //Delay between digits and letters.
+            //3 delays total. 1 from end of digit/letter, 2 from here.
+            delayFunction(context);
+            delayFunction(context);
+        }
+
+        if (*message == '\0')
+        {
+            break;
+        }
+        
+        message++;
+    }
+}
+
+static unsigned char charToMorseElements(char c, int &elementCount)
+{
+    switch (c)
+    {
+        //Digits 0-9.
+
+        case '0':
+            //DAH DAH DAH DAH DAH
+            elementCount = 5;
+            return 0b11111;
+
+        case '1':
+            //DIT DAH DAH DAH DAH
+            elementCount = 5;
+            return 0b11110;
+
+        case '2':
+            //DIT DIT DAH DAH DAH
+            elementCount = 5;
+            return 0b11100;
+
+        case '3':
+            //DIT DIT DIT DAH DAH;
+            elementCount = 5;
+            return 0b11000;
+
+        case '4':
+            //DIT DIT DIT DIT DAH;
+            elementCount = 5;
+            return 0b10000;
+
+        case '5':
+            //DIT DIT DIT DIT DIT;
+            elementCount = 5;
+            return 0b00000;
+
+        case '6':
+            //DAH DIT DIT DIT DIT;
+            elementCount = 5;
+            return 0b00001;
+
+        case '7':
+            //DAH DAH DIT DIT DIT;
+            elementCount = 5;
+            return 0b00011;
+
+        case '8':
+            //DAH DAH DAH DIT DIT;
+            elementCount = 5;
+            return 0b00111;
+
+        case '9':
+            //DAH DAH DAH DAH DIT;
+            elementCount = 5;
+            return 0b01111;
+
+        //Letters A-z and a-z.
+
+        case 'A':
+        case 'a':
+            //DIT DAH;
+            elementCount = 2;
+            return 0b10;
+
+        case 'B':
+        case 'b':
+            //DAH DIT DIT DIT;
+            elementCount = 4;
+            return 0b0001;
+
+        case 'C':
+        case 'c':
+            //DAH DIT DAH DIT;
+            elementCount = 4;
+            return 0b0101;
+
+        case 'D':
+        case 'd':
+            //DAH DIT DIT;
+            elementCount = 3;
+            return 0b001;
+
+        case 'E':
+        case 'e':
+            //DIT;
+            elementCount = 1;
+            return 0b0;
+
+        case 'F':
+        case 'f':
+            //DIT DIT DAH DIT;
+            elementCount = 4;
+            return 0b0100;
+
+        case 'G':
+        case 'g':
+            //DAH DAH DIT;
+            elementCount = 3;
+            return 0b011;
+
+        case 'H':
+        case 'h':
+            //DIT DIT DIT DIT;
+            elementCount = 4;
+            return 0b0000;
+
+        case 'I':
+        case 'i':
+            //DIT DIT;
+            elementCount = 2;
+            return 0b00;
+
+        case 'J':
+        case 'j':
+            //DIT DAH DAH DAH;
+            elementCount = 4;
+            return 0b1110;
+
+        case 'K':
+        case 'k':
+            //DAH DIT DAH;
+            elementCount = 3;
+            return 0b101;
+
+        case 'L':
+        case 'l':
+            //DIT DAH DIT DIT;
+            elementCount = 4;
+            return 0b0010;
+
+        case 'M':
+        case 'm':
+            //DAH DAH;
+            elementCount = 2;
+            return 0b11;
+
+        case 'N':
+        case 'n':
+            //DAH DIT;
+            elementCount = 2;
+            return 0b01;
+
+        case 'O':
+        case 'o':
+            //DAH DAH DAH;
+            elementCount = 3;
+            return 0b111;
+
+        case 'P':
+        case 'p':
+            //DIT DAH DAH DIT;
+            elementCount = 4;
+            return 0b0110;
+
+        case 'Q':
+        case 'q':
+            //DAH DAH DIT DAH;
+            elementCount = 4;
+            return 0b1011;
+
+        case 'R':
+        case 'r':
+            //DIT DAH DIT;
+            elementCount = 3;
+            return 0b010;
+
+        case 'S':
+        case 's':
+            //DIT DIT DIT;
+            elementCount = 3;
+            return 0b000;
+
+        case 'T':
+        case 't':
+            //DAH;
+            elementCount = 1;
+            return 0b1;
+
+        case 'U':
+        case 'u':
+            //DIT DIT DAH;
+            elementCount = 3;
+            return 0b100;
+
+        case 'V':
+        case 'v':
+            //DIT DIT DIT DAH;
+            elementCount = 4;
+            return 0b1000;
+
+        case 'W':
+        case 'w':
+            //DIT DAH DAH;
+            elementCount = 3;
+            return 0b110;
+
+        case 'X':
+        case 'x':
+            //DAH DIT DIT DAH;
+            elementCount = 4;
+            return 0b1001;
+
+        case 'Y':
+        case 'y':
+            //DAH DIT DAH DAH;
+            elementCount = 4;
+            return 0b1101;
+
+        case 'Z':
+        case 'z':
+            //DAH DAH DIT DIT;
+            elementCount = 4;
+            return 0b0011;
+
+        //Symbols.
+
+        case '"':
+            //DIT DAH DIT DIT DAH DIT;
+            elementCount = 6;
+            return 0b010010;
+
+        case '&':
+            //DIT DAH DIT DIT DIT;
+            elementCount = 5;
+            return 0b00010;
+
+        case '\'':
+            //DIT DAH DAH DAH DAH DIT;
+            elementCount = 6;
+            return 0b011110;
+
+        case '(':
+            //DAH DIT DAH DAH DIT;
+            elementCount = 5;
+            return 0b01101;
+
+        case ')':
+            //DAH DIT DAH DAH DIT DAH;
+            elementCount = 6;
+            return 0b101101;
+
+        case '+':
+            //DIT DAH DIT DAH DIT;
+            elementCount = 5;
+            return 0b01010;
+
+        case ',':
+            //DAH DAH DIT DIT DAH DAH;
+            elementCount = 6;
+            return 0b110011;
+
+        case '-':
+            //DAH DIT DIT DIT DIT DAH;
+            elementCount = 6;
+            return 0b100001;
+
+        case '.':
+            //DIT DAH DIT DAH DIT DAH;
+            elementCount = 6;
+            return 0b101010;
+
+        case '/':
+            //DAH DIT DIT DAH DIT;
+            elementCount = 5;
+            return 0b01001;
+
+        case ':':
+            //DAH DAH DAH DIT DIT DIT;
+            elementCount = 6;
+            return 0b000111;
+
+        case '=':
+            //DAH DIT DIT DIT DAH;
+            elementCount = 5;
+            return 0b10001;
+
+        case '?':
+            //DIT DIT DAH DAH DIT DIT;
+            elementCount = 6;
+            return 0b001100;
+
+        case '@':
+            //DIT DAH DAH DIT DAH DIT;
+            elementCount = 6;
+            return 0b010110;
+
+        default:
+            elementCount = 0;
+            return 0;
+    }
 }
