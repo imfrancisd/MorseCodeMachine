@@ -16,7 +16,19 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         int morseElementCount = 0;
         unsigned char morseElements = charToMorseElements(*message, morseElementCount);
 
-        if (morseElementCount > 0)
+        if (*message == '<')
+        {
+            //Special character for this library.
+            //Do not put delay between letters.
+            hasLetterSpacing = false;
+        }
+        else if (*message == '>')
+        {
+            //Special character for this library.
+            //Put delay between letters.
+            hasLetterSpacing = true;
+        }
+        else if (morseElementCount > 0)
         {
             for (int i = morseElementCount; i > 0; i--)
             {
@@ -32,18 +44,6 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
                 }
                 morseElements >>= 1;
             }
-        }
-        else if (*message == '<')
-        {
-            //Special character for this library.
-            //Do not put delay between letters.
-            hasLetterSpacing = false;
-        }
-        else if (*message == '>')
-        {
-            //Special character for this library.
-            //Put delay between letters.
-            hasLetterSpacing = true;
         }
         else
         {
@@ -84,7 +84,19 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         int morseElementCount = 0;
         unsigned char morseElements = charToMorseElements(*message, morseElementCount);
 
-        if (morseElementCount > 0)
+        if (*message == '<')
+        {
+            //Special character for this library.
+            //Do not put delay between letters.
+            hasLetterSpacing = false;
+        }
+        else if (*message == '>')
+        {
+            //Special character for this library.
+            //Put delay between letters.
+            hasLetterSpacing = true;
+        }
+        else if (morseElementCount > 0)
         {
             for (int i = morseElementCount; i > 0; i--)
             {
@@ -100,18 +112,6 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
                 }
                 morseElements >>= 1;
             }
-        }
-        else if (*message == '<')
-        {
-            //Special character for this library.
-            //Do not put delay between letters.
-            hasLetterSpacing = false;
-        }
-        else if (*message == '>')
-        {
-            //Special character for this library.
-            //Put delay between letters.
-            hasLetterSpacing = true;
         }
         else
         {
