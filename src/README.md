@@ -1,29 +1,8 @@
-# Build Status
+# MorseCodeMachine.h
 
-## g++
+MorseCodeMachine.h exposes all the functionality in this library.
 
-|                 | **master**      | **development** |
-| --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=12&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=13&branchName=development) |
-| **Description** | Build, Run      | Build, Run      |
-| **OS**          | Ubuntu          | Ubuntu          |
-| **Shell**       | pwsh, bash      | pwsh, bash      |
-| **Compiler**    | g++             | g++             |
-| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=12) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=13) |
+The all/ directory contains code that works for all C++ compilers.
 
-## cl.exe
+The arduino/ directory contains code that works for all Arduino boards.
 
-|                 | **master**      | **development** |
-| --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-windows?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=15&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development-windows?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=14&branchName=development) |
-| **Description** | Build, Run      | Build, Run      |
-| **OS**          | Windows         | Windows         |
-| **Shell**       | pwsh, cmd       | pwsh, cmd       |
-| **Compiler**    | cl.exe          | cl.exe          |
-| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=15) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=14) |
-
-# Sample Output
-
-You can find the parts of this program that does not depend on Arduino being run here:
-
-https://dev.azure.com/imfrancisd/MorseCodeMachine/_build
