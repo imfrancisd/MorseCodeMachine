@@ -30,12 +30,18 @@ Parameters
     void dly() {}
     void dly(void *context) {}
 
+    The delay function can return a non-zero error code:
+    int dly() {}
+
   dotFunction
   A function that creates a dot (a blinking LED, a beeping speaker, etc.).
 
     The dot function can have 0 or 1 parameter:
     void dit() {}
     void dit(void *context) {}
+
+    The dot function can return a non-zero error code:
+    int dit() {}
 
   dashFunction
   A function that creates a dash (a blinking LED, a beeping speaker, etc.).
@@ -44,9 +50,25 @@ Parameters
     void dah() {}
     void dah(void *context) {}
 
+    The dash function can return a non-zero error code:
+    int dah() {}
+
 Returns
 
-  Nothing
+  void sendMorse(...
+    returns nothing
+
+  int sendMorse(...
+    returns -1
+      message is null
+      delayFunction is null
+      dotFunction is null
+      dashFunction is null
+    returns non-zero
+      delayFunction returns non-zero
+      dotFunction returns non-zero
+      dashFunction returns non-zero
+    returns 0 on success
 
 Example Code
 
@@ -84,10 +106,15 @@ Example Code
 Notes and Warnings
 
   The duration of dotFunction should be the same as the duration of delayFunction.
+
   The duration of dashFunction should be three times the duration of delayFunction.
 
-  The delayFunction, dotFunction, and dashFunction must have the same number of parameters.
+  The delayFunction, dotFunction, and dashFunction must.
+      all have the same number of parameters
+      all return nothing or must all return an integer.
 */
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
 void sendMorse(const char message[], void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
+
+int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)());
