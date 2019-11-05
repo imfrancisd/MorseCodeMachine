@@ -33,6 +33,7 @@ Parameters
 
     The delay function can return a non-zero error code:
     int dly() {}
+    int dly(void *context) {}
 
   dotFunction
   A function that creates a dot (a blinking LED, a beeping speaker, etc.).

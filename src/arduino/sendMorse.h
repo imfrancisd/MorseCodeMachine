@@ -33,6 +33,10 @@ Parameters
     void dly() {}
     void dly(void *context) {}
 
+    The delay function can return a non-zero error code:
+    int dly() {}
+    int dly(void *context) {}
+
   dotFunction
   A function that creates a dot (a blinking LED, a beeping speaker, etc.).
 
@@ -40,12 +44,20 @@ Parameters
     void dit() {}
     void dit(void *context) {}
 
+    The dot function can return a non-zero error code:
+    int dit() {}
+    int dit(void *context) {}
+
   dashFunction
   A function that creates a dash (a blinking LED, a beeping speaker, etc.).
 
     The dash function can have 0 or 1 parameter:
     void dah() {}
     void dah(void *context) {}
+
+    The dash function can return a non-zero error code:
+    int dah() {}
+    int dah(void *context) {}
 
   context
   A pointer to pass the delayFunction, dotFunction, and dashFunction.
@@ -127,4 +139,10 @@ void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunctio
 
 void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
 void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
+
+int sendMorse(const String &message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)());
+int sendMorse(const String *message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)());
+
+int sendMorse(const String &message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context);
+int sendMorse(const String *message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context);
 
