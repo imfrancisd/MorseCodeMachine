@@ -52,6 +52,48 @@ namespace Machine3
     int dahWithError() {out.append("-"); return 3;}
 }
 
+namespace Machine4
+{
+    std::string out;
+    int errorCode = 0;
+    int dly(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append(" ");
+        return 0;
+    }
+    int dit(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append("*");
+        return 0;
+    }
+    int dah(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append("-");
+        return 0;
+    }
+    int dlyWithError(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append(" ");
+        return 1;
+    }
+    int ditWithError(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append("*");
+        return 2;
+    }
+    int dahWithError(void *context)
+    {
+        std::string *s = context ? (std::string *)context : &out;
+        s->append("-");
+        return 3;
+    }
+}
+
 namespace Test
 {
     int countPass = 0;
@@ -104,9 +146,11 @@ int main(int argc, char **argv)
 {
     int testId = 0;
 
+//=============================================================================
     std::cout << std::endl;
     std::cout << "Testing: void sendMorse(const char *, void (*)(), void (*)(), void (*)())" << std::endl;
     std::cout << std::endl;
+//=============================================================================
 
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: NULL"  << std::endl;
@@ -162,9 +206,11 @@ int main(int argc, char **argv)
     Test::printResult(testId, Test::morse == Machine1::out);
     std::cout << std::endl;
 
+//=============================================================================
     std::cout << std::endl;
     std::cout << "Testing: void sendMorse(const char *, void (*)(void *), void (*)(void *), void (*)(void *), void *)" << std::endl;
     std::cout << std::endl;
+//=============================================================================
 
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: NULL"  << std::endl;
@@ -238,9 +284,11 @@ int main(int argc, char **argv)
     Test::printResult(testId, Test::morse == Machine2::out);
     std::cout << std::endl;
 
+//=============================================================================
     std::cout << std::endl;
     std::cout << "Testing: int sendMorse(const char *, int (*)(), int (*)(), int (*)())" << std::endl;
     std::cout << std::endl;
+//=============================================================================
 
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: NULL"  << std::endl;
@@ -374,8 +422,173 @@ int main(int argc, char **argv)
     Test::printResult(testId, Machine3::errorCode == 0);
     std::cout << std::endl;
 
-    std::cout << "Pass : " << Test::countPass << std::endl;
-    std::cout << "Fail : " << Test::countFail << std::endl;
+//=============================================================================
+    std::cout << std::endl;
+    std::cout << "Testing: int sendMorse(const char *, int (*)(void *), int (*)(void *), int (*)(void *), void *)" << std::endl;
+    std::cout << std::endl;
+//=============================================================================
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse(NULL, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == -1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse(nullptr, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == -1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 2: nullptr" << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", nullptr, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == -1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 3: nullptr" << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, nullptr, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == -1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 4: nullptr" << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, nullptr, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == -1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 5: NULL" << std::endl;
+    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, NULL);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "* * * - - - * * *       ");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 0);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 5: nullptr" << std::endl;
+    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, nullptr);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "* * * - - - * * *       ");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 0);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: s" << std::endl;
+    std::cout << "Expect : * " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("s", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "* ");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: o" << std::endl;
+    std::cout << "Expect : - " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("o", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "- ");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: " << std::endl;
+    std::cout << "Expect :  " << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse(" ", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == " ");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 1);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: <sos>" << std::endl;
+    std::cout << "Expect : *" << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::ditWithError, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "*");
+    std::cout << "Expect : 2" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 2);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: <sos>" << std::endl;
+    std::cout << "Expect : * * * -" << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dahWithError, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Machine4::out == "* * * -");
+    std::cout << "Expect : 3" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 3);
+    std::cout << std::endl;
+
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: " << Test::ascii << std::endl;
+    std::cout << "Expect : " << Test::morse << std::endl;
+    Machine4::out = "";
+    Machine4::errorCode = sendMorse(Test::ascii.c_str(), Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    std::cout << "Output : " << Machine4::out << std::endl;
+    Test::printResult(testId, Test::morse == Machine4::out);
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine4::errorCode << std::endl;
+    Test::printResult(testId, Machine4::errorCode == 0);
+    std::cout << std::endl;
+
+//=============================================================================
+    std::cout << "Total Pass : " << Test::countPass << std::endl;
+    std::cout << "Total Fail : " << Test::countFail << std::endl;
+//=============================================================================
 
    return Test::countFail;
 }
+

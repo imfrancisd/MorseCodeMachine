@@ -149,7 +149,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
     while (true)
     {
-	int errorCode = 0;
+        int errorCode = 0;
         int morseElementCount = 0;
         unsigned char morseElements = charToMorseElements(*message, morseElementCount);
 
@@ -224,6 +224,109 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
                 return errorCode;
             }
             errorCode = delayFunction();
+            if (errorCode)
+            {
+                return errorCode;
+            }
+        }
+
+        if (*message == '\0')
+        {
+            break;
+        }
+        
+        message++;
+    }
+
+    return 0;
+}
+
+int sendMorse(const char message[], int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context)
+{
+    if (!(message && delayFunction && dotFunction && dashFunction))
+    {
+        return -1;
+    }
+
+    bool hasLetterSpacing = true;
+
+    while (true)
+    {
+        int errorCode = 0;
+        int morseElementCount = 0;
+        unsigned char morseElements = charToMorseElements(*message, morseElementCount);
+
+        if (*message == '<')
+        {
+            //Special character for this library.
+            //Do not put delay between letters.
+            hasLetterSpacing = false;
+        }
+        else if (*message == '>')
+        {
+            //Special character for this library.
+            //Put delay between letters.
+            hasLetterSpacing = true;
+        }
+        else if (morseElementCount > 0)
+        {
+            for (int i = morseElementCount; i > 0; i--)
+            {
+                if (morseElements & 1)
+                {
+                    errorCode = dashFunction(context);
+                    if (errorCode)
+                    {
+                        return errorCode;
+                    }
+                    errorCode = delayFunction(context);
+                    if (errorCode)
+                    {
+                        return errorCode;
+                    }
+                }
+                else
+                {
+                    errorCode = dotFunction(context);
+                    if (errorCode)
+                    {
+                        return errorCode;
+                    }
+                    errorCode = delayFunction(context);
+                    if (errorCode)
+                    {
+                        return errorCode;
+                    }
+                }
+                morseElements >>= 1;
+            }
+        }
+        else
+        {
+            //Make everything else a delay between words, including the '\0'.
+            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
+            errorCode = delayFunction(context);
+            if (errorCode)
+            {
+                return errorCode;
+            }
+            errorCode = delayFunction(context);
+            if (errorCode)
+            {
+                return errorCode;
+            }
+        }
+
+        if (hasLetterSpacing)
+        {
+            //Delay between digits and letters.
+            //3 delays total. 1 from end of digit/letter, 2 from here.
+            errorCode = delayFunction(context);
+            if (errorCode)
+            {
+                return errorCode;
+            }
+            errorCode = delayFunction(context);
             if (errorCode)
             {
                 return errorCode;
@@ -532,3 +635,4 @@ static unsigned char charToMorseElements(char c, int &elementCount)
             return 0;
     }
 }
+
