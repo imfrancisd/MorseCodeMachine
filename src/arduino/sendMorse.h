@@ -14,11 +14,12 @@ Description
 Syntax
 
   sendMorse(message, delayFunction, dotFunction, dashFunction)
+  sendMorse(message, delayFunction, dotFunction, dashFunction, context)
 
 Parameters
 
   message
-  The message to send as Morse code
+  The message to send as Morse code.
   Any unrecognized characters in the string will be considered as a space.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
@@ -46,9 +47,29 @@ Parameters
     void dah() {}
     void dah(void *context) {}
 
+  context
+  A pointer to pass the delayFunction, dotFunction, and dashFunction.
+
+    This gives your delayFunction, dotFunction, and dashFunction state
+    without having to use global variables.
+
 Returns
 
-  Nothing
+  void sendMorse(...
+    returns nothing
+
+  int sendMorse(...
+    returns -1
+      message is null
+      delayFunction is null
+      dotFunction is null
+      dashFunction is null
+    returns non-zero
+      delayFunction returns non-zero
+      dotFunction returns non-zero
+      dashFunction returns non-zero
+    returns 0
+      on success
 
 Example Code
 
@@ -90,9 +111,15 @@ Example Code
 Notes and Warnings
 
   The duration of dotFunction should be the same as the duration of delayFunction.
-  The duration of dashFunction should be three times the duration of delayFunction.
 
-  The delayFunction, dotFunction, and dashFunction must have the same number of parameters.
+  The duration of dashFunction should be 3 times the duration of delayFunction.
+
+  The sendMorse function does nothing if message, delayFunction, dotFunction,
+  or dashFunction is null.
+
+  The delayFunction, dotFunction, and dashFunction must:
+    all have the same number of parameters
+    all return nothing or all return an integer.
 */
 
 void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
@@ -100,3 +127,4 @@ void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunctio
 
 void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
 void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
+

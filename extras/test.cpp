@@ -5,7 +5,7 @@
 //    ./test.out
 //
 //Compile with cl.exe and run:
-//    cl.exe /nologo /Ehsc /Fetest.exe test.cpp ..\src\all\*.cpp
+//    cl.exe /nologo /EHsc /Fetest.exe test.cpp ..\src\all\*.cpp
 //    test.exe
 
 #include "../src/all/sendMorse.h"

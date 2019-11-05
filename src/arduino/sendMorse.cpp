@@ -27,3 +27,4 @@ void sendMorse(const String *message, void (*delayFunction)(void *context), void
         sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction, context);
     }
 }
+

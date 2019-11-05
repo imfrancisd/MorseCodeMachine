@@ -17,7 +17,7 @@ Syntax
 Parameters
 
   message
-  The message to send as Morse code
+  The message to send as Morse code.
   Any unrecognized characters in the string will be considered as a space.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".

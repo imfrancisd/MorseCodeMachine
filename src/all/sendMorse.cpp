@@ -366,37 +366,37 @@ static unsigned char charToMorseElements(char c, int &elementCount)
             return 0b11100;
 
         case '3':
-            //DIT DIT DIT DAH DAH;
+            //DIT DIT DIT DAH DAH
             elementCount = 5;
             return 0b11000;
 
         case '4':
-            //DIT DIT DIT DIT DAH;
+            //DIT DIT DIT DIT DAH
             elementCount = 5;
             return 0b10000;
 
         case '5':
-            //DIT DIT DIT DIT DIT;
+            //DIT DIT DIT DIT DIT
             elementCount = 5;
             return 0b00000;
 
         case '6':
-            //DAH DIT DIT DIT DIT;
+            //DAH DIT DIT DIT DIT
             elementCount = 5;
             return 0b00001;
 
         case '7':
-            //DAH DAH DIT DIT DIT;
+            //DAH DAH DIT DIT DIT
             elementCount = 5;
             return 0b00011;
 
         case '8':
-            //DAH DAH DAH DIT DIT;
+            //DAH DAH DAH DIT DIT
             elementCount = 5;
             return 0b00111;
 
         case '9':
-            //DAH DAH DAH DAH DIT;
+            //DAH DAH DAH DAH DIT
             elementCount = 5;
             return 0b01111;
 
@@ -404,229 +404,229 @@ static unsigned char charToMorseElements(char c, int &elementCount)
 
         case 'A':
         case 'a':
-            //DIT DAH;
+            //DIT DAH
             elementCount = 2;
             return 0b10;
 
         case 'B':
         case 'b':
-            //DAH DIT DIT DIT;
+            //DAH DIT DIT DIT
             elementCount = 4;
             return 0b0001;
 
         case 'C':
         case 'c':
-            //DAH DIT DAH DIT;
+            //DAH DIT DAH DIT
             elementCount = 4;
             return 0b0101;
 
         case 'D':
         case 'd':
-            //DAH DIT DIT;
+            //DAH DIT DIT
             elementCount = 3;
             return 0b001;
 
         case 'E':
         case 'e':
-            //DIT;
+            //DIT
             elementCount = 1;
             return 0b0;
 
         case 'F':
         case 'f':
-            //DIT DIT DAH DIT;
+            //DIT DIT DAH DIT
             elementCount = 4;
             return 0b0100;
 
         case 'G':
         case 'g':
-            //DAH DAH DIT;
+            //DAH DAH DIT
             elementCount = 3;
             return 0b011;
 
         case 'H':
         case 'h':
-            //DIT DIT DIT DIT;
+            //DIT DIT DIT DIT
             elementCount = 4;
             return 0b0000;
 
         case 'I':
         case 'i':
-            //DIT DIT;
+            //DIT DIT
             elementCount = 2;
             return 0b00;
 
         case 'J':
         case 'j':
-            //DIT DAH DAH DAH;
+            //DIT DAH DAH DAH
             elementCount = 4;
             return 0b1110;
 
         case 'K':
         case 'k':
-            //DAH DIT DAH;
+            //DAH DIT DAH
             elementCount = 3;
             return 0b101;
 
         case 'L':
         case 'l':
-            //DIT DAH DIT DIT;
+            //DIT DAH DIT DIT
             elementCount = 4;
             return 0b0010;
 
         case 'M':
         case 'm':
-            //DAH DAH;
+            //DAH DAH
             elementCount = 2;
             return 0b11;
 
         case 'N':
         case 'n':
-            //DAH DIT;
+            //DAH DIT
             elementCount = 2;
             return 0b01;
 
         case 'O':
         case 'o':
-            //DAH DAH DAH;
+            //DAH DAH DAH
             elementCount = 3;
             return 0b111;
 
         case 'P':
         case 'p':
-            //DIT DAH DAH DIT;
+            //DIT DAH DAH DIT
             elementCount = 4;
             return 0b0110;
 
         case 'Q':
         case 'q':
-            //DAH DAH DIT DAH;
+            //DAH DAH DIT DAH
             elementCount = 4;
             return 0b1011;
 
         case 'R':
         case 'r':
-            //DIT DAH DIT;
+            //DIT DAH DIT
             elementCount = 3;
             return 0b010;
 
         case 'S':
         case 's':
-            //DIT DIT DIT;
+            //DIT DIT DIT
             elementCount = 3;
             return 0b000;
 
         case 'T':
         case 't':
-            //DAH;
+            //DAH
             elementCount = 1;
             return 0b1;
 
         case 'U':
         case 'u':
-            //DIT DIT DAH;
+            //DIT DIT DAH
             elementCount = 3;
             return 0b100;
 
         case 'V':
         case 'v':
-            //DIT DIT DIT DAH;
+            //DIT DIT DIT DAH
             elementCount = 4;
             return 0b1000;
 
         case 'W':
         case 'w':
-            //DIT DAH DAH;
+            //DIT DAH DAH
             elementCount = 3;
             return 0b110;
 
         case 'X':
         case 'x':
-            //DAH DIT DIT DAH;
+            //DAH DIT DIT DAH
             elementCount = 4;
             return 0b1001;
 
         case 'Y':
         case 'y':
-            //DAH DIT DAH DAH;
+            //DAH DIT DAH DAH
             elementCount = 4;
             return 0b1101;
 
         case 'Z':
         case 'z':
-            //DAH DAH DIT DIT;
+            //DAH DAH DIT DIT
             elementCount = 4;
             return 0b0011;
 
         //Symbols.
 
         case '"':
-            //DIT DAH DIT DIT DAH DIT;
+            //DIT DAH DIT DIT DAH DIT
             elementCount = 6;
             return 0b010010;
 
         case '&':
-            //DIT DAH DIT DIT DIT;
+            //DIT DAH DIT DIT DIT
             elementCount = 5;
             return 0b00010;
 
         case '\'':
-            //DIT DAH DAH DAH DAH DIT;
+            //DIT DAH DAH DAH DAH DIT
             elementCount = 6;
             return 0b011110;
 
         case '(':
-            //DAH DIT DAH DAH DIT;
+            //DAH DIT DAH DAH DIT
             elementCount = 5;
             return 0b01101;
 
         case ')':
-            //DAH DIT DAH DAH DIT DAH;
+            //DAH DIT DAH DAH DIT DAH
             elementCount = 6;
             return 0b101101;
 
         case '+':
-            //DIT DAH DIT DAH DIT;
+            //DIT DAH DIT DAH DIT
             elementCount = 5;
             return 0b01010;
 
         case ',':
-            //DAH DAH DIT DIT DAH DAH;
+            //DAH DAH DIT DIT DAH DAH
             elementCount = 6;
             return 0b110011;
 
         case '-':
-            //DAH DIT DIT DIT DIT DAH;
+            //DAH DIT DIT DIT DIT DAH
             elementCount = 6;
             return 0b100001;
 
         case '.':
-            //DIT DAH DIT DAH DIT DAH;
+            //DIT DAH DIT DAH DIT DAH
             elementCount = 6;
             return 0b101010;
 
         case '/':
-            //DAH DIT DIT DAH DIT;
+            //DAH DIT DIT DAH DIT
             elementCount = 5;
             return 0b01001;
 
         case ':':
-            //DAH DAH DAH DIT DIT DIT;
+            //DAH DAH DAH DIT DIT DIT
             elementCount = 6;
             return 0b000111;
 
         case '=':
-            //DAH DIT DIT DIT DAH;
+            //DAH DIT DIT DIT DAH
             elementCount = 5;
             return 0b10001;
 
         case '?':
-            //DIT DIT DAH DAH DIT DIT;
+            //DIT DIT DAH DAH DIT DIT
             elementCount = 6;
             return 0b001100;
 
         case '@':
-            //DIT DAH DAH DIT DAH DIT;
+            //DIT DAH DAH DIT DAH DIT
             elementCount = 6;
             return 0b010110;
 
