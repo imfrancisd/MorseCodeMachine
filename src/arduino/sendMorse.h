@@ -27,7 +27,8 @@ Parameters
 
   delayFunction
   A function that delays for a short time.
-  The delayFunction will be used to space the dots and dashes between letters and words.
+  The delayFunction will be used to space the dots and dashes between
+  characters and words.
 
     The delay function can have 0 or 1 parameter:
     void dly() {}
@@ -60,89 +61,148 @@ Parameters
     int dah(void *context) {}
 
   context
-  A pointer to pass the delayFunction, dotFunction, and dashFunction.
+  A pointer to pass to the delayFunction, dotFunction, and dashFunction.
 
     This gives your delayFunction, dotFunction, and dashFunction state
     without having to use global variables.
 
 Returns
 
-  void sendMorse(...
+  void sendMorse(
     returns nothing
 
-  int sendMorse(...
-    returns -1
-      message is null
-      delayFunction is null
-      dotFunction is null
-      dashFunction is null
-    returns non-zero
+  int sendMorse(
+    returns -1 if one or more of the following is true
+      message is nullptr
+      delayFunction is nullptr
+      dotFunction is nullptr
+      dashFunction is nullptr
+
+    returns non-zero when
       delayFunction returns non-zero
       dotFunction returns non-zero
       dashFunction returns non-zero
+
+      When any of the three functions returns a non-zero value, sendMorse will
+      immediately stop and return that non-zero value.
+
     returns 0
       on success
 
 Example Code
 
-  void setup()
+  //Functions that creates Morse code with a blinking LED.
+  void ledDly();
+  void ledDit();
+  void ledDah();
+
+  //Functions that creates Morse code with a spinning motor,
+  //and returns a non-zero integer if there is an error.
+  int motorDly();
+  int motorDit();
+  int motorDah();
+
+  //Functions that creates Morse code with a beeping speaker,
+  //and takes an integer to customize its speed (dot duration in ms).
+  void speakerDly(void *);
+  void speakerDit(void *);
+  void speakerDah(void *);
+
+  //Functions that creates Morse code with a super secret device,
+  //and returns a non-zero integer if there is an error,
+  //and takes a pointer to an object to customize its behavior.
+  class SuperSecretDevicePreferences
   {
-      pinMode(LED_BUILTIN, OUTPUT);
-  }
+    public:
+    SuperSecretDevicePreferences(int dotDuration, int red, int green, int blue);
+    //more code
+  };
+  int superSecretDeviceDelay(void *);
+  int superSecretDeviceDot(void *);
+  int superSecretDeviceDash(void *);
 
   void loop()
   {
-      String message = "<SOS>";
-      sendMorse(message, ledDelay, ledDot, ledDash);
+    String message = "Send <SOS> not SOS";
 
-      String *ptr = &message;
-      sendMorse(ptr, ledDelay, ledDot, ledDash);
-  }
+    sendMorse(message, ledDly, ledDit, ledDah);
 
-  void ledDelay()
-  {
-      delay(200);
-  }
+    int motorErrorCode = sendMorse(message, motorDly, motorDit, motorDah);
+    if (motorErrorCode != 0)
+    {
+        //there was an error sending morse code
+    }
 
-  void ledDot()
-  {
-      digitalWrite(LED_BUILTIN, HIGH);
-      ledDelay();
-      digitalWrite(LED_BUILTIN, LOW);
-  }
+    int dotDuration = 200;
+    sendMorse(message, speakerDly, speakerDit, speakerDah, &dotDuration);
 
-  void ledDash()
-  {
-      digitalWrite(LED_BUILTIN, HIGH);
-      ledDelay();
-      ledDelay();
-      ledDelay();
-      digitalWrite(LED_BUILTIN, LOW);
+    SuperSecretDevicePreferences preferences(200, 255, 165, 0);
+    int superSecretDeviceErrorCode = sendMorse(message,
+                                               superSecretDeviceDelay,
+                                               superSecretDeviceDot,
+                                               superSecretDeviceDash,
+                                               &preferences);
+    if (superSecretDeviceErrorCode != 0)
+    {
+      //super secret device had error sending morse code
+    }
   }
 
 Notes and Warnings
 
-  The duration of dotFunction should be the same as the duration of delayFunction.
+  The duration of dotFunction should be equal the duration of delayFunction.
 
   The duration of dashFunction should be 3 times the duration of delayFunction.
 
-  The sendMorse function does nothing if message, delayFunction, dotFunction,
-  or dashFunction is null.
+  The sendMorse function returns immediately if message, delayFunction,
+  dotFunction, or dashFunction is nullptr.
 
   The delayFunction, dotFunction, and dashFunction must:
     all have the same number of parameters
     all return nothing or all return an integer.
 */
 
-void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
-void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)());
+void sendMorse(const String &message,
+               void (*delayFunction)(),
+               void (*dotFunction)(),
+               void (*dashFunction)());
 
-void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
-void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context);
+int sendMorse(const String &message,
+              int (*delayFunction)(),
+              int (*dotFunction)(),
+              int (*dashFunction)());
 
-int sendMorse(const String &message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)());
-int sendMorse(const String *message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)());
+void sendMorse(const String &message,
+               void (*delayFunction)(void *context),
+               void (*dotFunction)(void *context),
+               void (*dashFunction)(void *context),
+               void *context);
 
-int sendMorse(const String &message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context);
-int sendMorse(const String *message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context);
+int sendMorse(const String &message,
+              int (*delayFunction)(void *context),
+              int (*dotFunction)(void *context),
+              int (*dashFunction)(void *context),
+              void *context);
+
+void sendMorse(const String *message,
+               void (*delayFunction)(),
+               void (*dotFunction)(),
+               void (*dashFunction)());
+
+int sendMorse(const String *message,
+              int (*delayFunction)(),
+              int (*dotFunction)(),
+              int (*dashFunction)());
+
+void sendMorse(const String *message,
+               void (*delayFunction)(void *context),
+               void (*dotFunction)(void *context),
+               void (*dashFunction)(void *context),
+               void *context);
+
+int sendMorse(const String *message,
+              int (*delayFunction)(void *context),
+              int (*dotFunction)(void *context),
+              int (*dashFunction)(void *context),
+              void *context);
 

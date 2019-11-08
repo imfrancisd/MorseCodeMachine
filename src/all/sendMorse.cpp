@@ -34,13 +34,12 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
                 if (morseElements & 0b0000000010000000)
                 {
                     dashFunction();
-                    delayFunction();
                 }
                 else
                 {
                     dotFunction();
-                    delayFunction();
                 }
+                delayFunction();
                 morseElements <<= 1;
             }
         }
@@ -101,13 +100,12 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
                 if (morseElements & 0b0000000010000000)
                 {
                     dashFunction(context);
-                    delayFunction(context);
                 }
                 else
                 {
                     dotFunction(context);
-                    delayFunction(context);
                 }
+                delayFunction(context);
                 morseElements <<= 1;
             }
         }
@@ -173,11 +171,6 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
                     {
                         return errorCode;
                     }
-                    errorCode = delayFunction();
-                    if (errorCode)
-                    {
-                        return errorCode;
-                    }
                 }
                 else
                 {
@@ -186,12 +179,14 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
                     {
                         return errorCode;
                     }
-                    errorCode = delayFunction();
-                    if (errorCode)
-                    {
-                        return errorCode;
-                    }
                 }
+
+                errorCode = delayFunction();
+                if (errorCode)
+                {
+                    return errorCode;
+                }
+
                 morseElements <<= 1;
             }
         }
@@ -275,11 +270,6 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
                     {
                         return errorCode;
                     }
-                    errorCode = delayFunction(context);
-                    if (errorCode)
-                    {
-                        return errorCode;
-                    }
                 }
                 else
                 {
@@ -288,12 +278,14 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
                     {
                         return errorCode;
                     }
-                    errorCode = delayFunction(context);
-                    if (errorCode)
-                    {
-                        return errorCode;
-                    }
                 }
+
+                errorCode = delayFunction(context);
+                if (errorCode)
+                {
+                    return errorCode;
+                }
+
                 morseElements <<= 1;
             }
         }
