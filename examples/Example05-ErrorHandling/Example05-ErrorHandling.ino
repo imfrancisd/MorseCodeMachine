@@ -15,7 +15,7 @@ void loop()
     //outside this function.
     int errorCode = sendMorse("<sos>", serialDelay, serialDot, serialDash);
 
-    //Check if there was any error sending the Morse code.
+    //Check if there was an error sending the Morse code.
     if (errorCode != 0)
     {
         Serial.println("");
@@ -80,7 +80,7 @@ int serialDot()
     //Wait the same amount of time as the delay.
     delay(200);
 
-    //Simulate an error by choosing randomly choosing a number between 1-100.
+    //Simulate an error by randomly choosing a number between 1-100.
     //If you get a number greater than 95, return that number as the error code.
     //If you get a number less than or equal to 95, return 0.
 
@@ -119,7 +119,7 @@ int serialDash()
     //Wait three times as long as the delay.
     delay(600);
 
-    //Simulate an error by choosing randomly choosing a number between 1-100.
+    //Simulate an error by randomly choosing a number between 1-100.
     //If you get a number greater than 95, return that number as the error code.
     //If you get a number less than or equal to 95, return 0.
 
