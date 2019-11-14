@@ -24,6 +24,13 @@ Parameters
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
+  
+    The message can contain the following characters:
+    Digits : 0123456789
+    Symbols: "&'()+,-./:=?@
+    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
+    Special: <>
+    Space  :  
 
   delayFunction
   A function that delays for a short time.
