@@ -36,9 +36,9 @@ class LEDMorseCodeMachine
         //pointer to a function.
         //Fortunately, you can use a pointer to a static class method like a
         //pointer to a function.
-        //So create static functions that call ledDelay, ledDot, and ledDash.
+        //So create static methods that call ledDelay, ledDot, and ledDash.
         //That is what s_ledDelay, s_ledDot, and s_ledDash are for.
-        //The context will be the object calling ledSendMorse, so send "this"
+        //The context will be the object calling ledSendMorse, so use "this"
         //which is a pointer to the object calling ledSendMorse.
 
         return sendMorse(message, s_ledDelay, s_ledDot, s_ledDash, this);

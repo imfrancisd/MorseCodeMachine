@@ -35,7 +35,7 @@ void sendSlowly()
 void sendQuickly()
 {
     //Send "<SOS>" in Morse code quickly.
-    //Modify the global variable dotDuration to equal 100.
+    //Create a local variable dotDuration and make it equal to 100.
     //
     //None of the other functions can read or write to this local variable
     //unless you give the other functions a pointer to dotDuration.
