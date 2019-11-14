@@ -166,10 +166,9 @@ int main(int argc, char **argv)
     int testId = 0;
 
     std::cout << "=========================================================================" << std::endl;
-    std::cout << std::endl;
     std::cout << "Testing: void sendMorse(const char *, void (*)(), void (*)(), void (*)())" << std::endl;
-    std::cout << std::endl;
     std::cout << "=========================================================================" << std::endl;
+    std::cout << std::endl;
 
     Machine1::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
@@ -226,10 +225,9 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     std::cout << "===================================================================================================" << std::endl;
-    std::cout << std::endl;
     std::cout << "Testing: void sendMorse(const char *, void (*)(void *), void (*)(void *), void (*)(void *), void *)" << std::endl;
-    std::cout << std::endl;
     std::cout << "===================================================================================================" << std::endl;
+    std::cout << std::endl;
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
@@ -304,10 +302,9 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     std::cout << "=====================================================================" << std::endl;
-    std::cout << std::endl;
     std::cout << "Testing: int sendMorse(const char *, int (*)(), int (*)(), int (*)())" << std::endl;
-    std::cout << std::endl;
     std::cout << "=====================================================================" << std::endl;
+    std::cout << std::endl;
 
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
@@ -442,10 +439,9 @@ int main(int argc, char **argv)
     std::cout << std::endl;
 
     std::cout << "===============================================================================================" << std::endl;
-    std::cout << std::endl;
     std::cout << "Testing: int sendMorse(const char *, int (*)(void *), int (*)(void *), int (*)(void *), void *)" << std::endl;
-    std::cout << std::endl;
     std::cout << "===============================================================================================" << std::endl;
+    std::cout << std::endl;
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
@@ -603,9 +599,13 @@ int main(int argc, char **argv)
     Test::printResult(testId, Machine4::errorCode == 0);
     std::cout << std::endl;
 
+    std::cout << "=======================" << std::endl;
+    std::cout << "Summary of Test Results" << std::endl;
+    std::cout << "=======================" << std::endl;
     std::cout << "Total Pass : " << Test::countPass << std::endl;
     std::cout << "Total Fail : " << Test::countFail << std::endl;
+    std::cout << "=======================" << std::endl;
 
-   return Test::countFail;
+    return Test::countFail;
 }
 
