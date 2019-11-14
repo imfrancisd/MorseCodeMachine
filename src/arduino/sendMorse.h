@@ -150,7 +150,7 @@ Example Code
 
 Notes and Warnings
 
-  The duration of dotFunction should be equal the duration of delayFunction.
+  The duration of dotFunction should equal the duration of delayFunction.
 
   The duration of dashFunction should be 3 times the duration of delayFunction.
 
