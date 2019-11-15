@@ -10,6 +10,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
     }
 
     bool hasLetterSpacing = true;
+    bool wasPrevCharSpace = true;
 
     while (true)
     {
@@ -42,21 +43,30 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
                 delayFunction();
                 morseElements <<= 1;
             }
+            wasPrevCharSpace = false;
         }
         else
         {
             //Make everything else a delay between words, including the '\0'.
-            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-            delayFunction();
-            delayFunction();
+            //7 delays total.
+            //3 from previous letter, 2 from here, 2 at end of loop,
+            //or if no previous letter, 5 delays here, 2 at end of loop.
+            int countDelay = wasPrevCharSpace ? 5 : 2;
+            for (; countDelay > 0; countDelay--)
+            {
+                delayFunction();
+            }
+            wasPrevCharSpace = true;
         }
 
         if (hasLetterSpacing)
         {
             //Delay between digits and letters.
             //3 delays total. 1 from end of digit/letter, 2 from here.
-            delayFunction();
-            delayFunction();
+            for (int countDelay = 2; countDelay > 0; countDelay--)
+            {
+                delayFunction();
+            }
         }
 
         if (*message == '\0')
@@ -76,6 +86,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
     }
 
     bool hasLetterSpacing = true;
+    bool wasPrevCharSpace = true;
 
     while (true)
     {
@@ -108,21 +119,30 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
                 delayFunction(context);
                 morseElements <<= 1;
             }
+            wasPrevCharSpace = false;
         }
         else
         {
             //Make everything else a delay between words, including the '\0'.
-            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-            delayFunction(context);
-            delayFunction(context);
+            //7 delays total.
+            //3 from previous letter, 2 from here, 2 at end of loop,
+            //or if no previous letter, 5 delays here, 2 at end of loop.
+            int countDelay = wasPrevCharSpace ? 5 : 2;
+            for (; countDelay > 0; countDelay--)
+            {
+                delayFunction(context);
+            }
+            wasPrevCharSpace = true;
         }
 
         if (hasLetterSpacing)
         {
             //Delay between digits and letters.
             //3 delays total. 1 from end of digit/letter, 2 from here.
-            delayFunction(context);
-            delayFunction(context);
+            for (int countDelay = 2; countDelay > 0; countDelay--)
+            {
+                delayFunction(context);
+            }
         }
 
         if (*message == '\0')
@@ -143,6 +163,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
     int errorCode = 0;
     bool hasLetterSpacing = true;
+    bool wasPrevCharSpace = true;
 
     while (true)
     {
@@ -189,36 +210,37 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
                 morseElements <<= 1;
             }
+            wasPrevCharSpace = false;
         }
         else
         {
             //Make everything else a delay between words, including the '\0'.
-            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-            errorCode = delayFunction();
-            if (errorCode)
+            //7 delays total.
+            //3 from previous letter, 2 from here, 2 at end of loop,
+            //or if no previous letter, 5 delays here, 2 at end of loop.
+            int countDelay = wasPrevCharSpace ? 5 : 2;
+            for (; countDelay > 0; countDelay--)
             {
-                return errorCode;
+                errorCode = delayFunction();
+                if (errorCode)
+                {
+                    return errorCode;
+                }
             }
-            errorCode = delayFunction();
-            if (errorCode)
-            {
-                return errorCode;
-            }
+            wasPrevCharSpace = true;
         }
 
         if (hasLetterSpacing)
         {
             //Delay between digits and letters.
             //3 delays total. 1 from end of digit/letter, 2 from here.
-            errorCode = delayFunction();
-            if (errorCode)
+            for (int countDelay = 2; countDelay > 0; countDelay--)
             {
-                return errorCode;
-            }
-            errorCode = delayFunction();
-            if (errorCode)
-            {
-                return errorCode;
+                errorCode = delayFunction();
+                if (errorCode)
+                {
+                    return errorCode;
+                }
             }
         }
 
@@ -242,6 +264,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
     int errorCode = 0;
     bool hasLetterSpacing = true;
+    bool wasPrevCharSpace = true;
 
     while (true)
     {
@@ -288,36 +311,37 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
                 morseElements <<= 1;
             }
+            wasPrevCharSpace = false;
         }
         else
         {
             //Make everything else a delay between words, including the '\0'.
-            //7 delays total. 3 from previous letter, 2 from here, 2 at end of loop.
-            errorCode = delayFunction(context);
-            if (errorCode)
+            //7 delays total.
+            //3 from previous letter, 2 from here, 2 at end of loop,
+            //or if no previous letter, 5 delays here, 2 at end of loop.
+            int countDelay = wasPrevCharSpace ? 5 : 2;
+            for (; countDelay > 0; countDelay--)
             {
-                return errorCode;
+                errorCode = delayFunction(context);
+                if (errorCode)
+                {
+                    return errorCode;
+                }
             }
-            errorCode = delayFunction(context);
-            if (errorCode)
-            {
-                return errorCode;
-            }
+            wasPrevCharSpace = true;
         }
 
         if (hasLetterSpacing)
         {
             //Delay between digits and letters.
             //3 delays total. 1 from end of digit/letter, 2 from here.
-            errorCode = delayFunction(context);
-            if (errorCode)
+            for (int countDelay = 2; countDelay > 0; countDelay--)
             {
-                return errorCode;
-            }
-            errorCode = delayFunction(context);
-            if (errorCode)
-            {
-                return errorCode;
+                errorCode = delayFunction(context);
+                if (errorCode)
+                {
+                    return errorCode;
+                }
             }
         }
 
