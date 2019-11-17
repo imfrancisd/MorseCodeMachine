@@ -7,6 +7,10 @@
 //Compile with cl.exe and run:
 //    cl.exe /nologo /EHsc /Fetest.exe test.cpp ..\src\all\*.cpp
 //    test.exe
+//
+//Compile with clang++ and run:
+//    clang++ -o test.out test.cpp ../src/all/*.cpp
+//    ./test.out
 
 #include "../src/all/sendMorse.h"
 #include <iostream>
@@ -165,7 +169,7 @@ namespace Test
         "*       *   *              *   *   *                     *       ";
 }
 
-int main(int argc, char **argv)
+int main(int, char **)
 {
     int testId = 0;
 
@@ -612,4 +616,3 @@ int main(int argc, char **argv)
 
     return Test::countFail;
 }
-
