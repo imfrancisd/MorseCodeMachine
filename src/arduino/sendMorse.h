@@ -20,10 +20,11 @@ Parameters
 
   message
   The message to send as Morse code.
-  Any unrecognized characters in the string will be considered as a space.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
+  Any unrecognized characters in the string will be considered as a space.
+  Any unrecognized characters and spaces between <> will be ignored.
 
     The message can contain the following characters:
     Digits : 0123456789

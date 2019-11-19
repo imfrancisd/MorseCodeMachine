@@ -138,6 +138,7 @@ namespace Test
     }
 
     const std::string ascii =
+        "  "\
         "0123456789 "\
         "ABCDEFGHIJKLMNOPQRSTUVWXYZ "\
         "abcdefghijklmnopqrstuvwxyz "\
@@ -146,9 +147,12 @@ namespace Test
         "Sos 3B "\
         "\"&'()+,-./:=?@ "\
         "01 2  1 "\
-        "e ee  eee   e";
+        "e ee  eee   e "\
+        "< s o s ><  s  o  s  > "
+        "< 3  b >  < 3  b >";
 
     const std::string morse =
+        "              "\
         "- - - - -   * - - - -   * * - - -   * * * - -   * * * * -   "\
         "* * * * *   - * * * *   - - * * *   - - - * *   - - - - *       "\
         "* -   - * * *   - * - *   - * *   *   * * - *   - - *   * * * *   "\
@@ -166,7 +170,9 @@ namespace Test
         "* - * - *   - - * * - -   - * * * * -   * - * - * -   - * * - *   "\
         "- - - * * *   - * * * -   * * - - * *   * - - * - *       "\
         "- - - - -   * - - - -       * * - - -              * - - - -       "\
-        "*       *   *              *   *   *                     *       ";
+        "*       *   *              *   *   *                     *       "\
+        "* * * - - - * * *   * * * - - - * * *       "\
+        "* * * - - - * * *              * * * - - - * * *       ";
 }
 
 int main(int, char **)
@@ -616,3 +622,4 @@ int main(int, char **)
 
     return Test::countFail;
 }
+
