@@ -15,6 +15,12 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
     while (true)
     {
         unsigned int morseElements = charToMorseElements(*message);
+        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
+        {
+            //Accute E
+            morseElements = 0b1111100000100000;
+            message++;
+        }
 
         if (*message == '<')
         {
@@ -89,6 +95,12 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
     while (true)
     {
         unsigned int morseElements = charToMorseElements(*message);
+        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
+        {
+            //Accute E
+            morseElements = 0b1111100000100000;
+            message++;
+        }
 
         if (*message == '<')
         {
@@ -164,6 +176,12 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
     while (true)
     {
         unsigned int morseElements = charToMorseElements(*message);
+        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
+        {
+            //Accute E
+            morseElements = 0b1111100000100000;
+            message++;
+        }
 
         if (*message == '<')
         {
@@ -261,6 +279,12 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     while (true)
     {
         unsigned int morseElements = charToMorseElements(*message);
+        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
+        {
+            //Accute E
+            morseElements = 0b1111100000100000;
+            message++;
+        }
 
         if (*message == '<')
         {

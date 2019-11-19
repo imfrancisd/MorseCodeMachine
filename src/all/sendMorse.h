@@ -27,7 +27,7 @@ Parameters
     The message can contain the following characters:
     Digits : 0123456789
     Symbols: "&'()+,-./:=?@
-    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
+    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé
     Special: <>
     Space  :  
 
