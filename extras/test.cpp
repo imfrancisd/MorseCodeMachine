@@ -3,14 +3,17 @@
 //Compile with g++ and run:
 //    g++ -o test.out test.cpp ../src/all/*.cpp
 //    ./test.out
+//    ./test.out "hello world"
 //
 //Compile with cl.exe and run:
 //    cl.exe /nologo /EHsc /Fetest.exe test.cpp ..\src\all\*.cpp
 //    test.exe
+//    test.exe "hello world"
 //
 //Compile with clang++ and run:
 //    clang++ -o test.out test.cpp ../src/all/*.cpp
 //    ./test.out
+//    ./test.out "hello world"
 
 #include "../src/all/sendMorse.h"
 #include <iostream>
@@ -192,8 +195,34 @@ namespace Test
         "       ";
 }
 
-int main(int, char **)
+int main(int argc, char **argv)
 {
+    //Exploratory tests: input from command line.
+
+    if (argc > 1)
+    {
+        for (int i = 1; i < argc; i++)
+        {
+            std::cout << argv[i] << std::endl;
+            Machine1::reset();
+            sendMorse(argv[i], Machine1::dly, Machine1::dit, Machine1::dah);
+            std::cout << Machine1::out << std::endl;
+            Machine2::reset();
+            sendMorse(argv[i], Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
+            std::cout << Machine2::out << std::endl;
+            Machine3::reset();
+            Machine3::errorCode = sendMorse(argv[i], Machine3::dly, Machine3::dit, Machine3::dah);
+            std::cout << Machine3::out << std::endl;
+            Machine4::reset();
+            Machine4::errorCode = sendMorse(argv[i], Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+            std::cout << Machine4::out << std::endl;
+        }
+
+        return -1;
+    }
+
+    //Automated tests: no input from command line.
+
     int testId = 0;
 
     std::cout << "=========================================================================" << std::endl;
