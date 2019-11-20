@@ -1,4 +1,4 @@
-# Example 7 - Local Speed Control
+# Example 70 - Local Speed Control
 
 Send Morse code at different speeds using the built-in LED in the Arduino.
 

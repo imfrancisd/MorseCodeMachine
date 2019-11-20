@@ -1,4 +1,4 @@
-# Example 8 - OO Morse Code
+# Example 80 - OO Morse Code
 
 Use the sendMorse function, which was written using a C programming style, in
 a class using a C++ programming style.
