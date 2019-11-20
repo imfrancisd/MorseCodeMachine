@@ -1,6 +1,7 @@
 #include "sendMorse.h"
 
-static unsigned int charToMorseElements(char c);
+static unsigned int asciiToMorseElements(const char c);
+static unsigned int utf8ToMorseElements(const char **bytes);
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
@@ -14,24 +15,22 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
 
     while (true)
     {
-        unsigned int morseElements = charToMorseElements(*message);
-        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
-        {
-            //Accute E
-            morseElements = 0b1111100000100000;
-            message++;
-        }
+        char c = *message;
+        unsigned int morseElements = utf8ToMorseElements(&message);
 
-        if (*message == '<')
+        if (c == '<')
         {
+            //Delay between characters is equal to the duration of the delay between dit/dah.
             hasLetterSpacing = false;
         }
-        else if (*message == '>')
+        else if (c == '>')
         {
+            //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
         else if (morseElements)
         {
+            //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
             {
                 if (morseElements & 0b0000000010000000)
@@ -48,6 +47,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
 
                 morseElements <<= 1;
             }
+
             wasPrevCharSpace = false;
         }
         else if (hasLetterSpacing)
@@ -60,6 +60,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             {
                 delayFunction();
             }
+
             wasPrevCharSpace = true;
         }
 
@@ -73,12 +74,10 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             }
         }
 
-        if (*message == '\0')
+        if (c == '\0')
         {
             break;
         }
-        
-        message++;
     }
 }
 
@@ -94,24 +93,21 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
 
     while (true)
     {
-        unsigned int morseElements = charToMorseElements(*message);
-        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
-        {
-            //Accute E
-            morseElements = 0b1111100000100000;
-            message++;
-        }
+        char c = *message;
+        unsigned int morseElements = utf8ToMorseElements(&message);
 
-        if (*message == '<')
+        if (c == '<')
         {
+            //Delay between characters is equal to the duration of the delay between dit/dah.
             hasLetterSpacing = false;
         }
-        else if (*message == '>')
+        else if (c == '>')
         {
             hasLetterSpacing = true;
         }
         else if (morseElements)
         {
+            //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
             {
                 if (morseElements & 0b0000000010000000)
@@ -128,6 +124,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
 
                 morseElements <<= 1;
             }
+
             wasPrevCharSpace = false;
         }
         else if (hasLetterSpacing)
@@ -140,6 +137,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
             {
                 delayFunction(context);
             }
+
             wasPrevCharSpace = true;
         }
 
@@ -153,12 +151,10 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
             }
         }
 
-        if (*message == '\0')
+        if (c == '\0')
         {
             break;
         }
-        
-        message++;
     }
 }
 
@@ -175,24 +171,22 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
     while (true)
     {
-        unsigned int morseElements = charToMorseElements(*message);
-        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
-        {
-            //Accute E
-            morseElements = 0b1111100000100000;
-            message++;
-        }
+        char c = *message;
+        unsigned int morseElements = utf8ToMorseElements(&message);
 
-        if (*message == '<')
+        if (c == '<')
         {
+            //Delay between characters is equal to the duration of the delay between dit/dah.
             hasLetterSpacing = false;
         }
-        else if (*message == '>')
+        else if (c == '>')
         {
+            //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
         else if (morseElements)
         {
+            //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
             {
                 if (morseElements & 0b0000000010000000)
@@ -221,6 +215,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
                 morseElements <<= 1;
             }
+
             wasPrevCharSpace = false;
         }
         else if (hasLetterSpacing)
@@ -237,6 +232,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
                     return errorCode;
                 }
             }
+
             wasPrevCharSpace = true;
         }
 
@@ -254,12 +250,10 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
             }
         }
 
-        if (*message == '\0')
+        if (c == '\0')
         {
             break;
         }
-        
-        message++;
     }
 
     return 0;
@@ -278,24 +272,22 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
     while (true)
     {
-        unsigned int morseElements = charToMorseElements(*message);
-        if ((message[0] == (char)0xc3) && ((message[1] == (char)0x89) || (message[1] == (char)0xa9)))
-        {
-            //Accute E
-            morseElements = 0b1111100000100000;
-            message++;
-        }
+        char c = *message;
+        unsigned int morseElements = utf8ToMorseElements(&message);
 
-        if (*message == '<')
+        if (c == '<')
         {
+            //Delay between characters is equal to the duration of the delay between dit/dah.
             hasLetterSpacing = false;
         }
-        else if (*message == '>')
+        else if (c == '>')
         {
+            //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
         else if (morseElements)
         {
+            //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
             {
                 if (morseElements & 0b0000000010000000)
@@ -324,6 +316,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
                 morseElements <<= 1;
             }
+
             wasPrevCharSpace = false;
         }
         else if (hasLetterSpacing)
@@ -340,6 +333,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
                     return errorCode;
                 }
             }
+
             wasPrevCharSpace = true;
         }
 
@@ -357,19 +351,56 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
             }
         }
 
-        if (*message == '\0')
+        if (c == '\0')
         {
             break;
         }
-        
-        message++;
     }
 
     return 0;
 }
 
-static unsigned int charToMorseElements(char c)
+static unsigned int utf8ToMorseElements(const char **bytes)
 {
+    //Returns Morse elements for utf8 character from **bytes.
+    //Moves pointer *bytes to next utf8 character.
+    //
+    //16-bit return value format:
+    //aaaaaaa0bbbbbbb0
+    //aaaaaaa0 = number of morse elements as a series of 1
+    //bbbbbbb0 = morse elements as a series of 0 1, 0 is dit, 1 is dah
+    //
+    //Example:
+    //char '1' is morse dit dah dah dah dah
+    //aaaaaaa0 = 11111000 (5 morse elements, 5 1 starting from msb)
+    //bbbbbbb0 = 01111000 (dit dah dah dah dah)
+    //1111100001111000
+
+    if ((*bytes)[0] < (char)128)
+    {
+        //Found ascii character.
+        (*bytes) += 1;
+        return asciiToMorseElements((*bytes)[-1]);
+    }
+
+    if (((*bytes)[0] == (char)0xc3) && (((*bytes)[1] == (char)0x89) || ((*bytes)[1] == (char)0xa9)))
+    {
+        //Found E acute.
+        (*bytes) += 2;
+        return 0b1111100000100000;
+    }
+
+    //TODO: Handle all UTF-8 byte patterns.
+
+    //Found extended ascii character (or error in UTF-8 encoding).
+    (*bytes) += 1;
+    return asciiToMorseElements((*bytes)[-1]);
+}
+
+static unsigned int asciiToMorseElements(char c)
+{
+    //Returns Morse elements for utf8 character from **bytes.
+    //
     //16-bit return value format:
     //aaaaaaa0bbbbbbb0
     //aaaaaaa0 = number of morse elements as a series of 1
