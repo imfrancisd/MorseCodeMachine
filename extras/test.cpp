@@ -163,8 +163,9 @@ namespace Test
         "e ee  eee   e "\
         "< s o s ><  s  o  s  > "
         "< 3  b >  < 3  b > "\
-        "Éé "\
-        "< É  é ><Éé> "\
+        "\xc3\x89\xc3\xa9 "\
+        "< \xc3\x89  \xc3\xa9 ><\xc3\x89\xc3\xa9> "\
+        "e\xc0\x80t e\xe0\x80\x80t e\xf0\x80\x80\x80t "\
         "";
 
     const std::string morse =
@@ -192,6 +193,7 @@ namespace Test
         "* * * - - - * * *              * * * - - - * * *       "\
         "* * - * *   * * - * *       "\
         "* * - * * * * - * *   * * - * * * * - * *       "\
+        "*       -       *       -       *       -       "\
         "       ";
 }
 

@@ -376,25 +376,78 @@ static unsigned int utf8ToMorseElements(const char **bytes)
     //bbbbbbb0 = 01111000 (dit dah dah dah dah)
     //1111100001111000
 
-    if ((*bytes)[0] < (char)128)
+    if (((*bytes)[0] & 0b10000000) == 0)
     {
         //Found ascii character.
         (*bytes) += 1;
         return asciiToMorseElements((*bytes)[-1]);
     }
-
-    if (((*bytes)[0] == (char)0xc3) && (((*bytes)[1] == (char)0x89) || ((*bytes)[1] == (char)0xa9)))
+    else if (((*bytes)[0] & 0b11000000) == 0b10000000)
     {
-        //Found E acute.
-        (*bytes) += 2;
-        return 0b1111100000100000;
+        //Found extended ascii character or in middle of UTF-8 character.
+        (*bytes) += 1;
+        return asciiToMorseElements((*bytes)[-1]);
     }
+    else if (((*bytes)[0] & 0b11100000) == 0b11000000)
+    {
+        //Found extended ascii character or error in UTF-8 encoding.
+        if (((*bytes)[1] & 0b11000000) != 0b10000000)
+        {
+            (*bytes) += 1;
+            return asciiToMorseElements((*bytes)[-1]);
+        }
 
-    //TODO: Handle all UTF-8 byte patterns.
+        //Found 2 byte UTF-8 character.
+        if (((*bytes)[0] == (char)0xc3) && (((*bytes)[1] == (char)0x89) || ((*bytes)[1] == (char)0xa9)))
+        {
+            //Found E acute.
+            (*bytes) += 2;
+            return 0b1111100000100000;
+        }
+        else
+        {
+            (*bytes) += 2;
+            return asciiToMorseElements(' ');
+        }
+    }
+    else if (((*bytes)[0] & 0b11110000) == 0b11100000)
+    {
+        //Found extended ascii character or error in UTF-8 encoding.
+        for (int i = 1; i < 3; i++)
+        {
+            if (((*bytes)[i] & 0b11000000) != 0b10000000)
+            {
+                (*bytes) += 1;
+                return asciiToMorseElements((*bytes)[-1]);
+            }
+        }
 
-    //Found extended ascii character (or error in UTF-8 encoding).
-    (*bytes) += 1;
-    return asciiToMorseElements((*bytes)[-1]);
+        //Found 3 byte UTF-8 character.
+        (*bytes) += 3;
+        return asciiToMorseElements(' ');
+    }
+    else if (((*bytes)[0] & 0b11111000) == 0b11110000)
+    {
+        //Found extended ascii character or error in UTF-8 encoding.
+        for (int i = 1; i < 4; i++)
+        {
+            if (((*bytes)[i] & 0b11000000) != 0b10000000)
+            {
+                (*bytes) += 1;
+                return asciiToMorseElements((*bytes)[-1]);
+            }
+        }
+
+        //Found 4 byte UTF-8 character.
+        (*bytes) += 4;
+        return asciiToMorseElements(' ');
+    }
+    else
+    {
+        //Found extended ascii character or error in UTF-8 encoding.
+        (*bytes) += 1;
+        return asciiToMorseElements((*bytes)[-1]);
+    }
 }
 
 static unsigned int asciiToMorseElements(char c)
