@@ -22,7 +22,7 @@
 namespace Machine1
 {
     std::string out = "";
-    void dly() {out.append(" ");}
+    void dly() {out.append(",");}
     void dit() {out.append("*");}
     void dah() {out.append("-");}
     void reset() {out = "";}
@@ -35,7 +35,7 @@ namespace Machine2
     void dly(void *context)
     {
         std::string *s = context ? (std::string *)context : &outDefault;
-        s->append(" ");
+        s->append(",");
     }
     void dit(void *context)
     {
@@ -58,10 +58,10 @@ namespace Machine3
 {
     std::string out = "";
     int errorCode = -123;
-    int dly() {out.append(" "); return 0;}
+    int dly() {out.append(","); return 0;}
     int dit() {out.append("*"); return 0;}
     int dah() {out.append("-"); return 0;}
-    int dlyWithError() {out.append(" "); return 1;}
+    int dlyWithError() {out.append(","); return 1;}
     int ditWithError() {out.append("*"); return 2;}
     int dahWithError() {out.append("-"); return 3;}
     void reset()
@@ -79,7 +79,7 @@ namespace Machine4
     int dly(void *context)
     {
         std::string *s = context ? (std::string *)context : &outDefault;
-        s->append(" ");
+        s->append(",");
         return 0;
     }
     int dit(void *context)
@@ -97,7 +97,7 @@ namespace Machine4
     int dlyWithError(void *context)
     {
         std::string *s = context ? (std::string *)context : &outDefault;
-        s->append(" ");
+        s->append(",");
         return 1;
     }
     int ditWithError(void *context)
@@ -169,32 +169,32 @@ namespace Test
         "";
 
     const std::string morse =
-        "              "\
-        "- - - - -   * - - - -   * * - - -   * * * - -   * * * * -       "\
-        "* * * * *   - * * * *   - - * * *   - - - * *   - - - - *       "\
-        "* -   - * * *   - * - *   - * *   *   * * - *   - - *       "\
-        "* * * *   * *   * - - -   - * -   * - * *   - -   - *       "\
-        "- - -   * - - *   - - * -   * - *   * * *   -   * * -       "\
-        "* * * -   * - -   - * * -   - * - -   - - * *       "\
-        "* -   - * * *   - * - *   - * *   *   * * - *   - - *       "\
-        "* * * *   * *   * - - -   - * -   * - * *   - -   - *       "\
-        "- - -   * - - *   - - * -   * - *   * * *   -   * * -       "\
-        "* * * -   * - -   - * * -   - * - -   - - * *       "\
-        "* * * - - - * * *   * * * - - - * * *   * * * - - - * * *       "\
-        "* * * - - - * * *       * * * - - - * * *       "\
-        "* * *   - - -   * * *       * * * - -   - * * *       "\
-        "* - * * - *   * - * * *   * - - - - *   - * - - *       "\
-        "- * - - * -   * - * - *   - - * * - -   - * * * * -       "\
-        "* - * - * -   - * * - *   - - - * * *   - * * * -       "\
-        "* * - - * *   * - - * - *       "\
-        "- - - - -   * - - - -       * * - - -              * - - - -       "\
-        "*       *   *              *   *   *                     *       "\
-        "* * * - - - * * *   * * * - - - * * *       "\
-        "* * * - - - * * *              * * * - - - * * *       "\
-        "* * - * *   * * - * *       "\
-        "* * - * * * * - * *   * * - * * * * - * *       "\
-        "*       -       *       -       *       -       "\
-        "       ";
+        ",,,,,,,,,,,,,,"\
+        "-,-,-,-,-,,,*,-,-,-,-,,,*,*,-,-,-,,,*,*,*,-,-,,,*,*,*,*,-,,,,,,,"\
+        "*,*,*,*,*,,,-,*,*,*,*,,,-,-,*,*,*,,,-,-,-,*,*,,,-,-,-,-,*,,,,,,,"\
+        "*,-,,,-,*,*,*,,,-,*,-,*,,,-,*,*,,,*,,,*,*,-,*,,,-,-,*,,,,,,,"\
+        "*,*,*,*,,,*,*,,,*,-,-,-,,,-,*,-,,,*,-,*,*,,,-,-,,,-,*,,,,,,,"\
+        "-,-,-,,,*,-,-,*,,,-,-,*,-,,,*,-,*,,,*,*,*,,,-,,,*,*,-,,,,,,,"\
+        "*,*,*,-,,,*,-,-,,,-,*,*,-,,,-,*,-,-,,,-,-,*,*,,,,,,,"\
+        "*,-,,,-,*,*,*,,,-,*,-,*,,,-,*,*,,,*,,,*,*,-,*,,,-,-,*,,,,,,,"\
+        "*,*,*,*,,,*,*,,,*,-,-,-,,,-,*,-,,,*,-,*,*,,,-,-,,,-,*,,,,,,,"\
+        "-,-,-,,,*,-,-,*,,,-,-,*,-,,,*,-,*,,,*,*,*,,,-,,,*,*,-,,,,,,,"\
+        "*,*,*,-,,,*,-,-,,,-,*,*,-,,,-,*,-,-,,,-,-,*,*,,,,,,,"\
+        "*,*,*,-,-,-,*,*,*,,,*,*,*,-,-,-,*,*,*,,,*,*,*,-,-,-,*,*,*,,,,,,,"\
+        "*,*,*,-,-,-,*,*,*,,,,,,,*,*,*,-,-,-,*,*,*,,,,,,,"\
+        "*,*,*,,,-,-,-,,,*,*,*,,,,,,,*,*,*,-,-,,,-,*,*,*,,,,,,,"\
+        "*,-,*,*,-,*,,,*,-,*,*,*,,,*,-,-,-,-,*,,,-,*,-,-,*,,,,,,,"\
+        "-,*,-,-,*,-,,,*,-,*,-,*,,,-,-,*,*,-,-,,,-,*,*,*,*,-,,,,,,,"\
+        "*,-,*,-,*,-,,,-,*,*,-,*,,,-,-,-,*,*,*,,,-,*,*,*,-,,,,,,,"\
+        "*,*,-,-,*,*,,,*,-,-,*,-,*,,,,,,,"\
+        "-,-,-,-,-,,,*,-,-,-,-,,,,,,,*,*,-,-,-,,,,,,,,,,,,,,*,-,-,-,-,,,,,,,"\
+        "*,,,,,,,*,,,*,,,,,,,,,,,,,,*,,,*,,,*,,,,,,,,,,,,,,,,,,,,,*,,,,,,,"\
+        "*,*,*,-,-,-,*,*,*,,,*,*,*,-,-,-,*,*,*,,,,,,,"\
+        "*,*,*,-,-,-,*,*,*,,,,,,,,,,,,,,*,*,*,-,-,-,*,*,*,,,,,,,"\
+        "*,*,-,*,*,,,*,*,-,*,*,,,,,,,"\
+        "*,*,-,*,*,*,*,-,*,*,,,*,*,-,*,*,*,*,-,*,*,,,,,,,"\
+        "*,,,,,,,-,,,,,,,*,,,,,,,-,,,,,,,*,,,,,,,-,,,,,,,"\
+        ",,,,,,,";
 }
 
 int main(int argc, char **argv)
@@ -339,19 +339,19 @@ int main(int argc, char **argv)
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 5: NULL" << std::endl;
-    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
     sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, NULL);
     std::cout << "Output : " << Machine2::outDefault << std::endl;
-    Test::printResult(testId, Machine2::outDefault == "* * * - - - * * *       ");
+    Test::printResult(testId, Machine2::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << std::endl;
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 5: nullptr" << std::endl;
-    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
     sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, nullptr);
     std::cout << "Output : " << Machine2::outDefault << std::endl;
-    Test::printResult(testId, Machine2::outDefault == "* * * - - - * * *       ");
+    Test::printResult(testId, Machine2::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << std::endl;
 
     Machine2::reset();
@@ -431,10 +431,10 @@ int main(int argc, char **argv)
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: s" << std::endl;
-    std::cout << "Expect : * " << std::endl;
+    std::cout << "Expect : *," << std::endl;
     Machine3::errorCode = sendMorse("s", Machine3::dlyWithError, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
-    Test::printResult(testId, Machine3::out == "* ");
+    Test::printResult(testId, Machine3::out == "*,");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine3::errorCode << std::endl;
     Test::printResult(testId, Machine3::errorCode == 1);
@@ -443,10 +443,10 @@ int main(int argc, char **argv)
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: o" << std::endl;
-    std::cout << "Expect : - " << std::endl;
+    std::cout << "Expect : -," << std::endl;
     Machine3::errorCode = sendMorse("o", Machine3::dlyWithError, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
-    Test::printResult(testId, Machine3::out == "- ");
+    Test::printResult(testId, Machine3::out == "-,");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine3::errorCode << std::endl;
     Test::printResult(testId, Machine3::errorCode == 1);
@@ -455,10 +455,10 @@ int main(int argc, char **argv)
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << std::endl;
-    std::cout << "Expect :  " << std::endl;
+    std::cout << "Expect : ," << std::endl;
     Machine3::errorCode = sendMorse(" ", Machine3::dlyWithError, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
-    Test::printResult(testId, Machine3::out == " ");
+    Test::printResult(testId, Machine3::out == ",");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine3::errorCode << std::endl;
     Test::printResult(testId, Machine3::errorCode == 1);
@@ -479,10 +479,10 @@ int main(int argc, char **argv)
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: <sos>" << std::endl;
-    std::cout << "Expect : * * * -" << std::endl;
+    std::cout << "Expect : *,*,*,-" << std::endl;
     Machine3::errorCode = sendMorse("<sos>", Machine3::dly, Machine3::dit, Machine3::dahWithError);
     std::cout << "Output : " << Machine3::out << std::endl;
-    Test::printResult(testId, Machine3::out == "* * * -");
+    Test::printResult(testId, Machine3::out == "*,*,*,-");
     std::cout << "Expect : 3" << std::endl;
     std::cout << "Return : " << Machine3::errorCode << std::endl;
     Test::printResult(testId, Machine3::errorCode == 3);
@@ -568,10 +568,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 5: NULL" << std::endl;
-    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
     Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, NULL);
     std::cout << "Output : " << Machine4::outDefault << std::endl;
-    Test::printResult(testId, Machine4::outDefault == "* * * - - - * * *       ");
+    Test::printResult(testId, Machine4::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 0);
@@ -580,10 +580,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 5: nullptr" << std::endl;
-    std::cout << "Expect : * * * - - - * * *       " << std::endl;
+    std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
     Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, nullptr);
     std::cout << "Output : " << Machine4::outDefault << std::endl;
-    Test::printResult(testId, Machine4::outDefault == "* * * - - - * * *       ");
+    Test::printResult(testId, Machine4::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 0);
@@ -592,10 +592,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: s" << std::endl;
-    std::cout << "Expect : * " << std::endl;
+    std::cout << "Expect : *," << std::endl;
     Machine4::errorCode = sendMorse("s", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
-    Test::printResult(testId, Machine4::out == "* ");
+    Test::printResult(testId, Machine4::out == "*,");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 1);
@@ -604,10 +604,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: o" << std::endl;
-    std::cout << "Expect : - " << std::endl;
+    std::cout << "Expect : -," << std::endl;
     Machine4::errorCode = sendMorse("o", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
-    Test::printResult(testId, Machine4::out == "- ");
+    Test::printResult(testId, Machine4::out == "-,");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 1);
@@ -616,10 +616,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << std::endl;
-    std::cout << "Expect :  " << std::endl;
+    std::cout << "Expect : ," << std::endl;
     Machine4::errorCode = sendMorse(" ", Machine4::dlyWithError, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
-    Test::printResult(testId, Machine4::out == " ");
+    Test::printResult(testId, Machine4::out == ",");
     std::cout << "Expect : 1" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 1);
@@ -640,10 +640,10 @@ int main(int argc, char **argv)
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: <sos>" << std::endl;
-    std::cout << "Expect : * * * -" << std::endl;
+    std::cout << "Expect : *,*,*,-" << std::endl;
     Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dahWithError, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
-    Test::printResult(testId, Machine4::out == "* * * -");
+    Test::printResult(testId, Machine4::out == "*,*,*,-");
     std::cout << "Expect : 3" << std::endl;
     std::cout << "Return : " << Machine4::errorCode << std::endl;
     Test::printResult(testId, Machine4::errorCode == 3);
