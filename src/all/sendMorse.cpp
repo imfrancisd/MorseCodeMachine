@@ -1,6 +1,6 @@
 #include "sendMorse.h"
 
-static unsigned int asciiToMorseElements(const char c);
+static unsigned int asciiToMorseElements(char c);
 static unsigned int utf8ToMorseElements(const char **bytes);
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
@@ -378,6 +378,18 @@ static unsigned int utf8ToMorseElements(const char **bytes)
 
     if (((*bytes)[0] & 0b10000000) == 0)
     {
+        //Check for E or e (U+0045 or U+0065) followed by acute (U+0301).
+        if (((*bytes)[0] == 'E') || ((*bytes)[0] == 'e'))
+        {
+            //Check for acute (U+0301).
+            if ((((*bytes)[1] & 0xff) == 0xcc) && (((*bytes)[2] & 0xff) == 0x81))
+            {
+                //Found E followed by acute.
+                (*bytes) += 3;
+                return 0b1111100000100000;
+            }
+        }
+
         //Found ascii character.
         (*bytes) += 1;
         return asciiToMorseElements((*bytes)[-1]);
@@ -390,6 +402,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
     }
     else if (((*bytes)[0] & 0b11100000) == 0b11000000)
     {
+        //Check for valid 2 byte UTF-8 character.
         if (((*bytes)[1] & 0b11000000) != 0b10000000)
         {
             //Found extended ascii character or error in UTF-8 encoding.
@@ -397,6 +410,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
             return asciiToMorseElements((*bytes)[-1]);
         }
 
+        //Check for E acute (U+00C9 or U+00E9).
         if (((*bytes)[0] & 0xff) == 0xc3)
         {
             if ((((*bytes)[1] & 0xff) == 0x89) || (((*bytes)[1] & 0xff) == 0xa9))
@@ -413,6 +427,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
     }
     else if (((*bytes)[0] & 0b11110000) == 0b11100000)
     {
+        //Check for valid 3 byte UTF-8 character.
         for (int i = 1; i < 3; i++)
         {
             if (((*bytes)[i] & 0b11000000) != 0b10000000)
@@ -429,6 +444,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
     }
     else if (((*bytes)[0] & 0b11111000) == 0b11110000)
     {
+        //Check for valid 4 byte UTF-8 character.
         for (int i = 1; i < 4; i++)
         {
             if (((*bytes)[i] & 0b11000000) != 0b10000000)
