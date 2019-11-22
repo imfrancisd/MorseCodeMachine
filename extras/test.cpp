@@ -141,34 +141,34 @@ namespace Test
     }
 
     const std::string ascii =
-        u8"  "\
-        u8"01234 "\
-        u8"56789 "\
-        u8"ABCDEFG "\
-        u8"HIJKLMN "\
-        u8"OPQRSTU "\
-        u8"VWXYZ "\
-        u8"abcdefg "\
-        u8"hijklmn "\
-        u8"opqrstu "\
-        u8"vwxyz "\
-        u8"<sos><3b><eeettteee> "\
-        u8"<SOS> <3B> "\
-        u8"Sos 3B "\
-        u8"\"&'( "\
-        u8")+,- "\
-        u8"./:= "\
-        u8"?@ "\
-        u8"01 2  1 "\
-        u8"e ee  eee   e "\
-        u8"< s o s ><  s  o  s  > "
-        u8"< 3  b >  < 3  b > "\
-        u8"\u00C9\u00E9 "\
-        u8"E\u0301e\u0301 "\
-        u8"< \u00C9  \u00E9 ><\u00C9\u00E9> "\
-        u8"< E\u0301  e\u0301 ><E\u0301e\u0301> "\
-        u8"e\xc0\x80t e\xe0\x80\x80t e\xf0\x80\x80\x80t "\
-        u8"";
+        "  "\
+        "01234 "\
+        "56789 "\
+        "ABCDEFG "\
+        "HIJKLMN "\
+        "OPQRSTU "\
+        "VWXYZ "\
+        "abcdefg "\
+        "hijklmn "\
+        "opqrstu "\
+        "vwxyz "\
+        "<sos><3b><eeettteee> "\
+        "<SOS> <3B> "\
+        "Sos 3B "\
+        "\"&'( "\
+        ")+,- "\
+        "./:= "\
+        "?@ "\
+        "01 2  1 "\
+        "e ee  eee   e "\
+        "< s o s ><  s  o  s  > "
+        "< 3  b >  < 3  b > "\
+        "\xc3\x89\xc3\xa9 "\
+        "E\xcc\x81""e\xcc\x81 "\
+        "< \xc3\x89  \xc3\xA9 ><\xc3\x89\xc3\xa9> "\
+        "< E\xcc\x81  e\xcc\x81 >""<E\xcc\x81""e\xcc\x81> "\
+        "e\xc0\x80t e\xe0\x80\x80t e\xf0\x80\x80\x80t "\
+        "";
 
     const std::string morse =
         ",,,,,,,,,,,,,,"\
