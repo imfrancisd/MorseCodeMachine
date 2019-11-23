@@ -1,7 +1,7 @@
 #include "sendMorse.h"
 
-static unsigned int asciiToMorseElements(char c);
-static unsigned int utf8ToMorseElements(const char **bytes);
+static unsigned int _enToMorseElements(char c);
+static unsigned int _enToMorseElements(const char **bytes);
 
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
@@ -16,7 +16,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = utf8ToMorseElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '<')
         {
@@ -94,7 +94,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = utf8ToMorseElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '<')
         {
@@ -172,7 +172,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = utf8ToMorseElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '<')
         {
@@ -273,7 +273,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = utf8ToMorseElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '<')
         {
@@ -360,7 +360,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     return 0;
 }
 
-static unsigned int utf8ToMorseElements(const char **bytes)
+static unsigned int _enToMorseElements(const char **bytes)
 {
     //Returns Morse elements for utf8 character from **bytes.
     //Moves pointer *bytes to next utf8 character.
@@ -392,13 +392,13 @@ static unsigned int utf8ToMorseElements(const char **bytes)
 
         //Found ascii character.
         (*bytes) += 1;
-        return asciiToMorseElements((*bytes)[-1]);
+        return _enToMorseElements((*bytes)[-1]);
     }
     else if (((*bytes)[0] & 0b11000000) == 0b10000000)
     {
         //Found extended ascii character or in middle of UTF-8 character.
         (*bytes) += 1;
-        return asciiToMorseElements((*bytes)[-1]);
+        return _enToMorseElements((*bytes)[-1]);
     }
     else if (((*bytes)[0] & 0b11100000) == 0b11000000)
     {
@@ -407,7 +407,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
         {
             //Found extended ascii character or error in UTF-8 encoding.
             (*bytes) += 1;
-            return asciiToMorseElements((*bytes)[-1]);
+            return _enToMorseElements((*bytes)[-1]);
         }
 
         //Check for E acute (U+00C9 or U+00E9).
@@ -423,7 +423,7 @@ static unsigned int utf8ToMorseElements(const char **bytes)
 
         //Found 2 byte UTF-8 character.
         (*bytes) += 2;
-        return asciiToMorseElements(' ');
+        return _enToMorseElements(' ');
     }
     else if (((*bytes)[0] & 0b11110000) == 0b11100000)
     {
@@ -434,13 +434,13 @@ static unsigned int utf8ToMorseElements(const char **bytes)
             {
                 //Found extended ascii character or error in UTF-8 encoding.
                 (*bytes) += 1;
-                return asciiToMorseElements((*bytes)[-1]);
+                return _enToMorseElements((*bytes)[-1]);
             }
         }
 
         //Found 3 byte UTF-8 character.
         (*bytes) += 3;
-        return asciiToMorseElements(' ');
+        return _enToMorseElements(' ');
     }
     else if (((*bytes)[0] & 0b11111000) == 0b11110000)
     {
@@ -451,25 +451,25 @@ static unsigned int utf8ToMorseElements(const char **bytes)
             {
                 //Found extended ascii character or error in UTF-8 encoding.
                 (*bytes) += 1;
-                return asciiToMorseElements((*bytes)[-1]);
+                return _enToMorseElements((*bytes)[-1]);
             }
         }
 
         //Found 4 byte UTF-8 character.
         (*bytes) += 4;
-        return asciiToMorseElements(' ');
+        return _enToMorseElements(' ');
     }
     else
     {
         //Found extended ascii character or error in UTF-8 encoding.
         (*bytes) += 1;
-        return asciiToMorseElements((*bytes)[-1]);
+        return _enToMorseElements((*bytes)[-1]);
     }
 }
 
-static unsigned int asciiToMorseElements(char c)
+static unsigned int _enToMorseElements(char c)
 {
-    //Returns Morse elements for utf8 character from char.
+    //Returns Morse elements for ascii character from char.
     //
     //16-bit return value format:
     //aaaaaaa0bbbbbbb0
