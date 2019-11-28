@@ -51,6 +51,7 @@ Returns
   returns -1 if one or more of the following is true
     greekMessage is nullptr
     englishBuffer is nullptr
+    englishBufferSize is less than 1
 
   returns non-zero
     on failure

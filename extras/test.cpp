@@ -222,19 +222,27 @@ namespace Test
     const std::string greek =
         "0123456789 "\
         "\"&'()+,-./:=?@ "\
-        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé "\
+        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
+        "<SOS> < S O  S> "\
+        "E\xcc\x81""e\xcc\x81 "\
+        "E\xcc\x81\xcc\xad""e\xcc\x81\xcc\xad "\
+/*
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
-        "<SOS> "\
         "Χχ<Χχ> "\
+*/
         "";
 
     const std::string greekToEnglish =
         "0123456789 "\
         "\"&'()+,-./:=?@ "\
-        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé "\
+        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
+        "<SOS> < S O  S> "\
+        "E\xcc\x81""E\xcc\x81 "\
+        "   "\
+/*
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
-        "<SOS> "\
         "<MM><MM><MMMM> "\
+*/
         "";
 }
 
@@ -793,6 +801,30 @@ int main(int argc, char **argv)
     std::cout << "Expect : -1" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 3: 0"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("", Machine5::out, 0);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: " << Test::greek << std::endl;
+    std::cout << "Expect : " << Test::greekToEnglish << std::endl;
+    Machine5::errorCode = convertMorseFromGreek(Test::greek.c_str(), Machine5::out, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == Test::greekToEnglish);
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
     std::cout << std::endl;
 
     std::cout << "=======================" << std::endl;
