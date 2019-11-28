@@ -26,7 +26,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
-        else if (morseElements)
+        else if (morseElements & 0b1111111100000000)
         {
             //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
@@ -103,7 +103,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         {
             hasLetterSpacing = true;
         }
-        else if (morseElements)
+        else if (morseElements & 0b1111111100000000)
         {
             //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
@@ -182,7 +182,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
             //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
-        else if (morseElements)
+        else if (morseElements & 0b1111111100000000)
         {
             //Generate dit/dah.
             while (morseElements & 0b1000000000000000)
@@ -283,7 +283,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
             //Delay between characters is greater than the duration of the delay between dit/dah.
             hasLetterSpacing = true;
         }
-        else if (morseElements)
+        else if (morseElements & 0b1111111100000000)
         {
             //Generate dit/dah.
             while (morseElements & 0b1000000000000000)

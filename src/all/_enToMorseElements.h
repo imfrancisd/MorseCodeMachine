@@ -11,15 +11,23 @@
 //unsigned int _enToMorseElements(char **)
 //
 //16-bit return value format:
-//aaaaaaa0bbbbbbb0
+//aaaaaaa0bbbbbbbb
 //aaaaaaa0 = number of morse elements as a series of 1
-//bbbbbbb0 = morse elements as a series of 0 1, 0 is dit, 1 is dah
+//bbbbbbbb = morse elements as a series of 0 1, 0 is dit, 1 is dah
 //
 //Example:
 //char '1' is morse dit dah dah dah dah
 //aaaaaaa0 = 11111000 (5 morse elements, 5 1 starting from msb)
-//bbbbbbb0 = 01111000 (dit dah dah dah dah)
+//bbbbbbbb = 01111000 (dit dah dah dah dah)
 //1111100001111000
+//
+//For unrecognized characters:
+//aaaaaaa0 = 00000000
+//bbbbbbbb = 00000000
+//
+//For recognized characters that do not have Morse elements (' ', '<', '>'):
+//aaaaaaa0 = 00000000
+//bbbbbbbb = ascii code of recognized character that has no Morse elements.
 
 
 

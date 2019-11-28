@@ -244,11 +244,21 @@ unsigned int _enToMorseElements(char c)
             //DIT DAH DAH DIT DAH DIT
             return 0b1111110001101000;
 
+        //Recognized characters that do not have Morse elements.
+
         case ' ':
+            return 0x0020;
+
         case '<':
+            return 0x003c;
+
         case '>':
+            return 0x003e;
+
+        //Unrecognized characters.
+
         default:
-            return 0;
+            return 0x0000;
     }
 }
 
@@ -270,7 +280,7 @@ unsigned int _enToMorseElements(const char **bytes)
             if (_skipDiacritic(bytes))
             {
                 //Not E acute, but E acute followed by one or more diacritic.
-                morseElements = _enToMorseElements(' ');
+                morseElements = 0x0000;
             }
         }
         else
@@ -283,7 +293,7 @@ unsigned int _enToMorseElements(const char **bytes)
     else if (((*bytes)[0] & 0b11000000) == 0b10000000)
     {
         //Found extended ascii character or in middle of UTF-8 character.
-        morseElements = _enToMorseElements((*bytes)[0]);
+        morseElements = 0x0000;
         (*bytes) += 1;
     }
     else if (((*bytes)[0] & 0b11100000) == 0b11000000)
@@ -292,7 +302,7 @@ unsigned int _enToMorseElements(const char **bytes)
         if (((*bytes)[1] & 0b11000000) != 0b10000000)
         {
             //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = _enToMorseElements((*bytes)[0]);
+            morseElements = 0x0000;
             (*bytes) += 1;
         }
         else if ((((*bytes)[0] & 0xff) == 0xc3) &&
@@ -306,13 +316,13 @@ unsigned int _enToMorseElements(const char **bytes)
             if (_skipDiacritic(bytes))
             {
                 //Not E acute, but E acute followed by one or more diacritic.
-                morseElements = _enToMorseElements(' ');
+                morseElements = 0x0000;
             }
         }
         else
         {
             //Found 2 byte UTF-8 character.
-            morseElements = _enToMorseElements(' ');
+            morseElements = 0x0000;
             (*bytes) += 2;
         }
     }
@@ -323,13 +333,13 @@ unsigned int _enToMorseElements(const char **bytes)
             (((*bytes)[2] & 0b11000000) == 0b10000000))
         {
             //Found 3 byte UTF-8 character.
-            morseElements = _enToMorseElements(' ');
+            morseElements = 0x0000;
             (*bytes) += 3;
         }
         else
         {
             //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = _enToMorseElements((*bytes)[0]);
+            morseElements = 0x0000;
             (*bytes) += 1;
         }
     }
@@ -341,20 +351,20 @@ unsigned int _enToMorseElements(const char **bytes)
             (((*bytes)[3] & 0b11000000) == 0b10000000))
         {
             //Found 4 byte UTF-8 character.
-            morseElements = _enToMorseElements(' ');
+            morseElements = 0x0000;
             (*bytes) += 4;
         }
         else
         {
             //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = _enToMorseElements((*bytes)[0]);
+            morseElements = 0x0000;
             (*bytes) += 1;
         }
     }
     else
     {
         //Found extended ascii character or error in UTF-8 encoding.
-        morseElements = _enToMorseElements((*bytes)[0]);
+        morseElements = 0x0000;
         (*bytes) += 1;
     }
 
