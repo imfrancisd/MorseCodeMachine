@@ -140,7 +140,7 @@ namespace Test
         }
     }
 
-    const std::string ascii =
+    const std::string utf8 =
         "  "\
         "01234 "\
         "56789 "\
@@ -167,7 +167,7 @@ namespace Test
         "E\xcc\x81""e\xcc\x81 "\
         "< \xc3\x89  \xc3\xA9 ><\xc3\x89\xc3\xa9> "\
         "< E\xcc\x81  e\xcc\x81 >""<E\xcc\x81""e\xcc\x81> "\
-        "e\xc0\x80t e\xe0\x80\x80t e\xf0\x80\x80\x80t "\
+        "e\xc6\x8et e\xe2\x99\x9et e\xf0\x9f\x98\x80t "\
         "";
 
     const std::string morse =
@@ -283,9 +283,9 @@ int main(int argc, char **argv)
 
     Machine1::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: " << Test::ascii << std::endl;
+    std::cout << "Argmt 1: " << Test::utf8 << std::endl;
     std::cout << "Expect : " << Test::morse << std::endl;
-    sendMorse(Test::ascii.c_str(), Machine1::dly, Machine1::dit, Machine1::dah);
+    sendMorse(Test::utf8.c_str(), Machine1::dly, Machine1::dit, Machine1::dah);
     std::cout << "Output : " << Machine1::out << std::endl;
     Test::printResult(testId, Test::morse == Machine1::out);
     std::cout << std::endl;
@@ -360,9 +360,9 @@ int main(int argc, char **argv)
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: " << Test::ascii << std::endl;
+    std::cout << "Argmt 1: " << Test::utf8 << std::endl;
     std::cout << "Expect : " << Test::morse << std::endl;
-    sendMorse(Test::ascii.c_str(), Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
+    sendMorse(Test::utf8.c_str(), Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
     std::cout << "Output : " << Machine2::out << std::endl;
     Test::printResult(testId, Test::morse == Machine2::out);
     std::cout << std::endl;
@@ -494,9 +494,9 @@ int main(int argc, char **argv)
 
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: " << Test::ascii << std::endl;
+    std::cout << "Argmt 1: " << Test::utf8 << std::endl;
     std::cout << "Expect : " << Test::morse << std::endl;
-    Machine3::errorCode = sendMorse(Test::ascii.c_str(), Machine3::dly, Machine3::dit, Machine3::dah);
+    Machine3::errorCode = sendMorse(Test::utf8.c_str(), Machine3::dly, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
     Test::printResult(testId, Test::morse == Machine3::out);
     std::cout << "Expect : 0" << std::endl;
@@ -655,9 +655,9 @@ int main(int argc, char **argv)
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: " << Test::ascii << std::endl;
+    std::cout << "Argmt 1: " << Test::utf8 << std::endl;
     std::cout << "Expect : " << Test::morse << std::endl;
-    Machine4::errorCode = sendMorse(Test::ascii.c_str(), Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    Machine4::errorCode = sendMorse(Test::utf8.c_str(), Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
     Test::printResult(testId, Test::morse == Machine4::out);
     std::cout << "Expect : 0" << std::endl;
