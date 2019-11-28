@@ -223,9 +223,12 @@ namespace Test
         "0123456789 "\
         "\"&'()+,-./:=?@ "\
         "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
-        "<SOS> < S O  S> "\
+        "<SOS> < S O  S> <eeettteee> "\
         "E\xcc\x81""e\xcc\x81 "\
         "E\xcc\x81\xcc\xad""e\xcc\x81\xcc\xad "\
+        "e\xc6\x8et e\xe2\x99\x9et e\xf0\x9f\x98\x80t "\
+        "\xc3\x89\xc3\xa9 "\
+        "\xc3\x89\xcc\x81\xc3\xa9\xcc\x81 "\
 /*
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
         "Χχ<Χχ> "\
@@ -236,8 +239,11 @@ namespace Test
         "0123456789 "\
         "\"&'()+,-./:=?@ "\
         "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
-        "<SOS> < S O  S> "\
+        "<SOS> < S O  S> <eeettteee> "\
         "E\xcc\x81""E\xcc\x81 "\
+        "   "\
+        "e t e t e t "\
+        "\xc3\x89\xc3\x89 "\
         "   "\
 /*
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
