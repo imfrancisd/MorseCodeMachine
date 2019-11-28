@@ -1,4 +1,5 @@
 #include "_enToMorseElements.h"
+#include "_skipDiacritic.h"
 
 
 
@@ -253,29 +254,37 @@ unsigned int _enToMorseElements(char c)
 
 unsigned int _enToMorseElements(const char **bytes)
 {
+    unsigned int morseElements = 0;
+
     if (((*bytes)[0] & 0b10000000) == 0)
     {
         //Check for E or e (U+0045 or U+0065) followed by acute (U+0301).
-        if (((*bytes)[0] == 'E') || ((*bytes)[0] == 'e'))
+        if ((((*bytes)[0] == 'E') || ((*bytes)[0] == 'e')) &&
+            ((((*bytes)[1] & 0xff) == 0xcc) && (((*bytes)[2] & 0xff) == 0x81)))
         {
-            //Check for acute (U+0301).
-            if ((((*bytes)[1] & 0xff) == 0xcc) && (((*bytes)[2] & 0xff) == 0x81))
+            //Found E followed by acute.
+            morseElements = 0b1111100000100000;
+            (*bytes) += 3;
+            
+            //Check if there is another diacritic mark after acute.
+            if (_skipDiacritic(bytes))
             {
-                //Found E followed by acute.
-                (*bytes) += 3;
-                return 0b1111100000100000;
+                //Not E acute, but E acute followed by one or more diacritic.
+                morseElements = _enToMorseElements(' ');
             }
         }
-
-        //Found ascii character.
-        (*bytes) += 1;
-        return _enToMorseElements((*bytes)[-1]);
+        else
+        {
+            //Found ascii character.
+            morseElements = _enToMorseElements((*bytes)[0]);
+            (*bytes) += 1;
+        }
     }
     else if (((*bytes)[0] & 0b11000000) == 0b10000000)
     {
         //Found extended ascii character or in middle of UTF-8 character.
+        morseElements = _enToMorseElements((*bytes)[0]);
         (*bytes) += 1;
-        return _enToMorseElements((*bytes)[-1]);
     }
     else if (((*bytes)[0] & 0b11100000) == 0b11000000)
     {
@@ -283,64 +292,75 @@ unsigned int _enToMorseElements(const char **bytes)
         if (((*bytes)[1] & 0b11000000) != 0b10000000)
         {
             //Found extended ascii character or error in UTF-8 encoding.
+            morseElements = _enToMorseElements((*bytes)[0]);
             (*bytes) += 1;
-            return _enToMorseElements((*bytes)[-1]);
         }
-
-        //Check for E acute (U+00C9 or U+00E9).
-        if (((*bytes)[0] & 0xff) == 0xc3)
+        else if ((((*bytes)[0] & 0xff) == 0xc3) &&
+                 ((((*bytes)[1] & 0xff) == 0x89) || (((*bytes)[1] & 0xff) == 0xa9)))
         {
-            if ((((*bytes)[1] & 0xff) == 0x89) || (((*bytes)[1] & 0xff) == 0xa9))
+            //Found E acute (U+00C9 or U+00E9).
+            morseElements = 0b1111100000100000;
+            (*bytes) += 2;
+            
+            //Check if there is a diacritic mark E acute.
+            if (_skipDiacritic(bytes))
             {
-                //Found E acute.
-                (*bytes) += 2;
-                return 0b1111100000100000;
+                //Not E acute, but E acute followed by one or more diacritic.
+                morseElements = _enToMorseElements(' ');
             }
         }
-
-        //Found 2 byte UTF-8 character.
-        (*bytes) += 2;
-        return _enToMorseElements(' ');
+        else
+        {
+            //Found 2 byte UTF-8 character.
+            morseElements = _enToMorseElements(' ');
+            (*bytes) += 2;
+        }
     }
     else if (((*bytes)[0] & 0b11110000) == 0b11100000)
     {
         //Check for valid 3 byte UTF-8 character.
-        for (int i = 1; i < 3; i++)
+        if ((((*bytes)[1] & 0b11000000) == 0b10000000) &&
+            (((*bytes)[2] & 0b11000000) == 0b10000000))
         {
-            if (((*bytes)[i] & 0b11000000) != 0b10000000)
-            {
-                //Found extended ascii character or error in UTF-8 encoding.
-                (*bytes) += 1;
-                return _enToMorseElements((*bytes)[-1]);
-            }
+            //Found 3 byte UTF-8 character.
+            morseElements = _enToMorseElements(' ');
+            (*bytes) += 3;
         }
-
-        //Found 3 byte UTF-8 character.
-        (*bytes) += 3;
-        return _enToMorseElements(' ');
+        else
+        {
+            //Found extended ascii character or error in UTF-8 encoding.
+            morseElements = _enToMorseElements((*bytes)[0]);
+            (*bytes) += 1;
+        }
     }
     else if (((*bytes)[0] & 0b11111000) == 0b11110000)
     {
         //Check for valid 4 byte UTF-8 character.
-        for (int i = 1; i < 4; i++)
+        if ((((*bytes)[1] & 0b11000000) == 0b10000000) &&
+            (((*bytes)[2] & 0b11000000) == 0b10000000) &&
+            (((*bytes)[3] & 0b11000000) == 0b10000000))
         {
-            if (((*bytes)[i] & 0b11000000) != 0b10000000)
-            {
-                //Found extended ascii character or error in UTF-8 encoding.
-                (*bytes) += 1;
-                return _enToMorseElements((*bytes)[-1]);
-            }
+            //Found 4 byte UTF-8 character.
+            morseElements = _enToMorseElements(' ');
+            (*bytes) += 4;
         }
-
-        //Found 4 byte UTF-8 character.
-        (*bytes) += 4;
-        return _enToMorseElements(' ');
+        else
+        {
+            //Found extended ascii character or error in UTF-8 encoding.
+            morseElements = _enToMorseElements((*bytes)[0]);
+            (*bytes) += 1;
+        }
     }
     else
     {
         //Found extended ascii character or error in UTF-8 encoding.
+        morseElements = _enToMorseElements((*bytes)[0]);
         (*bytes) += 1;
-        return _enToMorseElements((*bytes)[-1]);
     }
+
+    while (_skipDiacritic(bytes))
+        ;
+
+    return morseElements;
 }
 
