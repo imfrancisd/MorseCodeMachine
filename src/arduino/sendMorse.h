@@ -23,7 +23,6 @@ Parameters
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
-  Angle brackets can be nested ("<SOS>" is the same as "<S<OS>>").
   Any unrecognized characters in the string will be considered as a space.
   Any unrecognized characters and spaces between <> will be ignored.
 
@@ -158,8 +157,6 @@ Example Code
   }
 
 Notes and Warnings
-
-  All spaces outside of <> are converted to seven invocations of delayFunction.
 
   The duration of dotFunction should equal the duration of delayFunction.
 

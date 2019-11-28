@@ -8,7 +8,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         return;
     }
 
-    int openAngleBracketCount = 0;
+    bool hasLetterSpacing = true;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -18,18 +18,13 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
 
         if (c == '<')
         {
-            //Delay between characters is equal to the duration of the delay between dit/dah
-            //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
-            openAngleBracketCount++;
+            //Delay between characters is equal to the duration of the delay between dit/dah.
+            hasLetterSpacing = false;
         }
         else if (c == '>')
         {
-            //Delay between characters is greater than the duration of the delay between dit/dah
-            //when openAngleBracketCount == 0 (all open brackets have closing brackets).
-            if (openAngleBracketCount > 0)
-            {
-                openAngleBracketCount--;
-            }
+            //Delay between characters is greater than the duration of the delay between dit/dah.
+            hasLetterSpacing = true;
         }
         else if (morseElements & 0b1111111100000000)
         {
@@ -53,7 +48,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
 
             wasPrevCharSpace = false;
         }
-        else if (openAngleBracketCount == 0)
+        else if (hasLetterSpacing)
         {
             //Delay between words, including the '\0'.
             //7 delays total.
@@ -67,7 +62,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             wasPrevCharSpace = true;
         }
 
-        if (openAngleBracketCount == 0)
+        if (hasLetterSpacing)
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
@@ -91,7 +86,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         return;
     }
 
-    int openAngleBracketCount = 0;
+    bool hasLetterSpacing = true;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -101,18 +96,12 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
 
         if (c == '<')
         {
-            //Delay between characters is equal to the duration of the delay between dit/dah
-            //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
-            openAngleBracketCount++;
+            //Delay between characters is equal to the duration of the delay between dit/dah.
+            hasLetterSpacing = false;
         }
         else if (c == '>')
         {
-            //Delay between characters is greater than the duration of the delay between dit/dah
-            //when openAngleBracketCount == 0 (all open brackets have closing brackets).
-            if (openAngleBracketCount > 0)
-            {
-                openAngleBracketCount--;
-            }
+            hasLetterSpacing = true;
         }
         else if (morseElements & 0b1111111100000000)
         {
@@ -136,7 +125,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
 
             wasPrevCharSpace = false;
         }
-        else if (openAngleBracketCount == 0)
+        else if (hasLetterSpacing)
         {
             //Delay between words, including the '\0'.
             //7 delays total.
@@ -150,7 +139,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
             wasPrevCharSpace = true;
         }
 
-        if (openAngleBracketCount == 0)
+        if (hasLetterSpacing)
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
@@ -175,7 +164,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
     }
 
     int errorCode = 0;
-    int openAngleBracketCount = 0;
+    bool hasLetterSpacing = true;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -185,18 +174,13 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
         if (c == '<')
         {
-            //Delay between characters is equal to the duration of the delay between dit/dah
-            //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
-            openAngleBracketCount++;
+            //Delay between characters is equal to the duration of the delay between dit/dah.
+            hasLetterSpacing = false;
         }
         else if (c == '>')
         {
-            //Delay between characters is greater than the duration of the delay between dit/dah
-            //when openAngleBracketCount == 0 (all open brackets have closing brackets).
-            if (openAngleBracketCount > 0)
-            {
-                openAngleBracketCount--;
-            }
+            //Delay between characters is greater than the duration of the delay between dit/dah.
+            hasLetterSpacing = true;
         }
         else if (morseElements & 0b1111111100000000)
         {
@@ -232,7 +216,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
 
             wasPrevCharSpace = false;
         }
-        else if (openAngleBracketCount == 0)
+        else if (hasLetterSpacing)
         {
             //Delay between words, including the '\0'.
             //7 delays total.
@@ -250,7 +234,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
             wasPrevCharSpace = true;
         }
 
-        if (openAngleBracketCount == 0)
+        if (hasLetterSpacing)
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
@@ -281,7 +265,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     }
 
     int errorCode = 0;
-    int openAngleBracketCount = 0;
+    bool hasLetterSpacing = true;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -291,18 +275,13 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
         if (c == '<')
         {
-            //Delay between characters is equal to the duration of the delay between dit/dah
-            //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
-            openAngleBracketCount++;
+            //Delay between characters is equal to the duration of the delay between dit/dah.
+            hasLetterSpacing = false;
         }
         else if (c == '>')
         {
-            //Delay between characters is greater than the duration of the delay between dit/dah
-            //when openAngleBracketCount == 0 (all open brackets have closing brackets).
-            if (openAngleBracketCount > 0)
-            {
-                openAngleBracketCount--;
-            }
+            //Delay between characters is greater than the duration of the delay between dit/dah.
+            hasLetterSpacing = true;
         }
         else if (morseElements & 0b1111111100000000)
         {
@@ -338,7 +317,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
 
             wasPrevCharSpace = false;
         }
-        else if (openAngleBracketCount == 0)
+        else if (hasLetterSpacing)
         {
             //Delay between words, including the '\0'.
             //7 delays total.
@@ -356,7 +335,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
             wasPrevCharSpace = true;
         }
 
-        if (openAngleBracketCount == 0)
+        if (hasLetterSpacing)
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
