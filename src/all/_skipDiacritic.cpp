@@ -1,3 +1,4 @@
+#include "_isDiacritic.h"
 #include "_skipDiacritic.h"
 
 
@@ -9,22 +10,10 @@
 
 bool _skipDiacritic(const char **bytes)
 {
-    if ((((*bytes)[0]) & 0xff) == 0xcc)
+    if (_isDiacritic(*bytes))
     {
-        if ((0x80 <= ((*bytes)[1] & 0xff)) && (((*bytes)[1] & 0xff) <= 0xbf))
-        {
-            (*bytes) += 2;
-            return true;
-        }
-    }
-
-    if ((((*bytes)[0]) & 0xff) == 0xcd)
-    {
-        if ((0x80 <= ((*bytes)[1] & 0xff)) && (((*bytes)[1] & 0xff) <= 0xaf))
-        {
-            (*bytes) += 2;
-            return true;
-        }
+        (*bytes) += 2;
+        return true;
     }
 
     return false;
