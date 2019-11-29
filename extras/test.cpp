@@ -228,15 +228,17 @@ namespace Test
         ",,,,,,,";
 
     const std::string greek =
-        "0123456789 "\
+        "  "\
+        "01234 56789 "\
+        "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
+        "abcdefg hijklmn opqrstu vwxyz "\
+        "<sos><3b><eeettteee> <SOS> <3B> Sos 3B "\
         "\"&'()+,-./:=?@ "\
-        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
-        "<SOS> < S O  S> <eeettteee> "\
-        "E\xcc\x81""e\xcc\x81 "\
-        "E\xcc\x81\xcc\xad""e\xcc\x81\xcc\xad "\
-        "e\xc6\x8et e\xe2\x99\x9et e\xf0\x9f\x98\x80t "\
+        "01 2  1 e ee  eee   e "\
+        "< s o s ><  s  o  s  > < 3  b >  < 3  b > "\
+        "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
         "\xc3\x89\xc3\xa9 "\
-        "\xc3\x89\xcc\x81\xc3\xa9\xcc\x81 "\
+        "E\xcc\x81""e\xcc\x81 "\
 /*
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
         "Χχ<Χχ> "\
@@ -244,15 +246,17 @@ namespace Test
         "";
 
     const std::string greekToEnglish =
-        "0123456789 "\
+        "  "\
+        "01234 56789 "\
+        "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
+        "abcdefg hijklmn opqrstu vwxyz "\
+        "<sos><3b><eeettteee> <SOS> <3B> Sos 3B "\
         "\"&'()+,-./:=?@ "\
-        "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "\
-        "<SOS> < S O  S> <eeettteee> "\
-        "E\xcc\x81""E\xcc\x81 "\
-        "   "\
-        "e t e t e t "\
-        "\xc3\x89\xc3\x89 "\
-        "   "\
+        "01 2  1 e ee  eee   e "\
+        "< s o s ><  s  o  s  > < 3  b >  < 3  b > "\
+        "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
+        "\xc3\x89\xc3\xa9 "\
+        "E\xcc\x81""e\xcc\x81 "\
 /*
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
         "<MM><MM><MMMM> "\
