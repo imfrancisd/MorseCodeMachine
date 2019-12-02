@@ -10,8 +10,8 @@ Name
 Description
 
   Converts a null-terminated string containing English and Greek characters
-  into a null-terminated string containing only English characters understood
-  defined by Morse code.
+  into a null-terminated string containing only English characters defined by
+  Morse code.
   
   See the following for more details about Greek Morse code:
   Morse code for non-Latin alphabets - Wikipedia
@@ -28,8 +28,9 @@ Parameters
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
-  Any unrecognized characters in the string will be considered as a space.
-  Any unrecognized characters and spaces between <> will be ignored.
+  Angle brackets can be nested ("<SOS>" is the same as "<S<OS>>").
+  Any unrecognized characters in the string converted to the Unicode
+  replacement character (U+FFFD).
 
     The message can contain the following characters:
     Digits : 0123456789
@@ -38,6 +39,11 @@ Parameters
              ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω
     Special: <>
     Space  :  
+
+    ===========================================================================
+    WARNING : Do not use accent marks on any Greek character.
+              Greek Morse code does not use characters with accent marks.
+    ===========================================================================
 
   englishBuffer
   A character array that will contain the converted characters from
@@ -71,10 +77,7 @@ Example Code
 
 Notes and Warnings
 
-  Do not use accent marks on any character.
-
-  The accent marks may cause the convertMorseFromGreek function to fail to
-  recognize the character.
+  Do not use accent marks on any Greek character.
 */
 
 int convertMorseFromGreek(const char greekMessage[],

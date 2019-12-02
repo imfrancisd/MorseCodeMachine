@@ -239,10 +239,9 @@ namespace Test
         "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
         "\xc3\x89\xc3\xa9 "\
         "E\xcc\x81""e\xcc\x81 "\
-/*
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
         "Χχ<Χχ> "\
-*/
+        "\xce\x91\xce\x84 \xe1\xbc\x87 \xcf\xaf \xce\xb1\xcc\x81 "\
         "";
 
     const std::string greekToEnglish =
@@ -257,10 +256,9 @@ namespace Test
         "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
         "\xc3\x89\xc3\xa9 "\
         "E\xcc\x81""e\xcc\x81 "\
-/*
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
-        "<MM><MM><MMMM> "\
-*/
+        "<MM><MM><<MM><MM>> "\
+        "\xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd "\
         "";
 }
 

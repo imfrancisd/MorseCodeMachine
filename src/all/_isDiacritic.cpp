@@ -19,6 +19,11 @@ bool _isDiacritic(const char *bytes)
         return true;
     }
 
+    if ((bytes[0] == '\xce') && (0x84 <= (bytes[1] & 0xff)) && ((bytes[1] & 0xff) <= 0x85))
+    {
+        return true;
+    }
+
     return false;
 }
 
