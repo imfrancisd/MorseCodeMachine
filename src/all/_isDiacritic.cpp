@@ -9,20 +9,14 @@
 
 bool _isDiacritic(const char *bytes)
 {
-    if ((bytes[0] & 0xff) == 0xcc)
+    if ((bytes[0] == '\xcc') && (0x80 <= (bytes[1] & 0xff)) && ((bytes[1] & 0xff) <= 0xbf))
     {
-        if ((0x80 <= (bytes[1] & 0xff)) && ((bytes[1] & 0xff) <= 0xbf))
-        {
-            return true;
-        }
+        return true;
     }
 
-    if ((bytes[0] & 0xff) == 0xcd)
+    if ((bytes[0] == '\xcd') && (0x80 <= (bytes[1] & 0xff)) && ((bytes[1] & 0xff) <= 0xaf))
     {
-        if ((0x80 <= (bytes[1] & 0xff)) && ((bytes[1] & 0xff) <= 0xaf))
-        {
-            return true;
-        }
+        return true;
     }
 
     return false;

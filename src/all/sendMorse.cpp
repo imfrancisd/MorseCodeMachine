@@ -8,7 +8,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         return;
     }
 
-    int openAngleBracketCount = 0;
+    unsigned char openAngleBracketCount = 0;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -55,11 +55,11 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         }
         else if (openAngleBracketCount == 0)
         {
-            //Delay between words, including the '\0'.
+            //Delay between words (space/unrecognized char), including '\0'.
             //7 delays total.
             //3 from previous letter, 2 from here, 2 at end of loop,
             //or if no previous letter, 5 delays here, 2 at end of loop.
-            for (int i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
+            for (unsigned char i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
             {
                 delayFunction();
             }
@@ -71,7 +71,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
-            for (int i = 2; i > 0; i--)
+            for (unsigned char i = 2; i > 0; i--)
             {
                 delayFunction();
             }
@@ -91,7 +91,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         return;
     }
 
-    int openAngleBracketCount = 0;
+    unsigned char openAngleBracketCount = 0;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -138,11 +138,11 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         }
         else if (openAngleBracketCount == 0)
         {
-            //Delay between words, including the '\0'.
+            //Delay between words (space/unrecognized char), including '\0'.
             //7 delays total.
             //3 from previous letter, 2 from here, 2 at end of loop,
             //or if no previous letter, 5 delays here, 2 at end of loop.
-            for (int i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
+            for (unsigned char i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
             {
                 delayFunction(context);
             }
@@ -154,7 +154,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
-            for (int i = 2; i > 0; i--)
+            for (unsigned char i = 2; i > 0; i--)
             {
                 delayFunction(context);
             }
@@ -175,7 +175,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
     }
 
     int errorCode = 0;
-    int openAngleBracketCount = 0;
+    unsigned char openAngleBracketCount = 0;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -234,11 +234,11 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
         }
         else if (openAngleBracketCount == 0)
         {
-            //Delay between words, including the '\0'.
+            //Delay between words (space/unrecognized char), including '\0'.
             //7 delays total.
             //3 from previous letter, 2 from here, 2 at end of loop,
             //or if no previous letter, 5 delays here, 2 at end of loop.
-            for (int i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
+            for (unsigned char i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
             {
                 errorCode = delayFunction();
                 if (errorCode)
@@ -254,7 +254,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
-            for (int i = 2; i > 0; i--)
+            for (unsigned char i = 2; i > 0; i--)
             {
                 errorCode = delayFunction();
                 if (errorCode)
@@ -281,7 +281,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     }
 
     int errorCode = 0;
-    int openAngleBracketCount = 0;
+    unsigned char openAngleBracketCount = 0;
     bool wasPrevCharSpace = true;
 
     while (true)
@@ -340,11 +340,11 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
         }
         else if (openAngleBracketCount == 0)
         {
-            //Delay between words, including the '\0'.
+            //Delay between words (space/unrecognized char), including '\0'.
             //7 delays total.
             //3 from previous letter, 2 from here, 2 at end of loop,
             //or if no previous letter, 5 delays here, 2 at end of loop.
-            for (int i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
+            for (unsigned char i = (wasPrevCharSpace ? 5 : 2); i > 0; i--)
             {
                 errorCode = delayFunction(context);
                 if (errorCode)
@@ -360,7 +360,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
         {
             //Delay between characters.
             //3 delays total. 1 from end of character, 2 from here.
-            for (int i = 2; i > 0; i--)
+            for (unsigned char i = 2; i > 0; i--)
             {
                 errorCode = delayFunction(context);
                 if (errorCode)

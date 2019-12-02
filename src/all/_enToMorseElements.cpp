@@ -1,3 +1,4 @@
+#include "_countUtf8Bytes.h"
 #include "_enToMorseElements.h"
 #include "_isDiacritic.h"
 #include "_skipDiacritic.h"
@@ -266,139 +267,52 @@ unsigned int _enToMorseElements(char c)
 unsigned int _enToMorseElements(const char **bytes)
 {
     unsigned int morseElements = 0;
+    unsigned char countUtf8Bytes = _countUtf8Bytes(*bytes);
 
-    if (((*bytes)[0] & 0b10000000) == 0)
+    if (countUtf8Bytes == 1)
     {
         if (!_isDiacritic((*bytes) + 1))
         {
             //Found ascii character followed by 0 diacritics.
             morseElements = _enToMorseElements((*bytes)[0]);
-            (*bytes)++;
         }
-        else if (!_isDiacritic((*bytes) + 3))
+        else if ((!_isDiacritic((*bytes) + 3)) &&
+                 ((*bytes)[1] == '\xcc') &&
+                 ((*bytes)[2] == '\x81') &&
+                 (((*bytes)[0] == 'E') || ((*bytes)[0] == 'e')))
         {
-            //Found ascii character followed by 1 diacritic.
-            //Check for E or e (U+0045 or U+0065) followed by acute (U+0301).
-            if (((*bytes)[0] == 'E') || ((*bytes)[0] == 'e'))
-            {
-                if ((((*bytes)[1] & 0xff) == 0xcc) && (((*bytes)[2] & 0xff) == 0x81))
-                {
-                    //Found E followed by acute.
-                    morseElements = 0b1111100000100000;
-                    (*bytes)++;
-                    _skipDiacritic(bytes);
-                }
-                else
-                {
-                    //Found E followed by another diacritic.
-                    morseElements = 0x0000;
-                    (*bytes)++;
-                    _skipDiacritic(bytes);
-                }
-            }
-            else
-            {
-                //Found ascii character followed by 1 diacritic.
-                morseElements = 0x0000;
-                (*bytes)++;
-                _skipDiacritic(bytes);
-            }
+            //Found E or e (U+0045 or U+0065) followed by acute (U+0301) and no other diacritics.
+            morseElements = 0b1111100000100000;
         }
         else
         {
-            //Found ascii character followed by multiple diacritics.
+            //Found ascii character followed by 1 or more diacritics.
             morseElements = 0x0000;
-            (*bytes)++;
-            while (_skipDiacritic(bytes))
-                ;
         }
     }
-    else if (((*bytes)[0] & 0b11000000) == 0b10000000)
+    else if ((countUtf8Bytes == 2) &&
+             (!_isDiacritic((*bytes) + 2)) &&
+             ((*bytes)[0] == '\xc3') &&
+             (((*bytes)[1] == '\x89') || ((*bytes)[1] == '\xa9')))
     {
-        //Found extended ascii character or in middle of UTF-8 character.
-        morseElements = 0x0000;
-        (*bytes)++;
-    }
-    else if (((*bytes)[0] & 0b11100000) == 0b11000000)
-    {
-        //Check for valid 2 byte UTF-8 character.
-        if (((*bytes)[1] & 0b11000000) != 0b10000000)
-        {
-            //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = 0x0000;
-            (*bytes)++;
-        }
-        else if (!_isDiacritic((*bytes) + 2))
-        {
-            //Found 2 byte UTF-8 character with 0 diacritics.
-            //Check for E acute (U+00C9 or U+00E9).
-            if ((((*bytes)[0] & 0xff) == 0xc3) &&
-                ((((*bytes)[1] & 0xff) == 0x89) || (((*bytes)[1] & 0xff) == 0xa9)))
-            {
-                //Found E acute (U+00C9 or U+00E9).
-                morseElements = 0b1111100000100000;
-                (*bytes) += 2;
-            }
-            else
-            {
-                //Found 2 byte UTF-8 character (possibly a diacritic) followed by 0 diacritics.
-                morseElements = 0x0000;
-                (*bytes) += 2;
-            }
-        }
-        else
-        {
-            //Found 2 byte UTF-8 character (possibly a diacritic) followed by 1 or more diacritics.
-            morseElements = 0x0000;
-            (*bytes) += 2;
-            while (_skipDiacritic(bytes))
-                ;
-        }
-    }
-    else if (((*bytes)[0] & 0b11110000) == 0b11100000)
-    {
-        //Check for valid 3 byte UTF-8 character.
-        if ((((*bytes)[1] & 0b11000000) != 0b10000000) ||
-            (((*bytes)[2] & 0b11000000) != 0b10000000))
-        {
-            //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = 0x0000;
-            (*bytes)++;
-        }
-        else
-        {
-            //Found 3 byte UTF-8 character which may be followed by diacritics.
-            morseElements = 0x0000;
-            (*bytes) += 3;
-            while (_skipDiacritic(bytes))
-                ;
-        }
-    }
-    else if (((*bytes)[0] & 0b11111000) == 0b11110000)
-    {
-        //Check for valid 4 byte UTF-8 character.
-        if ((((*bytes)[1] & 0b11000000) != 0b10000000) ||
-            (((*bytes)[2] & 0b11000000) != 0b10000000) ||
-            (((*bytes)[3] & 0b11000000) != 0b10000000))
-        {
-            //Found extended ascii character or error in UTF-8 encoding.
-            morseElements = 0x0000;
-            (*bytes)++;
-        }
-        else
-        {
-            //Found 4 byte UTF-8 character which may be followed by diacritics.
-            morseElements = 0x0000;
-            (*bytes) += 4;
-            while (_skipDiacritic(bytes))
-                ;
-        }
+        //Found E acute (U+00C9 or U+00E9) followed by 0 diacritics.
+        morseElements = 0b1111100000100000;
     }
     else
     {
         //Found extended ascii character or error in UTF-8 encoding.
+        //Found 2 byte, 3 byte, or 4 byte UTF-8 character which may be followed by diacritics.
         morseElements = 0x0000;
-        (*bytes)++;
+    }
+
+    //Go to next UTF-8 character.
+    (*bytes) += (countUtf8Bytes > 0) ? countUtf8Bytes : 1;
+
+    //Skip diacritics only if valid UTF-8 character found.
+    if (countUtf8Bytes > 0)
+    {
+        while (_skipDiacritic(bytes))
+            ;
     }
 
     return morseElements;
