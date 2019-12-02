@@ -242,6 +242,9 @@ namespace Test
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
         "Χχ<Χχ> "\
         "\xce\x91\xce\x84 \xe1\xbc\x87 \xcf\xaf \xce\xb1\xcc\x81 "\
+        "e\xc6\x8et "\
+        "e\xe2\x99\x9et "\
+        "e\xf0\x9f\x98\x80t "\
         "";
 
     const std::string greekToEnglish =
@@ -259,6 +262,9 @@ namespace Test
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
         "<MM><MM><<MM><MM>> "\
         "\xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
         "";
 }
 
@@ -829,6 +835,149 @@ int main(int argc, char **argv)
     std::cout << "Expect : -1" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: "  << std::endl;
+    std::cout << "Argmt 3: 1"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("", Machine5::out, 1);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: Χ"  << std::endl;
+    std::cout << "Argmt 3: 4"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("Χ", Machine5::out, 4);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: Χ"  << std::endl;
+    std::cout << "Argmt 3: 5"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("Χ", Machine5::out, 5);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "<MM>");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: χ"  << std::endl;
+    std::cout << "Argmt 3: 4"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("χ", Machine5::out, 4);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: χ"  << std::endl;
+    std::cout << "Argmt 3: 5"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("χ", Machine5::out, 5);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "<MM>");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: aα"  << std::endl;
+    std::cout << "Argmt 3: 2"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("aα", Machine5::out, 2);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "a");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: aα"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("aα", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "aA");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: αΩ"  << std::endl;
+    std::cout << "Argmt 3: 2"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("αΩ", Machine5::out, 2);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "A");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: αΩ"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("αΩ", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "AW");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: hip"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("hip", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "hi");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: hip"  << std::endl;
+    std::cout << "Argmt 3: 4"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromGreek("hip", Machine5::out, 4);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "hip");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
     std::cout << std::endl;
 
     Machine5::reset();

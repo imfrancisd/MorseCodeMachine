@@ -297,6 +297,19 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
             source = sourceEnd;
             continue;
         }
+
+        //Replace with U+FFFD (3 byte UTF-8 character).
+        if (destinationEnd <= destination + 3)
+        {
+            *destination = '\0';
+            return 1;
+        }
+        *destination++ = 0xef;
+        *destination++ = 0xbf;
+        *destination++ = 0xbd;
+
+        sourceEnd += countUtf8Bytes;
+        source = sourceEnd;
     }
 
     *destination = '\0';
