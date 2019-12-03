@@ -12,6 +12,7 @@
 
 # Methods and Functions (KEYWORD2)
 sendMorse	KEYWORD2
+convertMorseFromGreek	KEYWORD2
 
 # Instances (KEYWORD2)
 
