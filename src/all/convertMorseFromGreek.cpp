@@ -2,6 +2,7 @@
 #include "_enToMorseElements.h"
 #include "_isDiacritic.h"
 #include "_skipDiacritic.h"
+#include "_writeUnicodeFFFD.h"
 #include "convertMorseFromGreek.h"
 #include <string.h>
 
@@ -49,14 +50,11 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         {
             //Not Greek character, a diacritic, or a character followed by diacritics.
             //Replace with U+FFFD (3 byte UTF-8 character).
-            if (destinationEnd <= destination + 3)
+            if (!_writeUnicodeFFFD(&destination, destinationEnd))
             {
-                destination[0] = '\0';
+                *destination = '\0';
                 return 1;
             }
-            *destination++ = 0xef;
-            *destination++ = 0xbf;
-            *destination++ = 0xbd;
 
             //Skip character.
             if (countUtf8Bytes == 0)
@@ -214,15 +212,11 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
                     break;
 
                 default:
-                    //Replace with U+FFFD (3 byte UTF-8 character).
-                    if (destinationEnd <= destination + 3)
+                    if (!_writeUnicodeFFFD(&destination, destinationEnd))
                     {
                         *destination = '\0';
                         return 1;
                     }
-                    *destination++ = 0xef;
-                    *destination++ = 0xbf;
-                    *destination++ = 0xbd;
                     break;
             }
 
@@ -281,15 +275,11 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
                     break;
 
                 default:
-                    //Replace with U+FFFD (3 byte UTF-8 character).
-                    if (destinationEnd <= destination + 3)
+                    if (!_writeUnicodeFFFD(&destination, destinationEnd))
                     {
                         *destination = '\0';
                         return 1;
                     }
-                    *destination++ = 0xef;
-                    *destination++ = 0xbf;
-                    *destination++ = 0xbd;
                     break;
             }
 
@@ -298,15 +288,11 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
             continue;
         }
 
-        //Replace with U+FFFD (3 byte UTF-8 character).
-        if (destinationEnd <= destination + 3)
+        if (!_writeUnicodeFFFD(&destination, destinationEnd))
         {
             *destination = '\0';
             return 1;
         }
-        *destination++ = 0xef;
-        *destination++ = 0xbf;
-        *destination++ = 0xbd;
 
         sourceEnd += countUtf8Bytes;
         source = sourceEnd;
