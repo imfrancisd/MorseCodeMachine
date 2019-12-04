@@ -16,7 +16,11 @@
 
 //convertMorseFromGreek
 
-//Converts a null-terminated string containing Greek characters
-//to English character equivalents as defined by Greek Morse code.
+//Converts a null-terminated string containing Greek characters to English
+//character equivalents as defined by Greek Morse code.
 #include "all/convertMorseFromGreek.h"
+
+//Converts a String object or a pointer to a String object containing Greek
+//characters to English character equivalents as defined by Greek Morse code.
+#include "arduino/convertMorseFromGreek.h"
 
