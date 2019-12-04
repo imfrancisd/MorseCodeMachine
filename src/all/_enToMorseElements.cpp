@@ -12,6 +12,12 @@
 
 unsigned int _enToMorseElements(char c)
 {
+    //Convert lowercase (a-z) to uppercase (A-Z).
+    if (('a' <= c) && (c <= 'z'))
+    {
+        c -= 'a' - 'A';
+    }
+
     switch (c)
     {
         //Digits 0-9.
@@ -59,132 +65,106 @@ unsigned int _enToMorseElements(char c)
         //Letters A-z and a-z.
 
         case 'A':
-        case 'a':
             //DIT DAH
             return 0b1100000001000000;
 
         case 'B':
-        case 'b':
             //DAH DIT DIT DIT
             return 0b1111000010000000;
 
         case 'C':
-        case 'c':
             //DAH DIT DAH DIT
             return 0b1111000010100000;
 
         case 'D':
-        case 'd':
             //DAH DIT DIT
             return 0b1110000010000000;
 
         case 'E':
-        case 'e':
             //DIT
             return 0b1000000000000000;
 
         case 'F':
-        case 'f':
             //DIT DIT DAH DIT
             return 0b1111000000100000;
 
         case 'G':
-        case 'g':
             //DAH DAH DIT
             return 0b1110000011000000;
 
         case 'H':
-        case 'h':
             //DIT DIT DIT DIT
             return 0b1111000000000000;
 
         case 'I':
-        case 'i':
             //DIT DIT
             return 0b1100000000000000;
 
         case 'J':
-        case 'j':
             //DIT DAH DAH DAH
             return 0b1111000001110000;
 
         case 'K':
-        case 'k':
             //DAH DIT DAH
             return 0b1110000010100000;
 
         case 'L':
-        case 'l':
             //DIT DAH DIT DIT
             return 0b1111000001000000;
 
         case 'M':
-        case 'm':
             //DAH DAH
             return 0b1100000011000000;
 
         case 'N':
-        case 'n':
             //DAH DIT
             return 0b1100000010000000;
 
         case 'O':
-        case 'o':
             //DAH DAH DAH
             return 0b1110000011100000;
 
         case 'P':
-        case 'p':
             //DIT DAH DAH DIT
             return 0b1111000001100000;
 
         case 'Q':
-        case 'q':
             //DAH DAH DIT DAH
             return 0b1111000011010000;
 
         case 'R':
-        case 'r':
             //DIT DAH DIT
             return 0b1110000001000000;
 
         case 'S':
-        case 's':
             //DIT DIT DIT
             return 0b1110000000000000;
 
         case 'T':
-        case 't':
             //DAH
             return 0b1000000010000000;
 
         case 'U':
-        case 'u':
             //DIT DIT DAH
             return 0b1110000000100000;
 
         case 'V':
-        case 'v':
             //DIT DIT DIT DAH
             return 0b1111000000010000;
 
         case 'W':
-        case 'w':
             //DIT DAH DAH
             return 0b1110000001100000;
 
         case 'X':
-        case 'x':
             //DAH DIT DIT DAH
             return 0b1111000010010000;
 
         case 'Y':
-        case 'y':
             //DAH DIT DAH DAH
             return 0b1111000010110000;
 
         case 'Z':
-        case 'z':
             //DAH DAH DIT DIT
             return 0b1111000011000000;
 

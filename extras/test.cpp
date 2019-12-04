@@ -130,7 +130,9 @@ namespace Machine5
     int errorCode = -123;
     void reset()
     {
-        memset(out, '\0', outSize);
+        memset(out, '?', outSize);
+        out[0] = '\0';
+        out[outSize - 1] = '\0';
         errorCode = -123;
     }
 }
@@ -189,6 +191,7 @@ namespace Test
         "A\xcc\x81\xcc\xad""a\xcc\x81\xcc\xad "\
         "\xce\xb1\xcc\x81""\xce\xb1\xcc\x81\xcc\xad "\
         "e\xc6\x8et e\xe2\x99\x9et e\xf0\x9f\x98\x80t "\
+        "\xef\xbf\xbd"\
         "";
 
     const std::string morse =
@@ -225,6 +228,7 @@ namespace Test
         ",,,,,,,,,,,,,,,,,,,,,"\
         ",,,,,,,,,,,,,,,,,,,,,"\
         "*,,,,,,,-,,,,,,,*,,,,,,,-,,,,,,,*,,,,,,,-,,,,,,,"\
+        ",,,,,,,"\
         ",,,,,,,";
 
     const std::string greek =
@@ -242,6 +246,10 @@ namespace Test
         "ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣςσΤτΥυΦφΧχΨψΩω "\
         "Χχ<Χχ> "\
         "\xce\x91\xce\x84 \xe1\xbc\x87 \xcf\xaf \xce\xb1\xcc\x81 "\
+        "\xce\x90 \xce\xaa "\
+        "\xce\xb0 \xcf\x8a "\
+        "e\xc4\x80t "\
+        "e\xdf\x99t "\
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
@@ -262,6 +270,10 @@ namespace Test
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
         "<MM><MM><<MM><MM>> "\
         "\xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd "\
+        "\xef\xbf\xbd \xef\xbf\xbd "\
+        "\xef\xbf\xbd \xef\xbf\xbd "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
