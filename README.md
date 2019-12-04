@@ -38,6 +38,10 @@ void dahLed() {
 }
 ```
 
+# Multiple Language Support
+
+See the examples to learn how to send Morse Code in another language, such as Greek.
+
 # Installing the library
 
 Download the zip file of the latest release here:
