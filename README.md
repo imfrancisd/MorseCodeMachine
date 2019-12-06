@@ -40,7 +40,7 @@ void dahLed() {
 
 # Multiple Language Support
 
-See the examples to learn how to send Morse Code in another language, such as Greek.
+See the examples to learn how to send Morse Code in another language, such as Greek and Hebrew.
 
 # Installing the library
 
