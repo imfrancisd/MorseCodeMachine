@@ -12,230 +12,231 @@
 
 unsigned int _enToMorseElements(char c)
 {
+    //ASCII characters are Unicode code points U+0000 - U+007F.
+    unsigned char unicode = 0xff & c;
+
     //Convert lowercase (a-z) to uppercase (A-Z).
-    if (('a' <= c) && (c <= 'z'))
+    //Uppercase (U+0041 - U+005A)
+    //Lowercase (U+0061 - U+007A)
+    if ((0x61 <= unicode) && (unicode <= 0x7a))
     {
-        c -= 'a' - 'A';
+        unicode -= 0x20;
     }
 
-    switch (c)
+    switch (unicode)
     {
         //Digits 0-9.
 
-        case '0':
-            //DAH DAH DAH DAH DAH
+        case 0x30:
+            //0 -> DAH DAH DAH DAH DAH
             return 0b1111100011111000;
 
-        case '1':
-            //DIT DAH DAH DAH DAH
+        case 0x31:
+            //1 -> DIT DAH DAH DAH DAH
             return 0b1111100001111000;
 
-        case '2':
-            //DIT DIT DAH DAH DAH
+        case 0x32:
+            //2 -> DIT DIT DAH DAH DAH
             return 0b1111100000111000;
 
-        case '3':
-            //DIT DIT DIT DAH DAH
+        case 0x33:
+            //3 -> DIT DIT DIT DAH DAH
             return 0b1111100000011000;
 
-        case '4':
-            //DIT DIT DIT DIT DAH
+        case 0x34:
+            //4 -> DIT DIT DIT DIT DAH
             return 0b1111100000001000;
 
-        case '5':
-            //DIT DIT DIT DIT DIT
+        case 0x35:
+            //5 -> DIT DIT DIT DIT DIT
             return 0b1111100000000000;
 
-        case '6':
-            //DAH DIT DIT DIT DIT
+        case 0x36:
+            //6 -> DAH DIT DIT DIT DIT
             return 0b1111100010000000;
 
-        case '7':
-            //DAH DAH DIT DIT DIT
+        case 0x37:
+            //7 -> DAH DAH DIT DIT DIT
             return 0b1111100011000000;
 
-        case '8':
-            //DAH DAH DAH DIT DIT
+        case 0x38:
+            //8 -> DAH DAH DAH DIT DIT
             return 0b1111100011100000;
 
-        case '9':
-            //DAH DAH DAH DAH DIT
+        case 0x39:
+            //9 -> DAH DAH DAH DAH DIT
             return 0b1111100011110000;
 
-        //Letters A-z and a-z.
+        //Letters A-Z.
 
-        case 'A':
-            //DIT DAH
+        case 0x41:
+            //A -> DIT DAH
             return 0b1100000001000000;
 
-        case 'B':
-            //DAH DIT DIT DIT
+        case 0x42:
+            //B -> DAH DIT DIT DIT
             return 0b1111000010000000;
 
-        case 'C':
-            //DAH DIT DAH DIT
+        case 0x43:
+            //C -> DAH DIT DAH DIT
             return 0b1111000010100000;
 
-        case 'D':
-            //DAH DIT DIT
+        case 0x44:
+            //D -> DAH DIT DIT
             return 0b1110000010000000;
 
-        case 'E':
-            //DIT
+        case 0x45:
+            //E -> DIT
             return 0b1000000000000000;
 
-        case 'F':
-            //DIT DIT DAH DIT
+        case 0x46:
+            //F -> DIT DIT DAH DIT
             return 0b1111000000100000;
 
-        case 'G':
-            //DAH DAH DIT
+        case 0x47:
+            //G -> DAH DAH DIT
             return 0b1110000011000000;
 
-        case 'H':
-            //DIT DIT DIT DIT
+        case 0x48:
+            //H -> DIT DIT DIT DIT
             return 0b1111000000000000;
 
-        case 'I':
-            //DIT DIT
+        case 0x49:
+            //I -> DIT DIT
             return 0b1100000000000000;
 
-        case 'J':
-            //DIT DAH DAH DAH
+        case 0x4a:
+            //J -> DIT DAH DAH DAH
             return 0b1111000001110000;
 
-        case 'K':
-            //DAH DIT DAH
+        case 0x4b:
+            //K -> DAH DIT DAH
             return 0b1110000010100000;
 
-        case 'L':
-            //DIT DAH DIT DIT
+        case 0x4c:
+            //L -> DIT DAH DIT DIT
             return 0b1111000001000000;
 
-        case 'M':
-            //DAH DAH
+        case 0x4d:
+            //M -> DAH DAH
             return 0b1100000011000000;
 
-        case 'N':
-            //DAH DIT
+        case 0x4e:
+            //N -> DAH DIT
             return 0b1100000010000000;
 
-        case 'O':
-            //DAH DAH DAH
+        case 0x4f:
+            //O -> DAH DAH DAH
             return 0b1110000011100000;
 
-        case 'P':
-            //DIT DAH DAH DIT
+        case 0x50:
+            //P -> DIT DAH DAH DIT
             return 0b1111000001100000;
 
-        case 'Q':
-            //DAH DAH DIT DAH
+        case 0x51:
+            //Q -> DAH DAH DIT DAH
             return 0b1111000011010000;
 
-        case 'R':
-            //DIT DAH DIT
+        case 0x52:
+            //R -> DIT DAH DIT
             return 0b1110000001000000;
 
-        case 'S':
-            //DIT DIT DIT
+        case 0x53:
+            //S -> DIT DIT DIT
             return 0b1110000000000000;
 
-        case 'T':
-            //DAH
+        case 0x54:
+            //T -> DAH
             return 0b1000000010000000;
 
-        case 'U':
-            //DIT DIT DAH
+        case 0x55:
+            //U -> DIT DIT DAH
             return 0b1110000000100000;
 
-        case 'V':
-            //DIT DIT DIT DAH
+        case 0x56:
+            //V -> DIT DIT DIT DAH
             return 0b1111000000010000;
 
-        case 'W':
-            //DIT DAH DAH
+        case 0x57:
+            //W -> DIT DAH DAH
             return 0b1110000001100000;
 
-        case 'X':
-            //DAH DIT DIT DAH
+        case 0x58:
+            //X -> DAH DIT DIT DAH
             return 0b1111000010010000;
 
-        case 'Y':
-            //DAH DIT DAH DAH
+        case 0x59:
+            //Y -> DAH DIT DAH DAH
             return 0b1111000010110000;
 
-        case 'Z':
-            //DAH DAH DIT DIT
+        case 0x5a:
+            //Z -> DAH DAH DIT DIT
             return 0b1111000011000000;
 
         //Symbols.
 
-        case '"':
-            //DIT DAH DIT DIT DAH DIT
+        case 0x22:
+            //" -> DIT DAH DIT DIT DAH DIT
             return 0b1111110001001000;
 
-        case '&':
-            //DIT DAH DIT DIT DIT
+        case 0x26:
+            //& -> DIT DAH DIT DIT DIT
             return 0b1111100001000000;
 
-        case '\'':
-            //DIT DAH DAH DAH DAH DIT
+        case 0x27:
+            //' -> DIT DAH DAH DAH DAH DIT
             return 0b1111110001111000;
 
-        case '(':
-            //DAH DIT DAH DAH DIT
+        case 0x28:
+            //( -> DAH DIT DAH DAH DIT
             return 0b1111100010110000;
 
-        case ')':
-            //DAH DIT DAH DAH DIT DAH
+        case 0x29:
+            //) -> DAH DIT DAH DAH DIT DAH
             return 0b1111110010110100;
 
-        case '+':
-            //DIT DAH DIT DAH DIT
+        case 0x2b:
+            //+ -> DIT DAH DIT DAH DIT
             return 0b1111100001010000;
 
-        case ',':
-            //DAH DAH DIT DIT DAH DAH
+        case 0x2c:
+            //, -> DAH DAH DIT DIT DAH DAH
             return 0b1111110011001100;
 
-        case '-':
-            //DAH DIT DIT DIT DIT DAH
+        case 0x2d:
+            //- -> DAH DIT DIT DIT DIT DAH
             return 0b1111110010000100;
 
-        case '.':
-            //DIT DAH DIT DAH DIT DAH
+        case 0x2e:
+            //. -> DIT DAH DIT DAH DIT DAH
             return 0b1111110001010100;
 
-        case '/':
-            //DAH DIT DIT DAH DIT
+        case 0x2f:
+            /// -> DAH DIT DIT DAH DIT
             return 0b1111100010010000;
 
-        case ':':
-            //DAH DAH DAH DIT DIT DIT
+        case 0x3a:
+            //: -> DAH DAH DAH DIT DIT DIT
             return 0b1111110011100000;
 
-        case '=':
-            //DAH DIT DIT DIT DAH
+        case 0x3d:
+            //= -> DAH DIT DIT DIT DAH
             return 0b1111100010001000;
 
-        case '?':
-            //DIT DIT DAH DAH DIT DIT
+        case 0x3f:
+            //? -> DIT DIT DAH DAH DIT DIT
             return 0b1111110000110000;
 
-        case '@':
-            //DIT DAH DAH DIT DAH DIT
+        case 0x40:
+            //@ -> DIT DAH DAH DIT DAH DIT
             return 0b1111110001101000;
 
         //Recognized characters that do not have Morse elements.
 
-        case ' ':
-            return 0x0020;
-
-        case '<':
-            return 0x003c;
-
-        case '>':
-            return 0x003e;
+        case 0x20: // 
+        case 0x3c: //<
+        case 0x3e: //>
+            return unicode;
 
         //Unrecognized characters.
 
@@ -259,7 +260,7 @@ unsigned int _enToMorseElements(const char **bytes)
         else if ((!_isDiacritic((*bytes) + 3)) &&
                  ((*bytes)[1] == '\xcc') &&
                  ((*bytes)[2] == '\x81') &&
-                 (((*bytes)[0] == 'E') || ((*bytes)[0] == 'e')))
+                 (((*bytes)[0] == '\x45') || ((*bytes)[0] == '\x65')))
         {
             //Found E or e (U+0045 or U+0065) followed by acute (U+0301) and no other diacritics.
             morseElements = 0b1111100000100000;

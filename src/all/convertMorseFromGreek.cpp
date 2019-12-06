@@ -30,7 +30,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
             if (destinationEnd <= destination + countBytes)
             {
                 //Not enough space to translate.
-                destination[0] = '\0';
+                *destination = '\x00';
                 return 1;
             }
             memcpy(destination, sourceReset, countBytes);
@@ -53,7 +53,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         if (_enFromGreekMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
-            *destination = '\0';
+            *destination = '\x00';
             return 1;
         }
         else if (sourceReset != source)
@@ -88,7 +88,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         if (!_writeUnicodeFFFD(&destination, destinationEnd))
         {
             //Not enough space to translate.
-            *destination = '\0';
+            *destination = '\x00';
             return 1;
         }
         else
@@ -99,7 +99,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         }
     }
 
-    *destination = '\0';
+    *destination = '\x00';
     return 0;
 }
 

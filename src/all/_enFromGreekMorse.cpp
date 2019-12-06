@@ -27,8 +27,8 @@ int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd
     unsigned char unicode[2];
     unicode[0] = 0x3f & (*greek)[0];
     unicode[1] = 0x3f & (*greek)[1];
-    unicode[1] |= (unicode[0] << 6);
-    unicode[0] >>= 2;
+    unicode[1] = unicode[1] | (0xc0 & (unicode[0] << 6));
+    unicode[0] = unicode[0] >> 2;
 
     //Greek characters are Unicode code points U+0391 - U+03c9.
     if (unicode[0] != 0x03)
@@ -36,7 +36,7 @@ int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd
         goto ErrorNoMatch;
     }
 
-    //Convert uppercase Greek characters to lowercase Greek characters.
+    //Convert uppercase (Α-Ω) to lowercase (α-ω).
     //Uppercase (U+0391 - U+03A9)
     //Lowercase (U+03B1 - U+03C9)
     if ((0x91 <= unicode[1]) && (unicode[1] <= 0xa9))
@@ -47,131 +47,131 @@ int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd
     switch (unicode[1])
     {
         case 0xb1:
-            //α (alpha)
-            *(*english)++ = 'A';
+            //α (alpha) -> A
+            *(*english)++ = '\x41';
             goto Success;
 
         case 0xb2:
-            //β (beta)
-            *(*english)++ = 'B';
+            //β (beta) -> B
+            *(*english)++ = '\x42';
             goto Success;
 
         case 0xb3:
-            //γ (gamma)
-            *(*english)++ = 'G';
+            //γ (gamma) -> G
+            *(*english)++ = '\x47';
             goto Success;
 
         case 0xb4:
-            //δ (delta)
-            *(*english)++ = 'D';
+            //δ (delta) -> D
+            *(*english)++ = '\x44';
             goto Success;
 
         case 0xb5:
-            //ε (epsilon)
-            *(*english)++ = 'E';
+            //ε (epsilon) -> E
+            *(*english)++ = '\x45';
             goto Success;
 
         case 0xb6:
-            //ζ (zeta)
-            *(*english)++ = 'Z';
+            //ζ (zeta) -> Z
+            *(*english)++ = '\x5a';
             goto Success;
 
         case 0xb7:
-            //η (eta)
-            *(*english)++ = 'H';
+            //η (eta) -> H
+            *(*english)++ = '\x48';
             goto Success;
 
         case 0xb8:
-            //θ (theta)
-            *(*english)++ = 'C';
+            //θ (theta) -> C
+            *(*english)++ = '\x43';
             goto Success;
 
         case 0xb9:
-            //ι (iota)
-            *(*english)++ = 'I';
+            //ι (iota) -> I
+            *(*english)++ = '\x49';
             goto Success;
 
         case 0xba:
-            //κ (kappa)
-            *(*english)++ = 'K';
+            //κ (kappa) -> K
+            *(*english)++ = '\x4b';
             goto Success;
 
         case 0xbb:
-            //λ (lambda)
-            *(*english)++ = 'L';
+            //λ (lambda) -> L
+            *(*english)++ = '\x4c';
             goto Success;
 
         case 0xbc:
-            //μ (mu)
-            *(*english)++ = 'M';
+            //μ (mu) -> M
+            *(*english)++ = '\x4d';
             goto Success;
 
         case 0xbd:
-            //ν (nu)
-            *(*english)++ = 'N';
+            //ν (nu) -> N
+            *(*english)++ = '\x4e';
             goto Success;
 
         case 0xbe:
-            //ξ (xi)
-            *(*english)++ = 'X';
+            //ξ (xi) -> X
+            *(*english)++ = '\x58';
             goto Success;
 
         case 0xbf:
-            //ο (omicron)
-            *(*english)++ = 'O';
+            //ο (omicron) -> O
+            *(*english)++ = '\x4f';
             goto Success;
 
         case 0xc0:
-            //π (pi)
-            *(*english)++ = 'P';
+            //π (pi) -> P
+            *(*english)++ = '\x50';
             goto Success;
 
         case 0xc1:
-            //ρ (rho)
-            *(*english)++ = 'R';
+            //ρ (rho) -> R
+            *(*english)++ = '\x52';
             goto Success;
 
         case 0xc2:
         case 0xc3:
-            //ςσ (sigma)
-            *(*english)++ = 'S';
+            //ς or σ (sigma) -> S
+            *(*english)++ = '\x53';
             goto Success;
 
         case 0xc4:
-            //τ (tau)
-            *(*english)++ = 'T';
+            //τ (tau) -> T
+            *(*english)++ = '\x54';
             goto Success;
 
         case 0xc5:
-            //υ (upsilon)
-            *(*english)++ = 'Y';
+            //υ (upsilon) -> Y
+            *(*english)++ = '\x59';
             goto Success;
 
         case 0xc6:
-            //φ (phi)
-            *(*english)++ = 'F';
+            //φ (phi) -> F
+            *(*english)++ = '\x46';
             goto Success;
 
         case 0xc7:
-            //χ (chi)
+            //χ (chi) -> <MM>
             if (englishEnd <= (*english) + 4)
             {
                 goto ErrorNoSpace;
             }
-            *(*english)++ = '<';
-            *(*english)++ = 'M';
-            *(*english)++ = 'M';
-            *(*english)++ = '>';
+            *(*english)++ = '\x3c';
+            *(*english)++ = '\x4d';
+            *(*english)++ = '\x4d';
+            *(*english)++ = '\x3e';
             goto Success;
 
         case 0xc8:
-            //ψ (psi)
-            *(*english)++ = 'Q';
+            //ψ (psi) -> Q
+            *(*english)++ = '\x51';
             goto Success;
 
         case 0xc9:
-            //ω (omega)
-            *(*english)++ = 'W';
+            //ω (omega) -> W
+            *(*english)++ = '\x57';
             goto Success;
 
         default:

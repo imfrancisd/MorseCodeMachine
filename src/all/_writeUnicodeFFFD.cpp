@@ -14,9 +14,9 @@ bool _writeUnicodeFFFD(char **dest, const char *destEnd)
         return false;
     }
 
-    *(*dest)++ = 0xef;
-    *(*dest)++ = 0xbf;
-    *(*dest)++ = 0xbd;
+    *(*dest)++ = '\xef';
+    *(*dest)++ = '\xbf';
+    *(*dest)++ = '\xbd';
     return true;
 }
 

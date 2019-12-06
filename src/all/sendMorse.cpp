@@ -16,13 +16,13 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
         char c = *message;
         unsigned int morseElements = _enToMorseElements(&message);
 
-        if (c == '<')
+        if (c == '\x3c')
         {
             //Delay between characters is equal to the duration of the delay between dit/dah
             //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
             openAngleBracketCount++;
         }
-        else if (c == '>')
+        else if (c == '\x3e')
         {
             //Delay between characters is greater than the duration of the delay between dit/dah
             //when openAngleBracketCount == 0 (all open brackets have closing brackets).
@@ -77,7 +77,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             }
         }
 
-        if (c == '\0')
+        if (c == '\x00')
         {
             break;
         }
@@ -99,13 +99,13 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
         char c = *message;
         unsigned int morseElements = _enToMorseElements(&message);
 
-        if (c == '<')
+        if (c == '\x3c')
         {
             //Delay between characters is equal to the duration of the delay between dit/dah
             //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
             openAngleBracketCount++;
         }
-        else if (c == '>')
+        else if (c == '\x3e')
         {
             //Delay between characters is greater than the duration of the delay between dit/dah
             //when openAngleBracketCount == 0 (all open brackets have closing brackets).
@@ -160,7 +160,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
             }
         }
 
-        if (c == '\0')
+        if (c == '\x00')
         {
             break;
         }
@@ -183,13 +183,13 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
         char c = *message;
         unsigned int morseElements = _enToMorseElements(&message);
 
-        if (c == '<')
+        if (c == '\x3c')
         {
             //Delay between characters is equal to the duration of the delay between dit/dah
             //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
             openAngleBracketCount++;
         }
-        else if (c == '>')
+        else if (c == '\x3e')
         {
             //Delay between characters is greater than the duration of the delay between dit/dah
             //when openAngleBracketCount == 0 (all open brackets have closing brackets).
@@ -264,7 +264,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
             }
         }
 
-        if (c == '\0')
+        if (c == '\x00')
         {
             break;
         }
@@ -289,13 +289,13 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
         char c = *message;
         unsigned int morseElements = _enToMorseElements(&message);
 
-        if (c == '<')
+        if (c == '\x3c')
         {
             //Delay between characters is equal to the duration of the delay between dit/dah
             //when openAngleBracketCount > 0 (some open brackets have no closing brackets).
             openAngleBracketCount++;
         }
-        else if (c == '>')
+        else if (c == '\x3e')
         {
             //Delay between characters is greater than the duration of the delay between dit/dah
             //when openAngleBracketCount == 0 (all open brackets have closing brackets).
@@ -370,7 +370,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
             }
         }
 
-        if (c == '\0')
+        if (c == '\x00')
         {
             break;
         }

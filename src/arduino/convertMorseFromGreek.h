@@ -13,7 +13,7 @@ Description
   Converts a String object or a pointer to a String object containing English
   and Greek characters into a null-terminated string containing only English
   characters defined by Morse code.
-  
+
   See the following for more details about Greek Morse code:
   Morse code for non-Latin alphabets - Wikipedia
   https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
