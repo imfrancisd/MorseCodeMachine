@@ -17,6 +17,7 @@
 
 #include "../src/all/sendMorse.h"
 #include "../src/all/convertMorseFromGreek.h"
+#include "../src/all/convertMorseFromHebrew.h"
 #include <cstddef>
 #include <cstring>
 #include <iostream>
@@ -269,6 +270,57 @@ namespace Test
         "E\xcc\x81""e\xcc\x81 "\
         "AABBGGDDEEZZHHCCIIKKLLMMNNXXOOPPRRSSSTTYYFF<MM><MM>QQWW "\
         "<MM><MM><<MM><MM>> "\
+        "\xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd "\
+        "\xef\xbf\xbd \xef\xbf\xbd "\
+        "\xef\xbf\xbd \xef\xbf\xbd "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
+        "e\xef\xbf\xbdt "\
+        "";
+
+    const std::string hebrew =
+        "  "\
+        "01234 56789 "\
+        "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
+        "abcdefg hijklmn opqrstu vwxyz "\
+        "<sos><3b><eeettteee> <SOS> <3B> Sos 3B "\
+        "\"&'()+,-./:=?@ "\
+        "01 2  1 e ee  eee   e "\
+        "< s o s ><  s  o  s  > < 3  b >  < 3  b > "\
+        "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
+        "\xc3\x89\xc3\xa9 "\
+        "E\xcc\x81""e\xcc\x81 "\
+        "אבגדהוזחטיכלמנסעפצקרשת "\
+        "ךכ םמ ןנ ףפ ץצ "\
+        "<שהש> < ש ה ש > <ש<הש>> "\
+        "\xe1\xbc\x87 \xcf\xaf \xce\xb1\xcc\x81 "\
+        "\xce\x90 \xce\xaa "\
+        "\xce\xb0 \xcf\x8a "\
+        "e\xc4\x80t "\
+        "e\xdf\x99t "\
+        "e\xc6\x8et "\
+        "e\xe2\x99\x9et "\
+        "e\xf0\x9f\x98\x80t "\
+        "";
+
+    const std::string hebrewToEnglish =
+
+        "  "\
+        "01234 56789 "\
+        "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
+        "abcdefg hijklmn opqrstu vwxyz "\
+        "<sos><3b><eeettteee> <SOS> <3B> Sos 3B "\
+        "\"&'()+,-./:=?@ "\
+        "01 2  1 e ee  eee   e "\
+        "< s o s ><  s  o  s  > < 3  b >  < 3  b > "\
+        "<<3b>><s<os>><e<e e<t> t t  >e e e> "\
+        "\xc3\x89\xc3\xa9 "\
+        "E\xcc\x81""e\xcc\x81 "\
+        "ABGDOEZHUIKLMNCJPWQRST "\
+        "KK MM NN PP WW "\
+        "<SOS> < S O S > <S<OS>> "\
         "\xef\xbf\xbd \xef\xbf\xbd \xef\xbf\xbd "\
         "\xef\xbf\xbd \xef\xbf\xbd "\
         "\xef\xbf\xbd \xef\xbf\xbd "\
@@ -879,7 +931,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: Χ"  << std::endl;
     std::cout << "Argmt 3: 5"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : <MM>" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("Χ", Machine5::out, 5);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "<MM>");
@@ -905,7 +957,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: χ"  << std::endl;
     std::cout << "Argmt 3: 5"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : <MM>" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("χ", Machine5::out, 5);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "<MM>");
@@ -918,7 +970,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: aα"  << std::endl;
     std::cout << "Argmt 3: 2"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : a" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("aα", Machine5::out, 2);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "a");
@@ -931,7 +983,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: aα"  << std::endl;
     std::cout << "Argmt 3: 3"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : aA" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("aα", Machine5::out, 3);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "aA");
@@ -944,7 +996,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: αΩ"  << std::endl;
     std::cout << "Argmt 3: 2"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : A" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("αΩ", Machine5::out, 2);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "A");
@@ -957,7 +1009,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: αΩ"  << std::endl;
     std::cout << "Argmt 3: 3"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : AW" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("αΩ", Machine5::out, 3);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "AW");
@@ -970,7 +1022,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: hip"  << std::endl;
     std::cout << "Argmt 3: 3"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : hi" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("hip", Machine5::out, 3);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "hi");
@@ -983,7 +1035,7 @@ int main(int argc, char **argv)
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: hip"  << std::endl;
     std::cout << "Argmt 3: 4"  << std::endl;
-    std::cout << "Expect : " << std::endl;
+    std::cout << "Expect : hip" << std::endl;
     Machine5::errorCode = convertMorseFromGreek("hip", Machine5::out, 4);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "hip");
@@ -999,6 +1051,187 @@ int main(int argc, char **argv)
     Machine5::errorCode = convertMorseFromGreek(Test::greek.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == Test::greekToEnglish);
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    std::cout << "=================================================================" << std::endl;
+    std::cout << "Testing: int convertMorseFromHebrew(const char *, char *, size_t)" << std::endl;
+    std::cout << "=================================================================" << std::endl;
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew(NULL, Machine5::out, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew(nullptr, Machine5::out, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("", NULL, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("", nullptr, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 3: 0"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("", Machine5::out, 0);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : -1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == -1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: "  << std::endl;
+    std::cout << "Argmt 3: 1"  << std::endl;
+    std::cout << "Expect : " << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("", Machine5::out, 1);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: א"  << std::endl;
+    std::cout << "Argmt 3: 2"  << std::endl;
+    std::cout << "Expect : A" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("א", Machine5::out, 2);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "A");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: aא"  << std::endl;
+    std::cout << "Argmt 3: 2"  << std::endl;
+    std::cout << "Expect : a" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("aא", Machine5::out, 2);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "a");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: aא"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : aA" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("aא", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "aA");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: את"  << std::endl;
+    std::cout << "Argmt 3: 2"  << std::endl;
+    std::cout << "Expect : A" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("את", Machine5::out, 2);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "A");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: את"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : AT" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("את", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "AT");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: hip"  << std::endl;
+    std::cout << "Argmt 3: 3"  << std::endl;
+    std::cout << "Expect : hi" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("hip", Machine5::out, 3);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "hi");
+    std::cout << "Expect : 1" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 1);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: hip"  << std::endl;
+    std::cout << "Argmt 3: 4"  << std::endl;
+    std::cout << "Expect : hip" << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew("hip", Machine5::out, 4);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == "hip");
+    std::cout << "Expect : 0" << std::endl;
+    std::cout << "Return : " << Machine5::errorCode << std::endl;
+    Test::printResult(testId, Machine5::errorCode == 0);
+    std::cout << std::endl;
+
+    Machine5::reset();
+    std::cout << "Test ID: " << ++testId << std::endl;
+    std::cout << "Argmt 1: " << Test::hebrew << std::endl;
+    std::cout << "Expect : " << Test::hebrewToEnglish << std::endl;
+    Machine5::errorCode = convertMorseFromHebrew(Test::hebrew.c_str(), Machine5::out, Machine5::outSize);
+    std::cout << "Output : " << Machine5::out << std::endl;
+    Test::printResult(testId, std::string(Machine5::out) == Test::hebrewToEnglish);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
