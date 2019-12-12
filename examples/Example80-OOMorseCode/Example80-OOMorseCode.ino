@@ -7,7 +7,6 @@ class LEDMorseCodeMachine
     {
         _outputPin = outputPin;
         _dotDuration = dotDuration;
-        pinMode(_outputPin, OUTPUT);
     }
     int ledDelay()
     {
@@ -41,6 +40,7 @@ class LEDMorseCodeMachine
         //The context will be the object calling ledSendMorse, so use "this"
         //which is a pointer to the object calling ledSendMorse.
 
+        pinMode(_outputPin, OUTPUT);
         return sendMorse(message, s_ledDelay, s_ledDot, s_ledDash, this);
     }
     
