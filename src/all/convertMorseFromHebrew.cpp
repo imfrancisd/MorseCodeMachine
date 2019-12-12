@@ -6,6 +6,8 @@
 #include "convertMorseFromHebrew.h"
 #include <string.h>
 
+using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
+
 int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], size_t englishBufferSize)
 {
     if (!(hebrewMessage && englishBuffer && (englishBufferSize >= 1)))

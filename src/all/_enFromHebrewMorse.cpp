@@ -9,6 +9,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishEnd)
 {
     //Check if there is space to write in *english.
@@ -115,7 +117,7 @@ int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishE
             goto Success;
 
         case 0xe1:
-            //ס (Samekh) -> C
+            //ס (SAMEKH) -> C
             *(*english)++ = '\x43';
             goto Success;
 
@@ -171,5 +173,6 @@ ErrorNoSpace:
 
 ErrorNoMatch:
     return 2;
+}
 }
 

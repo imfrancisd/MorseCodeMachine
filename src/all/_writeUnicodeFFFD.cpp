@@ -7,6 +7,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 bool _writeUnicodeFFFD(char **dest, const char *destEnd)
 {
     if (destEnd <= (*dest) + 3)
@@ -18,5 +20,6 @@ bool _writeUnicodeFFFD(char **dest, const char *destEnd)
     *(*dest)++ = '\xbf';
     *(*dest)++ = '\xbd';
     return true;
+}
 }
 

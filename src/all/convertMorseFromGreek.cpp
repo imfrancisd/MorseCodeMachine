@@ -6,6 +6,8 @@
 #include "convertMorseFromGreek.h"
 #include <string.h>
 
+using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
+
 int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_t englishBufferSize)
 {
     if (!(greekMessage && englishBuffer && (englishBufferSize >= 1)))

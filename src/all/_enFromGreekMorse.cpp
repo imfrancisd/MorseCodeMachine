@@ -9,6 +9,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd)
 {
     //Check if there is space to write in *english.
@@ -187,5 +189,6 @@ ErrorNoSpace:
 
 ErrorNoMatch:
     return 2;
+}
 }
 

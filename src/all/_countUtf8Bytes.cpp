@@ -7,6 +7,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 unsigned char _countUtf8Bytes(const char *bytes)
 {
     if ((bytes[0] & 0b10000000) == 0)
@@ -41,5 +43,6 @@ unsigned char _countUtf8Bytes(const char *bytes)
 
     //Found extended ascii character or error in UTF-8 encoding.
     return 0;
+}
 }
 

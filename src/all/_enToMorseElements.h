@@ -7,6 +7,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 //unsigned int _enToMorseElements(char)
 //unsigned int _enToMorseElements(char **)
 //
@@ -37,4 +39,5 @@ unsigned int _enToMorseElements(char c);
 //Returns Morse elements for utf8 character from **bytes.
 //Moves pointer *bytes to next utf8 character.
 unsigned int _enToMorseElements(const char **bytes);
+}
 

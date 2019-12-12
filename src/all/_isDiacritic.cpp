@@ -8,6 +8,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 bool _isDiacritic(const char *bytes)
 {
     //Combining diacritics are Unicode code points U+0300 - U+036F.
@@ -22,5 +24,6 @@ bool _isDiacritic(const char *bytes)
     }
 
     return false;
+}
 }
 

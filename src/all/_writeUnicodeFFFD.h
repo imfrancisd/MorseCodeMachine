@@ -7,9 +7,12 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 //Write U+FFFD in *dest using UTF-8 encoding and update *dest.
 //On successful write, *dest < destEnd.
 //Returns true on success.
 //Returns false if there is not enough space in dest.
 bool _writeUnicodeFFFD(char **dest, const char *destEnd);
+}
 

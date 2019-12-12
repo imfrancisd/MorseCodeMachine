@@ -10,6 +10,8 @@
 
 
 
+namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
+{
 unsigned int _enToMorseElements(char c)
 {
     //ASCII characters are Unicode code points U+0000 - U+007F.
@@ -297,5 +299,6 @@ unsigned int _enToMorseElements(const char **bytes)
     }
 
     return morseElements;
+}
 }
 

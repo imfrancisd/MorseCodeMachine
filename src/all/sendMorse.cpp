@@ -1,6 +1,8 @@
 #include "sendMorse.h"
 #include "_enToMorseElements.h"
 
+using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
+
 void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
     if (!(message && delayFunction && dotFunction && dashFunction))
