@@ -393,6 +393,16 @@ int main(int argc, char **argv)
             std::cout << Machine5::out << std::endl;
             std::cout << Machine5::errorCode << std::endl;
             std::cout << std::endl;
+
+            std::cout << "=================================================================" << std::endl;
+            std::cout << "Testing: int convertMorseFromHebrew(const char *, char *, size_t)" << std::endl;
+            std::cout << "=================================================================" << std::endl;
+            std::cout << std::endl;
+            Machine5::reset();
+            Machine5::errorCode = convertMorseFromHebrew(argv[i], Machine5::out, Machine5::outSize);
+            std::cout << Machine5::out << std::endl;
+            std::cout << Machine5::errorCode << std::endl;
+            std::cout << std::endl;
         }
 
         return -1;
