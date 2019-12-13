@@ -6,26 +6,26 @@
 /*
 Name
 
-  convertMorseFromHebrew
+  convertMorseFromArabic
 
 Description
 
   Converts a String object or a pointer to a String object containing English
-  and Hebrew characters into a null-terminated string containing only English
+  and Arabic characters into a null-terminated string containing only English
   characters defined by Morse code.
 
-  See the following for more details about Hebrew Morse code:
+  See the following for more details about Arabic Morse code:
   Morse code for non-Latin alphabets - Wikipedia
   https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
 
 Syntax
 
-  convertMorseFromHebrew(hebrewMessage, englishBuffer, englishBufferSize)
+  convertMorseFromArabic(arabicMessage, englishBuffer, englishBufferSize)
 
 Parameters
 
-  hebrewMessage
-  The message containing English and Hebrew characters.
+  arabicMessage
+  The message containing English and Arabic characters.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
@@ -37,18 +37,18 @@ Parameters
     Digits : 0123456789
     Symbols: "&'()+,-./:=?@
     Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé
-             א ב ג ד ה ו ז ח ט י ך כ ל ם מ ן נ ס ע ף פ ץ צ ק ר ש ת
+             ﺍ ﺏ ﺕ ﺙ ﺝ ﺡ ﺥ ﺩ ﺫ ﺭ ﺯ ﺱ ﺵ ﺹ ﺽ ﻁ ﻅ ﻉ ﻍ ﻑ ﻕ ﻙ ﻝ ﻡ ﻥ ﻩ ﻭ ﻱ ﺀ
     Special: <>
     Space  :  
 
     ===========================================================================
-    WARNING : Do not use accent marks on any Hebrew character.
-              Hebrew Morse code does not use characters with accent marks.
+    WARNING : Do not use accent marks on any Arabic character.
+              Arabic Morse code does not use characters with accent marks.
     ===========================================================================
 
   englishBuffer
   A character array that will contain the converted characters from
-  hebrewMessage.
+  arabicMessage.
 
   englishBufferSize
   The maximum number of bytes that englishBuffer can contain.
@@ -56,7 +56,7 @@ Parameters
 Returns
 
   returns -1 if one or more of the following is true
-    hebrewMessage is nullptr
+    arabicMessage is nullptr
     englishBuffer is nullptr
     englishBufferSize is less than 1
 
@@ -73,19 +73,19 @@ Example Code
 
   void loop()
   {
-    convertMorseFromHebrew("שלום", morseBuffer, morseBufferSize);
+    convertMorseFromArabic("ﻡﺮﺤﺑﺍ", morseBuffer, morseBufferSize);
   }
 
 Notes and Warnings
 
-  Do not use accent marks on any Hebrew character.
+  Do not use accent marks on any Arabic character.
 */
 
-int convertMorseFromHebrew(const String &hebrewMessage,
+int convertMorseFromArabic(const String &arabicMessage,
                            char englishBuffer[],
                            size_t englishBufferSize);
 
-int convertMorseFromHebrew(const String *hebrewMessage,
+int convertMorseFromArabic(const String *arabicMessage,
                            char englishBuffer[],
                            size_t englishBufferSize);
 

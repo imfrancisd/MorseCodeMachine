@@ -36,3 +36,15 @@
 //characters to English character equivalents as defined by Hebrew Morse code.
 #include "arduino/convertMorseFromHebrew.h"
 
+
+
+//convertMorseFromArabic
+
+//Converts a null-terminated string containing Arabic characters to English
+//character equivalents as defined by Arabic Morse code.
+#include "all/convertMorseFromArabic.h"
+
+//Converts a String object or a pointer to a String object containing Arabic
+//characters to English character equivalents as defined by Arabic Morse code.
+#include "arduino/convertMorseFromArabic.h"
+
