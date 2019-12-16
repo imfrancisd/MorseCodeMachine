@@ -58,7 +58,7 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
     switch (unicode[1])
     {
         case 0x27:
-            //ا(ALEF) -> A
+            //ا (ALEF) -> A
             *(*english)++ = '\x41';
             goto Success2;
 

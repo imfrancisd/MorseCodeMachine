@@ -48,3 +48,15 @@
 //characters to English character equivalents as defined by Arabic Morse code.
 #include "arduino/convertMorseFromArabic.h"
 
+
+
+//convertMorseFromPersian
+
+//Converts a null-terminated string containing Persian characters to English
+//character equivalents as defined by Persian Morse code.
+#include "all/convertMorseFromPersian.h"
+
+//Converts a String object or a pointer to a String object containing Persian
+//characters to English character equivalents as defined by Persian Morse code.
+#include "arduino/convertMorseFromPersian.h"
+

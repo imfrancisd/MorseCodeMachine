@@ -15,6 +15,7 @@ sendMorse	KEYWORD2
 convertMorseFromGreek	KEYWORD2
 convertMorseFromHebrew	KEYWORD2
 convertMorseFromArabic	KEYWORD2
+convertMorseFromPersian	KEYWORD2
 
 # Instances (KEYWORD2)
 
