@@ -16,6 +16,7 @@ convertMorseFromGreek	KEYWORD2
 convertMorseFromHebrew	KEYWORD2
 convertMorseFromArabic	KEYWORD2
 convertMorseFromPersian	KEYWORD2
+convertMorseFromRussian	KEYWORD2
 
 # Instances (KEYWORD2)
 

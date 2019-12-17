@@ -60,3 +60,15 @@
 //characters to English character equivalents as defined by Persian Morse code.
 #include "arduino/convertMorseFromPersian.h"
 
+
+
+//convertMorseFromRussian
+
+//Converts a null-terminated string containing Russian characters to English
+//character equivalents as defined by Russian Morse code.
+#include "all/convertMorseFromRussian.h"
+
+//Converts a String object or a pointer to a String object containing Russian
+//characters to English character equivalents as defined by Russian Morse code.
+#include "arduino/convertMorseFromRussian.h"
+
