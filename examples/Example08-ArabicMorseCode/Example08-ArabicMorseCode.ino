@@ -15,7 +15,7 @@ void setup()
 
 void loop()
 {
-    //You are going to send "ﻡﺮﺤﺑﺍ World!" as Morse code.
+    //You are going to send "مرحبا World!" as Morse code.
     //=========================================================================
     //Warning: Do not use accent marks on any Arabic character.
     //         Arabic Morse code does not use characters with accent marks.
@@ -27,7 +27,7 @@ void loop()
     //         Any unrecognized characters will be replaced with the Unicode
     //         replacement character (U+FFFD).
     //=========================================================================
-    const char arabicMessage[] = "ﻡﺮﺤﺑﺍ World!";
+    const char arabicMessage[] = "مرحبا World!";
 
     //Convert Arabic into its English equivalent with convertMorseFromArabic.
     //The 100 at the end tells convertMorseFromArabic that englishArray can only
