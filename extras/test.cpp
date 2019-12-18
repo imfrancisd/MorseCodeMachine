@@ -321,6 +321,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string greekToEnglish =
@@ -345,6 +375,36 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string hebrew =
@@ -370,6 +430,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string hebrewToEnglish =
@@ -395,6 +485,36 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string arabic =
@@ -419,6 +539,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string arabicToEnglish =
@@ -443,6 +593,36 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string persian =
@@ -467,6 +647,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string persianToEnglish =
@@ -491,6 +701,36 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string russian =
@@ -516,6 +756,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string russianToEnglish =
@@ -541,6 +811,36 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Đđ "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Łł "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Øø "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 }
 
