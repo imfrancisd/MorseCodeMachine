@@ -1,5 +1,5 @@
 #include "_countUtf8Bytes.h"
-#include "_morseToElements.h"
+#include "_enToMorseElements.h"
 #include "_isDiacritic.h"
 #include "_skipDiacritic.h"
 
@@ -12,7 +12,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-unsigned int _morseToElements(char c)
+unsigned int _enToMorseElements(char c)
 {
     //ASCII characters are Unicode code points U+0000 - U+007F.
     unsigned char unicode = 0xff & c;
@@ -247,7 +247,7 @@ unsigned int _morseToElements(char c)
     }
 }
 
-unsigned int _morseToElements(const char **bytes)
+unsigned int _enToMorseElements(const char **bytes)
 {
     unsigned int morseElements = 0;
     unsigned char countUtf8Bytes = _countUtf8Bytes(*bytes);
@@ -610,7 +610,7 @@ MatchNothing:
     goto Done;
 
 MatchAscii:
-    morseElements = _morseToElements((*bytes)[0]);
+    morseElements = _enToMorseElements((*bytes)[0]);
     goto Done;
 
 MatchAE:

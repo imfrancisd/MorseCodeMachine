@@ -1,6 +1,6 @@
 #include "_countUtf8Bytes.h"
-#include "_morseFromHebrew.h"
-#include "_morseToElements.h"
+#include "_enFromHebrewMorse.h"
+#include "_enToMorseElements.h"
 #include "_skipDiacritic.h"
 #include "_writeUnicodeFFFD.h"
 #include "convertMorseFromHebrew.h"
@@ -26,7 +26,7 @@ int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], siz
         //Translate Hebrew characters.
         //=====================================================================
 
-        if (_morseFromHebrew(&source, &destination, destinationEnd) == 1)
+        if (_enFromHebrewMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
             *destination = '\x00';
@@ -48,7 +48,7 @@ int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], siz
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
-        if (_morseToElements(&source))
+        if (_enToMorseElements(&source))
         {
             size_t countBytes = source - sourceReset;
             if (destinationEnd <= destination + countBytes)

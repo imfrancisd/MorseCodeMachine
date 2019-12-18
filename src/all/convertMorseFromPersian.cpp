@@ -1,6 +1,6 @@
 #include "_countUtf8Bytes.h"
-#include "_morseFromPersian.h"
-#include "_morseToElements.h"
+#include "_enFromPersianMorse.h"
+#include "_enToMorseElements.h"
 #include "_skipDiacritic.h"
 #include "_writeUnicodeFFFD.h"
 #include "convertMorseFromPersian.h"
@@ -26,7 +26,7 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
         //Translate Persian characters.
         //=====================================================================
 
-        if (_morseFromPersian(&source, &destination, destinationEnd) == 1)
+        if (_enFromPersianMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
             *destination = '\x00';
@@ -48,7 +48,7 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
-        if (_morseToElements(&source))
+        if (_enToMorseElements(&source))
         {
             size_t countBytes = source - sourceReset;
             if (destinationEnd <= destination + countBytes)

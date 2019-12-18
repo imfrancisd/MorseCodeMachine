@@ -1,5 +1,5 @@
 #include "sendMorse.h"
-#include "_morseToElements.h"
+#include "_enToMorseElements.h"
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
@@ -16,7 +16,7 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = _morseToElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '\x3c')
         {
@@ -99,7 +99,7 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = _morseToElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '\x3c')
         {
@@ -183,7 +183,7 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = _morseToElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '\x3c')
         {
@@ -289,7 +289,7 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
     while (true)
     {
         char c = *message;
-        unsigned int morseElements = _morseToElements(&message);
+        unsigned int morseElements = _enToMorseElements(&message);
 
         if (c == '\x3c')
         {

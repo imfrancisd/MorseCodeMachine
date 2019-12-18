@@ -1,6 +1,6 @@
 #include "_countUtf8Bytes.h"
-#include "_morseFromGreek.h"
-#include "_morseToElements.h"
+#include "_enFromGreekMorse.h"
+#include "_enToMorseElements.h"
 #include "_skipDiacritic.h"
 #include "_writeUnicodeFFFD.h"
 #include "convertMorseFromGreek.h"
@@ -26,7 +26,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         //Translate Greek characters.
         //=====================================================================
 
-        if (_morseFromGreek(&source, &destination, destinationEnd) == 1)
+        if (_enFromGreekMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
             *destination = '\x00';
@@ -48,7 +48,7 @@ int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
-        if (_morseToElements(&source))
+        if (_enToMorseElements(&source))
         {
             size_t countBytes = source - sourceReset;
             if (destinationEnd <= destination + countBytes)
