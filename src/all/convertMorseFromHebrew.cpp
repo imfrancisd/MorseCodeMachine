@@ -23,6 +23,28 @@ int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], siz
     while (*source)
     {
         //=====================================================================
+        //Translate Hebrew characters.
+        //=====================================================================
+
+        if (_enFromHebrewMorse(&source, &destination, destinationEnd) == 1)
+        {
+            //Not enough space to translate.
+            *destination = '\x00';
+            return 1;
+        }
+        else if (sourceReset != source)
+        {
+            //Translation successful.
+            sourceReset = source;
+            continue;
+        }
+        else
+        {
+            //Reset.
+            source = sourceReset;
+        }
+
+        //=====================================================================
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
@@ -38,28 +60,6 @@ int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], siz
             memcpy(destination, sourceReset, countBytes);
             destination += countBytes;
 
-            //Translation successful.
-            sourceReset = source;
-            continue;
-        }
-        else
-        {
-            //Reset.
-            source = sourceReset;
-        }
-
-        //=====================================================================
-        //Translate Hebrew characters.
-        //=====================================================================
-
-        if (_enFromHebrewMorse(&source, &destination, destinationEnd) == 1)
-        {
-            //Not enough space to translate.
-            *destination = '\x00';
-            return 1;
-        }
-        else if (sourceReset != source)
-        {
             //Translation successful.
             sourceReset = source;
             continue;

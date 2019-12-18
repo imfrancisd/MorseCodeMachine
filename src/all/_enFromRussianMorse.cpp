@@ -109,122 +109,122 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
 
     switch (unicode[1])
     {
-        case 0x0030:
+        case 0x30:
             //а (A) -> A
             *(*english)++ = '\x41';
             goto Success2;
 
-        case 0x0031:
+        case 0x31:
             //б (BE) -> B
             *(*english)++ = '\x42';
             goto Success2;
 
-        case 0x0032:
+        case 0x32:
             //в (VE) -> W
             *(*english)++ = '\x57';
             goto Success2;
 
-        case 0x0033:
+        case 0x33:
             //г (GHE) -> G
             *(*english)++ = '\x47';
             goto Success2;
 
-        case 0x0034:
+        case 0x34:
             //д (DE) -> D
             *(*english)++ = '\x44';
             goto Success2;
 
-        case 0x0035:
+        case 0x35:
             //е (IE) -> E
             *(*english)++ = '\x45';
             goto Success2;
 
-        case 0x0036:
+        case 0x36:
             //ж (ZHE) -> V
             *(*english)++ = '\x56';
             goto Success2;
 
-        case 0x0037:
+        case 0x37:
             //з (ZE) -> Z
             *(*english)++ = '\x5a';
             goto Success2;
 
-        case 0x0038:
+        case 0x38:
             //и (I) -> I
             *(*english)++ = '\x49';
             goto Success2;
 
-        case 0x0039:
+        case 0x39:
             //й (SHORT I) -> J
             *(*english)++ = '\x4a';
             goto Success2;
 
-        case 0x003a:
+        case 0x3a:
             //к (KA) -> K
             *(*english)++ = '\x4b';
             goto Success2;
 
-        case 0x003b:
+        case 0x3b:
             //л (EL) -> L
             *(*english)++ = '\x4c';
             goto Success2;
 
-        case 0x003c:
+        case 0x3c:
             //м (EM) -> M
             *(*english)++ = '\x4d';
             goto Success2;
 
-        case 0x003d:
+        case 0x3d:
             //н (EN) -> N
             *(*english)++ = '\x4e';
             goto Success2;
 
-        case 0x003e:
+        case 0x3e:
             //о (O) -> O
             *(*english)++ = '\x4f';
             goto Success2;
 
-        case 0x003f:
+        case 0x3f:
             //п (PE) -> P
             *(*english)++ = '\x50';
             goto Success2;
 
-        case 0x0040:
+        case 0x40:
             //р (ER) -> R
             *(*english)++ = '\x52';
             goto Success2;
 
-        case 0x0041:
+        case 0x41:
             //с (ES) -> S
             *(*english)++ = '\x53';
             goto Success2;
 
-        case 0x0042:
+        case 0x42:
             //т (TE) -> T
             *(*english)++ = '\x54';
             goto Success2;
 
-        case 0x0043:
+        case 0x43:
             //у (U) -> U
             *(*english)++ = '\x55';
             goto Success2;
 
-        case 0x0044:
+        case 0x44:
             //ф (EF) -> F
             *(*english)++ = '\x46';
             goto Success2;
 
-        case 0x0045:
+        case 0x45:
             //х (HA) -> H
             *(*english)++ = '\x48';
             goto Success2;
 
-        case 0x0046:
+        case 0x46:
             //ц (TSE) -> C
             *(*english)++ = '\x43';
             goto Success2;
 
-        case 0x0047:
+        case 0x47:
             //ч (CHE) -> <OE>
             if (englishEnd <= (*english) + 4)
             {
@@ -236,7 +236,7 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             *(*english)++ = '\x3e';
             goto Success2;
 
-        case 0x0048:
+        case 0x48:
             //ш (SHA) -> <MM>
             if (englishEnd <= (*english) + 4)
             {
@@ -248,12 +248,12 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             *(*english)++ = '\x3e';
             goto Success2;
 
-        case 0x0049:
+        case 0x49:
             //щ (SHCHA) -> Q
             *(*english)++ = '\x51';
             goto Success2;
 
-        case 0x004a:
+        case 0x4a:
             //ъ (HARD SIGN) -> <GM>
             if (englishEnd <= (*english) + 4)
             {
@@ -265,17 +265,17 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             *(*english)++ = '\x3e';
             goto Success2;
 
-        case 0x004b:
+        case 0x4b:
             //ы (YERU) -> Y
             *(*english)++ = '\x59';
             goto Success2;
 
-        case 0x004c:
+        case 0x4c:
             //ь (SOFT SIGN) -> X
             *(*english)++ = '\x58';
             goto Success2;
 
-        case 0x004d:
+        case 0x4d:
             //э (E) -> <FE>
             if (englishEnd <= (*english) + 4)
             {
@@ -287,7 +287,7 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             *(*english)++ = '\x3e';
             goto Success2;
 
-        case 0x004e:
+        case 0x4e:
             //ю (YU) -> <IM>
             if (englishEnd <= (*english) + 4)
             {
@@ -299,7 +299,7 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             *(*english)++ = '\x3e';
             goto Success2;
 
-        case 0x004f:
+        case 0x4f:
             //я (YA) -> <AA>
             if (englishEnd <= (*english) + 4)
             {

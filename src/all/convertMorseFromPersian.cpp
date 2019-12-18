@@ -23,6 +23,28 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
     while (*source)
     {
         //=====================================================================
+        //Translate Persian characters.
+        //=====================================================================
+
+        if (_enFromPersianMorse(&source, &destination, destinationEnd) == 1)
+        {
+            //Not enough space to translate.
+            *destination = '\x00';
+            return 1;
+        }
+        else if (sourceReset != source)
+        {
+            //Translation successful.
+            sourceReset = source;
+            continue;
+        }
+        else
+        {
+            //Reset.
+            source = sourceReset;
+        }
+
+        //=====================================================================
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
@@ -38,28 +60,6 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
             memcpy(destination, sourceReset, countBytes);
             destination += countBytes;
 
-            //Translation successful.
-            sourceReset = source;
-            continue;
-        }
-        else
-        {
-            //Reset.
-            source = sourceReset;
-        }
-
-        //=====================================================================
-        //Translate Persian characters.
-        //=====================================================================
-
-        if (_enFromPersianMorse(&source, &destination, destinationEnd) == 1)
-        {
-            //Not enough space to translate.
-            *destination = '\x00';
-            return 1;
-        }
-        else if (sourceReset != source)
-        {
             //Translation successful.
             sourceReset = source;
             continue;
