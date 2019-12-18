@@ -11,6 +11,18 @@ void loop()
     //You are going to send "Hello World" as Morse code.
     //You will tell the sendMorse function how to make dots and dashes
     //outside this function.
+    //=========================================================================
+    //Note: Any unrecognized characters in the message will be considered as a
+    //      space by the sendMorse function.
+    //
+    //      The following characters are recognized:
+    //      Digits : 0123456789
+    //      Symbols: "&'()+,-./:=?@
+    //      Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
+    //               ÀàÄäÅåĄąÆæĆćĈĉÇçÐðÉéÈèĘęĜĝĤĥĴĵŃńÑñÓóÖöŚśŜŝŠšÞþÜüŬŭŹźŻż
+    //      Special: <>
+    //      Space  :  
+    //=========================================================================
     sendMorse("Hello World", ledDelay, ledDot, ledDash);
 }
 

@@ -8,15 +8,15 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], size_t englishBufferSize)
+int convertMorseFromArabic(const char arabicMessage[], char buffer[], size_t bufferSize)
 {
-    if (!(arabicMessage && englishBuffer && (englishBufferSize >= 1)))
+    if (!(arabicMessage && buffer && (bufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = englishBuffer;
-    char *destinationEnd = englishBuffer + englishBufferSize;
+    char *destination = buffer;
+    char *destinationEnd = buffer + bufferSize;
     const char *source = arabicMessage;
     const char *sourceReset = arabicMessage;
 

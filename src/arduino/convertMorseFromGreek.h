@@ -10,9 +10,9 @@ Name
 
 Description
 
-  Converts a String object or a pointer to a String object containing English
-  and Greek characters into a null-terminated string containing only English
-  characters defined by Morse code.
+  Converts a String object or a pointer to a String object containing Greek
+  characters into a null-terminated string only containing characters defined
+  by Morse code.
 
   See the following for more details about Greek Morse code:
   Morse code for non-Latin alphabets - Wikipedia
@@ -20,12 +20,12 @@ Description
 
 Syntax
 
-  convertMorseFromGreek(greekMessage, englishBuffer, englishBufferSize)
+  convertMorseFromGreek(greekMessage, buffer, bufferSize)
 
 Parameters
 
   greekMessage
-  The message containing English and Greek characters.
+  The message containing Greek characters.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
@@ -46,19 +46,19 @@ Parameters
               Greek Morse code does not use characters with accent marks.
     ===========================================================================
 
-  englishBuffer
+  buffer
   A character array that will contain the converted characters from
   greekMessage.
 
-  englishBufferSize
-  The maximum number of bytes that englishBuffer can contain.
+  bufferSize
+  The maximum number of bytes that buffer can contain.
 
 Returns
 
   returns -1 if one or more of the following is true
     greekMessage is nullptr
-    englishBuffer is nullptr
-    englishBufferSize is less than 1
+    buffer is nullptr
+    bufferSize is less than 1
 
   returns non-zero
     on failure
@@ -82,10 +82,10 @@ Notes and Warnings
 */
 
 int convertMorseFromGreek(const String &greekMessage,
-                          char englishBuffer[],
-                          size_t englishBufferSize);
+                          char buffer[],
+                          size_t bufferSize);
 
 int convertMorseFromGreek(const String *greekMessage,
-                          char englishBuffer[],
-                          size_t englishBufferSize);
+                          char buffer[],
+                          size_t bufferSize);
 

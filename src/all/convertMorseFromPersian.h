@@ -9,9 +9,8 @@ Name
 
 Description
 
-  Converts a null-terminated string containing English and Persian characters
-  into a null-terminated string containing only English characters defined by
-  Morse code.
+  Converts a null-terminated string containing Persian characters into a
+  null-terminated string only containing characters defined by Morse code.
 
   See the following for more details about Persian Morse code:
   Morse code for non-Latin alphabets - Wikipedia
@@ -19,12 +18,12 @@ Description
 
 Syntax
 
-  convertMorseFromPersian(persianMessage, englishBuffer, englishBufferSize)
+  convertMorseFromPersian(persianMessage, buffer, bufferSize)
 
 Parameters
 
   persianMessage
-  The message containing English and Persian characters.
+  The message containing Persian characters.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
@@ -35,7 +34,8 @@ Parameters
     The message can contain the following characters:
     Digits : 0123456789
     Symbols: "&'()+,-./:=?@
-    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé
+    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
+             ÀàÄäÅåĄąÆæĆćĈĉÇçÐðÉéÈèĘęĜĝĤĥĴĵŃńÑñÓóÖöŚśŜŝŠšÞþÜüŬŭŹźŻż
              ا ب پ ت ث ج چ ح خ د ذ ر ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ی
     Special: <>
     Space  :  
@@ -45,19 +45,19 @@ Parameters
               Persian Morse code does not use characters with accent marks.
     ===========================================================================
 
-  englishBuffer
+  buffer
   A character array that will contain the converted characters from
   persianMessage.
 
-  englishBufferSize
-  The maximum number of bytes that englishBuffer can contain.
+  bufferSize
+  The maximum number of bytes that buffer can contain.
 
 Returns
 
   returns -1 if one or more of the following is true
     persianMessage is nullptr
-    englishBuffer is nullptr
-    englishBufferSize is less than 1
+    buffer is nullptr
+    bufferSize is less than 1
 
   returns non-zero
     on failure
@@ -81,6 +81,6 @@ Notes and Warnings
 */
 
 int convertMorseFromPersian(const char persianMessage[],
-                            char englishBuffer[],
-                            size_t englishBufferSize);
+                            char buffer[],
+                            size_t bufferSize);
 

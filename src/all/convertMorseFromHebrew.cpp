@@ -8,15 +8,15 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromHebrew(const char hebrewMessage[], char englishBuffer[], size_t englishBufferSize)
+int convertMorseFromHebrew(const char hebrewMessage[], char buffer[], size_t bufferSize)
 {
-    if (!(hebrewMessage && englishBuffer && (englishBufferSize >= 1)))
+    if (!(hebrewMessage && buffer && (bufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = englishBuffer;
-    char *destinationEnd = englishBuffer + englishBufferSize;
+    char *destination = buffer;
+    char *destinationEnd = buffer + bufferSize;
     const char *source = hebrewMessage;
     const char *sourceReset = hebrewMessage;
 

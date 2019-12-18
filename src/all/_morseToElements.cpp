@@ -510,10 +510,10 @@ unsigned int _morseToElements(const char **bytes)
 
                     case 0xf6:
                         goto MatchOWithDiaeresis;
-
+/*
                     case 0xf8:
                         goto MatchOWithStroke;
-
+*/
                     case 0xfc:
                         goto MatchUWithDiaeresis;
 
@@ -539,11 +539,11 @@ unsigned int _morseToElements(const char **bytes)
                     case 0x08:
                     case 0x09:
                         goto MatchCWithCircumflex;
-
+/*
                     case 0x10:
                     case 0x11:
                         goto MatchDWithStroke;
-
+*/
                     case 0x18:
                     case 0x19:
                         goto MatchEWithOgonek;
@@ -559,11 +559,11 @@ unsigned int _morseToElements(const char **bytes)
                     case 0x34:
                     case 0x35:
                         goto MatchJWithCircumflex;
-
+/*
                     case 0x41:
                     case 0x42:
                         goto MatchLWithStroke;
-
+*/
                     case 0x43:
                     case 0x44:
                         goto MatchNWithAcute;
@@ -638,7 +638,7 @@ MatchCWithCircumflex:
     morseElements = 0b1111100010100000;
     goto Done;
 
-MatchDWithStroke:
+//MatchDWithStroke:
 MatchEWithAcute:
 MatchEWithOgonek:
     //Đ, đ (D WITH STROKE) -> DIT DIT DAH DIT DIT
@@ -653,7 +653,7 @@ MatchEth:
     goto Done;
 
 MatchEWithGrave:
-MatchLWithStroke:
+//MatchLWithStroke:
     //È, è (E WITH GRAVE)  -> DIT DAH DIT DIT DAH
     //Ł, ł (L WITH STROKE) -> DIT DAH DIT DIT DAH
     morseElements = 0b1111100001001000;
@@ -685,7 +685,7 @@ MatchNWithTilde:
 
 MatchOWithAcute:
 MatchOWithDiaeresis:
-MatchOWithStroke:
+//MatchOWithStroke:
     //Ó, ó (O WITH ACUTE)     -> DAH DAH DAH DIT
     //Ö, ö (O WITH DIAERESIS) -> DAH DAH DAH DIT
     //Ø, ø (O WITH STROKE)    -> DAH DAH DAH DIT

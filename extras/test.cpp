@@ -204,7 +204,6 @@ namespace Test
         "Ćć""C\xcc\x81""c\xcc\x81 "\
         "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
         "Çç""C\xcc\xa7""c\xcc\xa7 "\
-        "Đđ "\
         "Ðð "\
         "Éé""E\xcc\x81""e\xcc\x81 "\
         "Èè""E\xcc\x80""e\xcc\x80 "\
@@ -212,12 +211,10 @@ namespace Test
         "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
         "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
         "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
-        "Łł "\
         "Ńń""N\xcc\x81""n\xcc\x81 "\
         "Ññ""N\xcc\x83""n\xcc\x83 "\
         "Óó""O\xcc\x81""o\xcc\x81 "\
         "Öö""O\xcc\x88""o\xcc\x88 "\
-        "Øø "\
         "Śś""S\xcc\x81""s\xcc\x81 "\
         "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
         "Šš""S\xcc\x8c""s\xcc\x8c "\
@@ -227,6 +224,9 @@ namespace Test
         "Źź""Z\xcc\x81""z\xcc\x81 "\
         "Żż""Z\xcc\x87""z\xcc\x87 "\
 /*
+        "Đđ "\
+        "Łł "\
+        "Øø "\
 */
         "";
 
@@ -273,7 +273,6 @@ namespace Test
         "-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,,,,,"\
         "-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,,,,,"\
         "-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,-,*,-,*,*,,,,,,,"\
-        "*,*,-,*,*,,,*,*,-,*,*,,,,,,,"\
         "*,*,-,-,*,,,*,*,-,-,*,,,,,,,"\
         "*,*,-,*,*,,,*,*,-,*,*,,,*,*,-,*,*,,,*,*,-,*,*,,,,,,,"\
         "*,-,*,*,-,,,*,-,*,*,-,,,*,-,*,*,-,,,*,-,*,*,-,,,,,,,"\
@@ -281,12 +280,10 @@ namespace Test
         "-,-,*,-,*,,,-,-,*,-,*,,,-,-,*,-,*,,,-,-,*,-,*,,,,,,,"\
         "-,-,-,-,,,-,-,-,-,,,-,-,-,-,,,-,-,-,-,,,,,,,"\
         "*,-,-,-,*,,,*,-,-,-,*,,,*,-,-,-,*,,,*,-,-,-,*,,,,,,,"\
-        "*,-,*,*,-,,,*,-,*,*,-,,,,,,,"\
         "-,-,*,-,-,,,-,-,*,-,-,,,-,-,*,-,-,,,-,-,*,-,-,,,,,,,"\
         "-,-,*,-,-,,,-,-,*,-,-,,,-,-,*,-,-,,,-,-,*,-,-,,,,,,,"\
         "-,-,-,*,,,-,-,-,*,,,-,-,-,*,,,-,-,-,*,,,,,,,"\
         "-,-,-,*,,,-,-,-,*,,,-,-,-,*,,,-,-,-,*,,,,,,,"\
-        "-,-,-,*,,,-,-,-,*,,,,,,,"\
         "*,*,*,-,*,*,*,,,*,*,*,-,*,*,*,,,*,*,*,-,*,*,*,,,*,*,*,-,*,*,*,,,,,,,"\
         "*,*,*,-,*,,,*,*,*,-,*,,,*,*,*,-,*,,,*,*,*,-,*,,,,,,,"\
         "-,-,-,-,,,-,-,-,-,,,-,-,-,-,,,-,-,-,-,,,,,,,"\
@@ -296,6 +293,9 @@ namespace Test
         "-,-,*,*,-,*,,,-,-,*,*,-,*,,,-,-,*,*,-,*,,,-,-,*,*,-,*,,,,,,,"\
         "-,-,*,*,-,,,-,-,*,*,-,,,-,-,*,*,-,,,-,-,*,*,-,,,,,,,"\
 /*
+        "*,*,-,*,*,,,*,*,-,*,*,,,,,,,"\
+        "*,-,*,*,-,,,*,-,*,*,-,,,,,,,"\
+        "-,-,-,*,,,-,-,-,*,,,,,,,"\
 */
         ",,,,,,,";
 
@@ -321,9 +321,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
-    const std::string greekToEnglish =
+    const std::string greekToMorse =
         "  "\
         "01234 56789 "\
         "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
@@ -345,6 +372,33 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string hebrew =
@@ -370,9 +424,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
-    const std::string hebrewToEnglish =
+    const std::string hebrewToMorse =
         "  "\
         "01234 56789 "\
         "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
@@ -395,6 +476,33 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string arabic =
@@ -419,9 +527,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
-    const std::string arabicToEnglish =
+    const std::string arabicToMorse =
         "  "\
         "01234 56789 "\
         "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
@@ -443,6 +578,33 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string persian =
@@ -467,9 +629,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
-    const std::string persianToEnglish =
+    const std::string persianToMorse =
         "  "\
         "01234 56789 "\
         "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
@@ -491,6 +680,33 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
     const std::string russian =
@@ -516,9 +732,36 @@ namespace Test
         "e\xc6\x8et "\
         "e\xe2\x99\x9et "\
         "e\xf0\x9f\x98\x80t "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 
-    const std::string russianToEnglish =
+    const std::string russianToMorse =
         "  "\
         "01234 56789 "\
         "ABCDEFG HIJKLMN OPQRSTU VWXYZ "\
@@ -541,6 +784,33 @@ namespace Test
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
         "e\xef\xbf\xbdt "\
+        "Àà""A\xcc\x80""a\xcc\x80 "\
+        "Ää""A\xcc\x88""a\xcc\x88 "\
+        "Åå""A\xcc\x8a""a\xcc\x8a "\
+        "Ąą""A\xcc\xa8""a\xcc\xa8 "\
+        "Ææ "\
+        "Ćć""C\xcc\x81""c\xcc\x81 "\
+        "Ĉĉ""C\xcc\x82""c\xcc\x82 "\
+        "Çç""C\xcc\xa7""c\xcc\xa7 "\
+        "Ðð "\
+        "Éé""E\xcc\x81""e\xcc\x81 "\
+        "Èè""E\xcc\x80""e\xcc\x80 "\
+        "Ęę""E\xcc\xa8""e\xcc\xa8 "\
+        "Ĝĝ""G\xcc\x82""g\xcc\x82 "\
+        "Ĥĥ""H\xcc\x82""h\xcc\x82 "\
+        "Ĵĵ""J\xcc\x82""j\xcc\x82 "\
+        "Ńń""N\xcc\x81""n\xcc\x81 "\
+        "Ññ""N\xcc\x83""n\xcc\x83 "\
+        "Óó""O\xcc\x81""o\xcc\x81 "\
+        "Öö""O\xcc\x88""o\xcc\x88 "\
+        "Śś""S\xcc\x81""s\xcc\x81 "\
+        "Ŝŝ""S\xcc\x82""s\xcc\x82 "\
+        "Šš""S\xcc\x8c""s\xcc\x8c "\
+        "Þþ "\
+        "Üü""U\xcc\x88""u\xcc\x88 "\
+        "Ŭŭ""U\xcc\x86""u\xcc\x86 "\
+        "Źź""Z\xcc\x81""z\xcc\x81 "\
+        "Żż""Z\xcc\x87""z\xcc\x87 "\
         "";
 }
 
@@ -1299,10 +1569,10 @@ int main(int argc, char **argv)
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << Test::greek << std::endl;
-    std::cout << "Expect : " << Test::greekToEnglish << std::endl;
+    std::cout << "Expect : " << Test::greekToMorse << std::endl;
     Machine5::errorCode = convertMorseFromGreek(Test::greek.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
-    Test::printResult(testId, std::string(Machine5::out) == Test::greekToEnglish);
+    Test::printResult(testId, std::string(Machine5::out) == Test::greekToMorse);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
@@ -1480,10 +1750,10 @@ int main(int argc, char **argv)
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << Test::hebrew << std::endl;
-    std::cout << "Expect : " << Test::hebrewToEnglish << std::endl;
+    std::cout << "Expect : " << Test::hebrewToMorse << std::endl;
     Machine5::errorCode = convertMorseFromHebrew(Test::hebrew.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
-    Test::printResult(testId, std::string(Machine5::out) == Test::hebrewToEnglish);
+    Test::printResult(testId, std::string(Machine5::out) == Test::hebrewToMorse);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
@@ -1687,10 +1957,10 @@ int main(int argc, char **argv)
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << Test::arabic << std::endl;
-    std::cout << "Expect : " << Test::arabicToEnglish << std::endl;
+    std::cout << "Expect : " << Test::arabicToMorse << std::endl;
     Machine5::errorCode = convertMorseFromArabic(Test::arabic.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
-    Test::printResult(testId, std::string(Machine5::out) == Test::arabicToEnglish);
+    Test::printResult(testId, std::string(Machine5::out) == Test::arabicToMorse);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
@@ -1868,10 +2138,10 @@ int main(int argc, char **argv)
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << Test::persian << std::endl;
-    std::cout << "Expect : " << Test::persianToEnglish << std::endl;
+    std::cout << "Expect : " << Test::persianToMorse << std::endl;
     Machine5::errorCode = convertMorseFromPersian(Test::persian.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
-    Test::printResult(testId, std::string(Machine5::out) == Test::persianToEnglish);
+    Test::printResult(testId, std::string(Machine5::out) == Test::persianToMorse);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
@@ -2088,10 +2358,10 @@ int main(int argc, char **argv)
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
     std::cout << "Argmt 1: " << Test::russian << std::endl;
-    std::cout << "Expect : " << Test::russianToEnglish << std::endl;
+    std::cout << "Expect : " << Test::russianToMorse << std::endl;
     Machine5::errorCode = convertMorseFromRussian(Test::russian.c_str(), Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
-    Test::printResult(testId, std::string(Machine5::out) == Test::russianToEnglish);
+    Test::printResult(testId, std::string(Machine5::out) == Test::russianToMorse);
     std::cout << "Expect : 0" << std::endl;
     std::cout << "Return : " << Machine5::errorCode << std::endl;
     Test::printResult(testId, Machine5::errorCode == 0);
