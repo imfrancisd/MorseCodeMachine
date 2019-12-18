@@ -254,50 +254,485 @@ unsigned int _enToMorseElements(const char **bytes)
 
     if (countUtf8Bytes == 1)
     {
+        //Ascii followed by 0 diacritics.
         if (!_isDiacritic((*bytes) + 1))
         {
-            //Found ascii character followed by 0 diacritics.
-            morseElements = _enToMorseElements((*bytes)[0]);
+            goto MatchAscii;
         }
-        else if ((!_isDiacritic((*bytes) + 3)) &&
-                 ((*bytes)[1] == '\xcc') &&
-                 ((*bytes)[2] == '\x81') &&
-                 (((*bytes)[0] == '\x45') || ((*bytes)[0] == '\x65')))
+
+        //Ascii followed by 2 or more diacritics.
+        if (_isDiacritic((*bytes) + 3))
         {
-            //Found E or e (U+0045 or U+0065) followed by acute (U+0301) and no other diacritics.
-            morseElements = 0b1111100000100000;
+            goto MatchNothing;
         }
-        else
+
+        //Convert uppercase (A-Z) to lowercase (a-z).
+        //Uppercase (U+0041 - U+005A)
+        //Lowercase (U+0061 - U+007A)
+        unsigned char ascii = 0xff & (*bytes)[0];
+        if ((0x41 <= ascii) && (ascii <= 0x5a))
         {
-            //Found ascii character followed by 1 or more diacritics.
-            morseElements = 0x0000;
+            ascii += 0x20;
         }
-    }
-    else if ((countUtf8Bytes == 2) &&
-             (!_isDiacritic((*bytes) + 2)) &&
-             ((*bytes)[0] == '\xc3') &&
-             (((*bytes)[1] == '\x89') || ((*bytes)[1] == '\xa9')))
-    {
-        //Found E acute (U+00C9 or U+00E9) followed by 0 diacritics.
-        morseElements = 0b1111100000100000;
-    }
-    else
-    {
-        //Found extended ascii character or error in UTF-8 encoding.
-        //Found 2 byte, 3 byte, or 4 byte UTF-8 character which may be followed by diacritics.
-        morseElements = 0x0000;
+
+        //Convert 2 byte UTF-8 diacritic to Unicode code point.
+        unsigned char diacritic[2];
+        diacritic[0] = 0x3f & (*bytes)[1];
+        diacritic[1] = 0x3f & (*bytes)[2];
+        diacritic[1] = diacritic[1] | (0xc0 & (diacritic[0] << 6));
+        diacritic[0] = diacritic[0] >> 2;
+
+        //Diacritics needed are between U+0300 - U+036F
+        if (diacritic[0] != 0x03)
+        {
+            goto MatchNothing;
+        }
+
+        switch (diacritic[1])
+        {
+            //Ascii followed by grave.
+            case 0x00:
+                switch (ascii)
+                {
+                    case 0x61: //a
+                        goto MatchAWithGrave;
+
+                    case 0x65: //e
+                        goto MatchEWithGrave;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by acute.
+            case 0x01:
+                switch (ascii)
+                {
+                    case 0x65: //e
+                        goto MatchEWithAcute;
+
+                    case 0x63: //c
+                        goto MatchCWithAcute;
+
+                    case 0x6e: //n
+                        goto MatchNWithAcute;
+
+                    case 0x6f: //o
+                        goto MatchOWithAcute;
+
+                    case 0x73: //s
+                        goto MatchSWithAcute;
+
+                    case 0x7a: //z
+                        goto MatchZWithAcute;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by circumflex.
+            case 0x02:
+                switch (ascii)
+                {
+                    case 0x63: //c
+                        goto MatchCWithCircumflex;
+
+                    case 0x67: //g
+                        goto MatchGWithCircumflex;
+
+                    case 0x68: //h
+                        goto MatchHWithCircumflex;
+
+                    case 0x6a: //j
+                        goto MatchJWithCircumflex;
+
+                    case 0x73: //s
+                        goto MatchSWithCircumflex;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by tilde.
+            case 0x03:
+                switch (ascii)
+                {
+                    case 0x6e: //n
+                        goto MatchNWithTilde;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by breve.
+            case 0x06:
+                switch (ascii)
+                {
+                    case 0x75: //u
+                        goto MatchUWithBreve;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by dot above.
+            case 0x07:
+                switch (ascii)
+                {
+                    case 0x7a: //z
+                        goto MatchZWithDotAbove;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by diaeresis.
+            case 0x08:
+                switch (ascii)
+                {
+                    case 0x61: //a
+                        goto MatchAWithDiaeresis;
+
+                    case 0x6f: //o
+                        goto MatchOWithDiaeresis;
+
+                    case 0x75: //u
+                        goto MatchUWithDiaeresis;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by ring above.
+            case 0x0a:
+                switch (ascii)
+                {
+                    case 0x61: //a
+                        goto MatchAWithRing;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by caron.
+            case 0x0c:
+                switch (ascii)
+                {
+                    case 0x73: //s
+                        goto MatchSWithCaron;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by cedilla.
+            case 0x27:
+                switch (ascii)
+                {
+                    case 0x63: //c
+                        goto MatchCWithCedilla;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            //Ascii followed by ogonek.
+            case 0x28:
+                switch (ascii)
+                {
+                    case 0x61: //a
+                        goto MatchAWithOgonek;
+
+                    case 0x65: //e
+                        goto MatchEWithOgonek;
+
+                    default:
+                        goto MatchNothing;
+                }
+        }
+
+        goto MatchNothing;
     }
 
+    //2 byte UTF-8 character followed by 0 diacritics.
+    if ((countUtf8Bytes == 2) && (!_isDiacritic((*bytes) + 2)))
+    {
+        //Convert 2 byte UTF-8 character to Unicode code point.
+        unsigned char unicode[2];
+        unicode[0] = 0x3f & (*bytes)[0];
+        unicode[1] = 0x3f & (*bytes)[1];
+        unicode[1] = unicode[1] | (0xc0 & (unicode[0] << 6));
+        unicode[0] = unicode[0] >> 2;
+
+        switch (unicode[0])
+        {
+            case 0x00:
+                //Latin-1 Supplement Unicode block.
+                //Convert uppercase to lowercase.
+                //Uppercase (U+00C0 - U+00D6, U+00D8 - U+00DE).
+                //Lowercase (U+00E0 - U+00F6, U+00F8 - U+00FE).
+                if ((0xc0 <= unicode[1]) && (unicode[1] <= 0xde))
+                {
+                    unicode[1] += 0x20;
+                }
+                
+                switch (unicode[1])
+                {
+                    case 0xe0:
+                        goto MatchAWithGrave;
+
+                    case 0xe4:
+                        goto MatchAWithDiaeresis;
+
+                    case 0xe5:
+                        goto MatchAWithRing;
+
+                    case 0xe6:
+                        goto MatchAE;
+
+                    case 0xe7:
+                        goto MatchCWithCedilla;
+
+                    case 0xe8:
+                        goto MatchEWithGrave;
+
+                    case 0xe9:
+                        goto MatchEWithAcute;
+
+                    case 0xf0:
+                        goto MatchEth;
+
+                    case 0xf1:
+                        goto MatchNWithTilde;
+
+                    case 0xf3:
+                        goto MatchOWithAcute;
+
+                    case 0xf6:
+                        goto MatchOWithDiaeresis;
+
+                    case 0xf8:
+                        goto MatchOWithStroke;
+
+                    case 0xfc:
+                        goto MatchUWithDiaeresis;
+
+                    case 0xfe:
+                        goto MatchThorn;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x01:
+                //Latin Extended-A Unicode block.
+                switch (unicode[1])
+                {
+                    case 0x04:
+                    case 0x05:
+                        goto MatchAWithOgonek;
+
+                    case 0x06:
+                    case 0x07:
+                        goto MatchCWithAcute;
+
+                    case 0x08:
+                    case 0x09:
+                        goto MatchCWithCircumflex;
+
+                    case 0x10:
+                    case 0x11:
+                        goto MatchDWithStroke;
+
+                    case 0x18:
+                    case 0x19:
+                        goto MatchEWithOgonek;
+
+                    case 0x1c:
+                    case 0x1d:
+                        goto MatchGWithCircumflex;
+
+                    case 0x24:
+                    case 0x25:
+                        goto MatchHWithCircumflex;
+
+                    case 0x34:
+                    case 0x35:
+                        goto MatchJWithCircumflex;
+
+                    case 0x41:
+                    case 0x42:
+                        goto MatchLWithStroke;
+
+                    case 0x43:
+                    case 0x44:
+                        goto MatchNWithAcute;
+
+                    case 0x5a:
+                    case 0x5b:
+                        goto MatchSWithAcute;
+
+                    case 0x5c:
+                    case 0x5d:
+                        goto MatchSWithCircumflex;
+
+                    case 0x60:
+                    case 0x61:
+                        goto MatchSWithCaron;
+
+                    case 0x6c:
+                    case 0x6d:
+                        goto MatchUWithBreve;
+
+                    case 0x79:
+                    case 0x7a:
+                        goto MatchZWithAcute;
+
+                    case 0x7b:
+                    case 0x7c:
+                        goto MatchZWithDotAbove;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            default:
+                goto MatchNothing;
+        }
+
+        goto MatchNothing;
+    }
+
+    goto MatchNothing;
+
+MatchNothing:
+    morseElements = 0x0000;
+    goto Done;
+
+MatchAscii:
+    morseElements = _enToMorseElements((*bytes)[0]);
+    goto Done;
+
+MatchAE:
+MatchAWithDiaeresis:
+MatchAWithOgonek:
+    //Æ, æ (AE)               -> DIT DAH DIT DAH
+    //Ä, ä (A WITH DIAERESIS) -> DIT DAH DIT DAH
+    //Ą, ą (A WITH OGONEK)    -> DIT DAH DIT DAH
+    morseElements = 0b1111000001010000;
+    goto Done;
+
+MatchAWithGrave:
+MatchAWithRing:
+    //À, à (A WITH GRAVE) -> DIT DAH DAH DIT DAH
+    //Å, å (A WITH RING)  -> DIT DAH DAH DIT DAH
+    morseElements = 0b1111100001101000;
+    goto Done;
+
+MatchCWithAcute:
+MatchCWithCedilla:
+MatchCWithCircumflex:
+    //Ć, ć (C WITH ACUTE)      -> DAH DIT DAH DIT DIT
+    //Ç, ç (C WITH CEDILLA)    -> DAH DIT DAH DIT DIT
+    //Ĉ, ĉ (C WITH CIRCUMFLEX) -> DAH DIT DAH DIT DIT
+    morseElements = 0b1111100010100000;
+    goto Done;
+
+MatchDWithStroke:
+MatchEWithAcute:
+MatchEWithOgonek:
+    //Đ, đ (D WITH STROKE) -> DIT DIT DAH DIT DIT
+    //É, é (E WITH ACUTE)  -> DIT DIT DAH DIT DIT
+    //Ę, ę (E WITH OGONEK) -> DIT DIT DAH DIT DIT
+    morseElements = 0b1111100000100000;
+    goto Done;
+
+MatchEth:
+    //Ð, ð (ETH) -> DIT DIT DAH DAH DIT
+    morseElements = 0b1111100000110000;
+    goto Done;
+
+MatchEWithGrave:
+MatchLWithStroke:
+    //È, è (E WITH GRAVE)  -> DIT DAH DIT DIT DAH
+    //Ł, ł (L WITH STROKE) -> DIT DAH DIT DIT DAH
+    morseElements = 0b1111100001001000;
+    goto Done;
+
+MatchGWithCircumflex:
+    //Ĝ, ĝ (G WITH CIRCUMFLEX) -> DAH DAH DIT DAH DIT
+    morseElements = 0b1111100011010000;
+    goto Done;
+
+MatchHWithCircumflex:
+MatchSWithCaron:
+    //Ĥ, ĥ (H WITH CIRCUMFLEX) -> DAH DAH DAH DAH
+    //Š, š (S WITH CARON)      -> DAH DAH DAH DAH
+    morseElements = 0b1111000011110000;
+    goto Done;
+
+MatchJWithCircumflex:
+    //Ĵ, ĵ (J WITH CIRCUMFLEX) -> DIT DAH DAH DAH DIT
+    morseElements = 0b1111100001110000;
+    goto Done;
+
+MatchNWithAcute:
+MatchNWithTilde:
+    //Ń, ń (N WITH ACUTE) -> DAH DAH DIT DAH DAH
+    //Ñ, ñ (N WITH TILDE) -> DAH DAH DIT DAH DAH
+    morseElements = 0b1111100011011000;
+    goto Done;
+
+MatchOWithAcute:
+MatchOWithDiaeresis:
+MatchOWithStroke:
+    //Ó, ó (O WITH ACUTE)     -> DAH DAH DAH DIT
+    //Ö, ö (O WITH DIAERESIS) -> DAH DAH DAH DIT
+    //Ø, ø (O WITH STROKE)    -> DAH DAH DAH DIT
+    morseElements = 0b1111000011100000;
+    goto Done;
+
+MatchSWithAcute:
+    //Ś, ś (S WITH ACUTE) -> DIT DIT DIT DAH DIT DIT DIT
+    morseElements = 0b1111111000010000;
+    goto Done;
+
+MatchSWithCircumflex:
+    //Ŝ, ŝ (S WITH CIRCUMFLEX) -> DIT DIT DIT DAH DIT
+    morseElements = 0b1111100000010000;
+    goto Done;
+
+MatchThorn:
+    //Þ, þ (THORN) -> DIT DAH DAH DIT DIT
+    morseElements = 0b1111100001100000;
+    goto Done;
+
+MatchUWithBreve:
+MatchUWithDiaeresis:
+    //Ŭ, ŭ (U WITH BREVE)     -> DIT DIT DAH DAH
+    //Ü, ü (U WITH DIAERESIS) -> DIT DIT DAH DAH
+    morseElements = 0b1111000000110000;
+    goto Done;
+
+MatchZWithAcute:
+    //Ź, ź (Z WITH ACUTE) -> DAH DAH DIT DIT DAH DIT
+    morseElements = 0b1111110011001000;
+    goto Done;
+
+MatchZWithDotAbove:
+    //Ż, ż (Z WITH DOT ABOVE) -> DAH DAH DIT DIT DAH
+    morseElements = 0b1111100011001000;
+    goto Done;
+
+Done:
     //Go to next UTF-8 character.
-    (*bytes) += (countUtf8Bytes > 0) ? countUtf8Bytes : 1;
-
     //Skip diacritics only if valid UTF-8 character found.
+    (*bytes) += (countUtf8Bytes > 0) ? countUtf8Bytes : 1;
     if (countUtf8Bytes > 0)
     {
         while (_skipDiacritic(bytes))
             ;
     }
-
     return morseElements;
 }
 }
