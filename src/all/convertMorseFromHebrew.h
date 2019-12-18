@@ -9,8 +9,9 @@ Name
 
 Description
 
-  Converts a null-terminated string containing Hebrew characters into a
-  null-terminated string only containing characters defined by Morse code.
+  Converts a null-terminated string containing English and Hebrew characters
+  into a null-terminated string containing only English characters defined by
+  Morse code.
 
   See the following for more details about Hebrew Morse code:
   Morse code for non-Latin alphabets - Wikipedia
@@ -18,12 +19,12 @@ Description
 
 Syntax
 
-  convertMorseFromHebrew(hebrewMessage, buffer, bufferSize)
+  convertMorseFromHebrew(hebrewMessage, englishBuffer, englishBufferSize)
 
 Parameters
 
   hebrewMessage
-  The message containing Hebrew characters.
+  The message containing English and Hebrew characters.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
@@ -34,8 +35,7 @@ Parameters
     The message can contain the following characters:
     Digits : 0123456789
     Symbols: "&'()+,-./:=?@
-    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
-             ÀàÄäÅåĄąÆæĆćĈĉÇçÐðÉéÈèĘęĜĝĤĥĴĵŃńÑñÓóÖöŚśŜŝŠšÞþÜüŬŭŹźŻż
+    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé
              א ב ג ד ה ו ז ח ט י ך כ ל ם מ ן נ ס ע ף פ ץ צ ק ר ש ת
     Special: <>
     Space  :  
@@ -45,19 +45,19 @@ Parameters
               Hebrew Morse code does not use characters with accent marks.
     ===========================================================================
 
-  buffer
+  englishBuffer
   A character array that will contain the converted characters from
   hebrewMessage.
 
-  bufferSize
-  The maximum number of bytes that buffer can contain.
+  englishBufferSize
+  The maximum number of bytes that englishBuffer can contain.
 
 Returns
 
   returns -1 if one or more of the following is true
     hebrewMessage is nullptr
-    buffer is nullptr
-    bufferSize is less than 1
+    englishBuffer is nullptr
+    englishBufferSize is less than 1
 
   returns non-zero
     on failure
@@ -81,6 +81,6 @@ Notes and Warnings
 */
 
 int convertMorseFromHebrew(const char hebrewMessage[],
-                           char buffer[],
-                           size_t bufferSize);
+                           char englishBuffer[],
+                           size_t englishBufferSize);
 

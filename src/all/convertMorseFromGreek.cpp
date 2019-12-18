@@ -8,15 +8,15 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromGreek(const char greekMessage[], char buffer[], size_t bufferSize)
+int convertMorseFromGreek(const char greekMessage[], char englishBuffer[], size_t englishBufferSize)
 {
-    if (!(greekMessage && buffer && (bufferSize >= 1)))
+    if (!(greekMessage && englishBuffer && (englishBufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = buffer;
-    char *destinationEnd = buffer + bufferSize;
+    char *destination = englishBuffer;
+    char *destinationEnd = englishBuffer + englishBufferSize;
     const char *source = greekMessage;
     const char *sourceReset = greekMessage;
 

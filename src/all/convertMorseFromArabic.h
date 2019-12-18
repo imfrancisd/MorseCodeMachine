@@ -9,8 +9,9 @@ Name
 
 Description
 
-  Converts a null-terminated string containing and Arabic characters into a
-  null-terminated string only containing characters defined by Morse code.
+  Converts a null-terminated string containing English and Arabic characters
+  into a null-terminated string containing only English characters defined by
+  Morse code.
 
   See the following for more details about Arabic Morse code:
   Morse code for non-Latin alphabets - Wikipedia
@@ -18,12 +19,12 @@ Description
 
 Syntax
 
-  convertMorseFromArabic(arabicMessage, buffer, bufferSize)
+  convertMorseFromArabic(arabicMessage, englishBuffer, englishBufferSize)
 
 Parameters
 
   arabicMessage
-  The message containing Arabic characters.
+  The message containing English and Arabic characters.
   Any characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
@@ -34,8 +35,7 @@ Parameters
     The message can contain the following characters:
     Digits : 0123456789
     Symbols: "&'()+,-./:=?@
-    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
-             ÀàÄäÅåĄąÆæĆćĈĉÇçÐðÉéÈèĘęĜĝĤĥĴĵŃńÑñÓóÖöŚśŜŝŠšÞþÜüŬŭŹźŻż
+    Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZzÉé
              ﺍ ﺏ ﺕ ﺙ ﺝ ﺡ ﺥ ﺩ ﺫ ﺭ ﺯ ﺱ ﺵ ﺹ ﺽ ﻁ ﻅ ﻉ ﻍ ﻑ ﻕ ﻙ ﻝ ﻡ ﻥ ﻩ ﻭ ﻱ ﺀ
     Special: <>
     Space  :  
@@ -45,19 +45,19 @@ Parameters
               Arabic Morse code does not use characters with accent marks.
     ===========================================================================
 
-  buffer
+  englishBuffer
   A character array that will contain the converted characters from
   arabicMessage.
 
-  bufferSize
-  The maximum number of bytes that buffer can contain.
+  englishBufferSize
+  The maximum number of bytes that englishBuffer can contain.
 
 Returns
 
   returns -1 if one or more of the following is true
     arabicMessage is nullptr
-    buffer is nullptr
-    bufferSize is less than 1
+    englishBuffer is nullptr
+    englishBufferSize is less than 1
 
   returns non-zero
     on failure
@@ -81,6 +81,6 @@ Notes and Warnings
 */
 
 int convertMorseFromArabic(const char arabicMessage[],
-                           char buffer[],
-                           size_t bufferSize);
+                           char englishBuffer[],
+                           size_t englishBufferSize);
 

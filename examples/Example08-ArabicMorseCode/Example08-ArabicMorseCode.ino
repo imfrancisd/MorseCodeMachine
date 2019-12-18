@@ -1,15 +1,15 @@
 #include <MorseCodeMachine.h>
 
 //Create a character array that can store 100 characters.
-//This will be used to hold the translation of the Arabic characters.
-char morseArray[100];
+//This will be used to hold the English translation of Arabic characters.
+char englishArray[100];
 
 void setup()
 {
     //You are going to use the built-in LED in the Arduino to send Morse code.
     pinMode(LED_BUILTIN, OUTPUT);
 
-    //Use the Serial monitor to look at the messages.
+    //Use the Serial monitor to look at the Arabic and English messages.
     Serial.begin(9600);
 }
 
@@ -26,40 +26,32 @@ void loop()
     //
     //         Any unrecognized characters will be replaced with the Unicode
     //         replacement character (U+FFFD).
-    //
-    //         The following characters are recognized:
-    //         Digits : 0123456789
-    //         Symbols: "&'()+,-./:=?@
-    //         Letters: AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz
-    //                  ÀàÄäÅåĄąÆæĆćĈĉÇçÐðÉéÈèĘęĜĝĤĥĴĵŃńÑñÓóÖöŚśŜŝŠšÞþÜüŬŭŹźŻż
-    //                  ﺍ ﺏ ﺕ ﺙ ﺝ ﺡ ﺥ ﺩ ﺫ ﺭ ﺯ ﺱ ﺵ ﺹ ﺽ ﻁ ﻅ ﻉ ﻍ ﻑ ﻕ ﻙ ﻝ ﻡ ﻥ ﻩ ﻭ ﻱ ﺀ
-    //         Special: <>
-    //         Space  :  
     //=========================================================================
     const char arabicMessage[] = "مرحبا World!";
 
-    //Convert the Arabic message.
-    //The 100 at the end tells convertMorseFromArabic that morseArray can only
+    //Convert Arabic into its English equivalent with convertMorseFromArabic.
+    //The 100 at the end tells convertMorseFromArabic that englishArray can only
     //hold 100 characters.
-    int errorCode = convertMorseFromArabic(arabicMessage, morseArray, 100);
+    int errorCode = convertMorseFromArabic(arabicMessage, englishArray, 100);
 
     //Check if there were any errors from convertMorseFromArabic.
     //convertMorseFromArabic returns 0 if there were no errors.
     if (errorCode == 0)
     {
-        //Send the messages to the Serial Monitor to check the translation.
+        //Send the arabic and english messages to the Serial Monitor if you want
+        //to see the Arabic and the English translation used for the Morse code.
         Serial.println(arabicMessage);
-        Serial.println(morseArray);
+        Serial.println(englishArray);
         
-        //Since there were no errors, send Morse code using morseArray.
-        sendMorse(morseArray, ledDelay, ledDot, ledDash);
+        //Since there were no errors, send Morse code using englishArray.
+        sendMorse(englishArray, ledDelay, ledDot, ledDash);
     }
     else
     {
         //Send an error message to the Serial monitor.
         //The most likely reason an error happens is that the size of
-        //morseArray is not big enough to contain the translation.
-        Serial.println("There was an error translating this message:");
+        //englishArray is not big enough to contain the translation.
+        Serial.println("There was an error converting this to English:");
         Serial.println(arabicMessage);
     }
 }

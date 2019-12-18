@@ -66,7 +66,6 @@ class LEDMorseCodeMachine
 
 void setup()
 {
-    pinMode(_outputPin, OUTPUT);
 }
 
 void loop()
