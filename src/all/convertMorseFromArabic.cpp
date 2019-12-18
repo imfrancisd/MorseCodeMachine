@@ -1,6 +1,6 @@
 #include "_countUtf8Bytes.h"
-#include "_enFromArabicMorse.h"
-#include "_enToMorseElements.h"
+#include "_morseFromArabic.h"
+#include "_morseToElements.h"
 #include "_skipDiacritic.h"
 #include "_writeUnicodeFFFD.h"
 #include "convertMorseFromArabic.h"
@@ -26,7 +26,7 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
         //Translate Arabic characters.
         //=====================================================================
 
-        if (_enFromArabicMorse(&source, &destination, destinationEnd) == 1)
+        if (_morseFromArabic(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
             *destination = '\x00';
@@ -48,7 +48,7 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
-        if (_enToMorseElements(&source))
+        if (_morseToElements(&source))
         {
             size_t countBytes = source - sourceReset;
             if (destinationEnd <= destination + countBytes)

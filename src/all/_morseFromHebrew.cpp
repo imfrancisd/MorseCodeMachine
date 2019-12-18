@@ -1,5 +1,5 @@
 #include "_countUtf8Bytes.h"
-#include "_enFromHebrewMorse.h"
+#include "_morseFromHebrew.h"
 #include "_isDiacritic.h"
 
 
@@ -11,7 +11,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishEnd)
+int _morseFromHebrew(const char **hebrew, char **english, const char *englishEnd)
 {
     //Check if there is space to write in *english.
     if (englishEnd <= (*english) + 1)

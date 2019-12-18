@@ -1,6 +1,6 @@
 #include "_countUtf8Bytes.h"
-#include "_enFromRussianMorse.h"
-#include "_enToMorseElements.h"
+#include "_morseFromRussian.h"
+#include "_morseToElements.h"
 #include "_skipDiacritic.h"
 #include "_writeUnicodeFFFD.h"
 #include "convertMorseFromRussian.h"
@@ -26,7 +26,7 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
         //Translate Russian characters.
         //=====================================================================
 
-        if (_enFromRussianMorse(&source, &destination, destinationEnd) == 1)
+        if (_morseFromRussian(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
             *destination = '\x00';
@@ -48,7 +48,7 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
         //Translate English letters, digits, and symbols defined by Morse code.
         //=====================================================================
 
-        if (_enToMorseElements(&source))
+        if (_morseToElements(&source))
         {
             size_t countBytes = source - sourceReset;
             if (destinationEnd <= destination + countBytes)
