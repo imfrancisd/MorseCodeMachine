@@ -1,5 +1,5 @@
-#include "convertMorseFromGreek.h"
 #include "../all/convertMorseFromGreek.h"
+#include "convertMorseFromGreek.h"
 #include <Arduino.h>
 #include <stddef.h>
 
@@ -10,10 +10,6 @@ int convertMorseFromGreek(const String &greekMessage, char englishBuffer[], size
 
 int convertMorseFromGreek(const String *greekMessage, char englishBuffer[], size_t englishBufferSize)
 {
-    if (greekMessage)
-    {
-        return convertMorseFromGreek(greekMessage->c_str(), englishBuffer, englishBufferSize);
-    }
-    return -1;
+    return convertMorseFromGreek(greekMessage ? greekMessage->c_str() : nullptr, englishBuffer, englishBufferSize);
 }
 

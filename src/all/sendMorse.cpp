@@ -1,5 +1,5 @@
-#include "sendMorse.h"
 #include "_enToMorseElements.h"
+#include "sendMorse.h"
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
@@ -67,6 +67,10 @@ void sendMorse(const char message[], void (*delayFunction)(), void (*dotFunction
             }
 
             wasPrevCharSpace = true;
+        }
+        else
+        {
+            //Ignore spaces and unrecognized characters between angle brackets.
         }
 
         if (openAngleBracketCount == 0)
@@ -150,6 +154,10 @@ void sendMorse(const char message[], void (*delayFunction)(void *context), void 
             }
 
             wasPrevCharSpace = true;
+        }
+        else
+        {
+            //Ignore spaces and unrecognized characters between angle brackets.
         }
 
         if (openAngleBracketCount == 0)
@@ -250,6 +258,10 @@ int sendMorse(const char message[], int (*delayFunction)(), int (*dotFunction)()
             }
 
             wasPrevCharSpace = true;
+        }
+        else
+        {
+            //Ignore spaces and unrecognized characters between angle brackets.
         }
 
         if (openAngleBracketCount == 0)
@@ -356,6 +368,10 @@ int sendMorse(const char message[], int (*delayFunction)(void *context), int (*d
             }
 
             wasPrevCharSpace = true;
+        }
+        else
+        {
+            //Ignore spaces and unrecognized characters between angle brackets.
         }
 
         if (openAngleBracketCount == 0)

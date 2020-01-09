@@ -449,6 +449,9 @@ unsigned int _enToMorseElements(const char **bytes)
                     default:
                         goto MatchNothing;
                 }
+
+            default:
+                goto MatchNothing;
         }
 
         goto MatchNothing;

@@ -1,5 +1,5 @@
-#include "sendMorse.h"
 #include "../all/sendMorse.h"
+#include "sendMorse.h"
 #include <Arduino.h>
 
 void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
@@ -9,10 +9,7 @@ void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunctio
 
 void sendMorse(const String *message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {
-    if (message)
-    {
-        sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction);
-    }
+    sendMorse(message ? message->c_str() : nullptr, delayFunction, dotFunction, dashFunction);
 }
 
 void sendMorse(const String &message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context)
@@ -22,10 +19,7 @@ void sendMorse(const String &message, void (*delayFunction)(void *context), void
 
 void sendMorse(const String *message, void (*delayFunction)(void *context), void (*dotFunction)(void *context), void (*dashFunction)(void *context), void *context)
 {
-    if (message)
-    {
-        sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction, context);
-    }
+    sendMorse(message ? message->c_str() : nullptr, delayFunction, dotFunction, dashFunction, context);
 }
 
 int sendMorse(const String &message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)())
@@ -35,11 +29,7 @@ int sendMorse(const String &message, int (*delayFunction)(), int (*dotFunction)(
 
 int sendMorse(const String *message, int (*delayFunction)(), int (*dotFunction)(), int (*dashFunction)())
 {
-    if (message)
-    {
-        return sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction);
-    }
-    return -1;
+    return sendMorse(message ? message->c_str() : nullptr, delayFunction, dotFunction, dashFunction);
 }
 
 int sendMorse(const String &message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context)
@@ -49,10 +39,6 @@ int sendMorse(const String &message, int (*delayFunction)(void *context), int (*
 
 int sendMorse(const String *message, int (*delayFunction)(void *context), int (*dotFunction)(void *context), int (*dashFunction)(void *context), void *context)
 {
-    if (message)
-    {
-        return sendMorse(message->c_str(), delayFunction, dotFunction, dashFunction, context);
-    }
-    return -1;
+    return sendMorse(message ? message->c_str() : nullptr, delayFunction, dotFunction, dashFunction, context);
 }
 

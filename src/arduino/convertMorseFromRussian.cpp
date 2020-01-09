@@ -1,5 +1,5 @@
-#include "convertMorseFromRussian.h"
 #include "../all/convertMorseFromRussian.h"
+#include "convertMorseFromRussian.h"
 #include <Arduino.h>
 #include <stddef.h>
 
@@ -10,10 +10,6 @@ int convertMorseFromRussian(const String &russianMessage, char englishBuffer[], 
 
 int convertMorseFromRussian(const String *russianMessage, char englishBuffer[], size_t englishBufferSize)
 {
-    if (russianMessage)
-    {
-        return convertMorseFromRussian(russianMessage->c_str(), englishBuffer, englishBufferSize);
-    }
-    return -1;
+    return convertMorseFromRussian(russianMessage ? russianMessage->c_str() : nullptr, englishBuffer, englishBufferSize);
 }
 

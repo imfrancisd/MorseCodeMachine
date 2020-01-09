@@ -1,5 +1,5 @@
-#include "convertMorseFromArabic.h"
 #include "../all/convertMorseFromArabic.h"
+#include "convertMorseFromArabic.h"
 #include <Arduino.h>
 #include <stddef.h>
 
@@ -10,10 +10,6 @@ int convertMorseFromArabic(const String &arabicMessage, char englishBuffer[], si
 
 int convertMorseFromArabic(const String *arabicMessage, char englishBuffer[], size_t englishBufferSize)
 {
-    if (arabicMessage)
-    {
-        return convertMorseFromArabic(arabicMessage->c_str(), englishBuffer, englishBufferSize);
-    }
-    return -1;
+    return convertMorseFromArabic(arabicMessage ? arabicMessage->c_str() : nullptr, englishBuffer, englishBufferSize);
 }
 
