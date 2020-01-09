@@ -1,46 +1,45 @@
 #include <MorseCodeMachine.h>
 
-//Create a character array that can store 100 characters.
-//This will be used to hold the English translation of Russian characters.
-char englishArray[100];
+//Create a char array that can store 100 chars.
+//This will be used to hold the English translation of Hebrew characters.
+const int englishArraySize(100);
+char englishArray[englishArraySize];
 
 void setup()
 {
     //You are going to use the built-in LED in the Arduino to send Morse code.
     pinMode(LED_BUILTIN, OUTPUT);
 
-    //Use the Serial monitor to look at the Russian and English messages.
+    //Use the Serial monitor to look at the Hebrew and English messages.
     Serial.begin(9600);
 }
 
 void loop()
 {
-    //You are going to send "Здравствуй World!" as Morse code.
+    //You are going to send "שלום World!" as Morse code.
     //=========================================================================
-    //Warning: Do not use accent marks on any Russian character.
-    //         Russian Morse code does not use characters with accent marks.
+    //Warning: Do not use accent marks on any Hebrew character.
+    //         Hebrew Morse code does not use characters with accent marks.
     //
-    //         See the following for more details about Russian Morse code:
-    //         Russian Morse Code - Wikipedia
-    //         https://en.wikipedia.org/wiki/Russian_Morse_code
+    //         See the following for more details about Hebrew Morse code:
+    //         Morse code for non-Latin alphabets - Wikipedia
+    //         https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
     //
     //         Any unrecognized characters will be replaced with the Unicode
     //         replacement character (U+FFFD).
     //=========================================================================
-    const char russianMessage[] = "Здравствуй World!";
+    const char hebrewMessage[] = "שלום World!";
 
-    //Convert Russian into its English equivalent with convertMorseFromRussian.
-    //The 100 at the end tells convertMorseFromRussian that englishArray can only
-    //hold 100 characters.
-    int errorCode = convertMorseFromRussian(russianMessage, englishArray, 100);
+    //Convert Hebrew into its English equivalent with convertMorseFromHebrew.
+    int errorCode = convertMorseFromHebrew(hebrewMessage, englishArray, englishArraySize);
 
-    //Check if there were any errors from convertMorseFromRussian.
-    //convertMorseFromRussian returns 0 if there were no errors.
+    //Check if there were any errors from convertMorseFromHebrew.
+    //convertMorseFromHebrew returns 0 if there were no errors.
     if (errorCode == 0)
     {
-        //Send the russian and english messages to the Serial Monitor if you want
-        //to see the Russian and the English translation used for the Morse code.
-        Serial.println(russianMessage);
+        //Send the hebrew and english messages to the Serial Monitor if you want
+        //to see the Hebrew and the English translation used for the Morse code.
+        Serial.println(hebrewMessage);
         Serial.println(englishArray);
         
         //Since there were no errors, send Morse code using englishArray.
@@ -52,7 +51,7 @@ void loop()
         //The most likely reason an error happens is that the size of
         //englishArray is not big enough to contain the translation.
         Serial.println("There was an error converting this to English:");
-        Serial.println(russianMessage);
+        Serial.println(hebrewMessage);
     }
 }
 

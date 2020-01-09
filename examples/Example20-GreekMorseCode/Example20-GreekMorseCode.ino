@@ -1,46 +1,45 @@
 #include <MorseCodeMachine.h>
 
-//Create a character array that can store 100 characters.
-//This will be used to hold the English translation of Arabic characters.
-char englishArray[100];
+//Create a char array that can store 100 chars.
+//This will be used to hold the English translation of Greek characters.
+const int englishArraySize = 100;
+char englishArray[englishArraySize];
 
 void setup()
 {
     //You are going to use the built-in LED in the Arduino to send Morse code.
     pinMode(LED_BUILTIN, OUTPUT);
 
-    //Use the Serial monitor to look at the Arabic and English messages.
+    //Use the Serial monitor to look at the Greek and English messages.
     Serial.begin(9600);
 }
 
 void loop()
 {
-    //You are going to send "مرحبا World!" as Morse code.
+    //You are going to send "γεια World!" as Morse code.
     //=========================================================================
-    //Warning: Do not use accent marks on any Arabic character.
-    //         Arabic Morse code does not use characters with accent marks.
+    //Warning: Do not use accent marks on any Greek character.
+    //         Greek Morse code does not use characters with accent marks.
     //
-    //         See the following for more details about Arabic Morse code:
+    //         See the following for more details about Greek Morse code:
     //         Morse code for non-Latin alphabets - Wikipedia
     //         https://en.wikipedia.org/wiki/Morse_code_for_non-Latin_alphabets
     //
     //         Any unrecognized characters will be replaced with the Unicode
     //         replacement character (U+FFFD).
     //=========================================================================
-    const char arabicMessage[] = "مرحبا World!";
+    const char greekMessage[] = "γεια World!";
 
-    //Convert Arabic into its English equivalent with convertMorseFromArabic.
-    //The 100 at the end tells convertMorseFromArabic that englishArray can only
-    //hold 100 characters.
-    int errorCode = convertMorseFromArabic(arabicMessage, englishArray, 100);
+    //Convert Greek into its English equivalent with convertMorseFromGreek.
+    int errorCode = convertMorseFromGreek(greekMessage, englishArray, englishArraySize);
 
-    //Check if there were any errors from convertMorseFromArabic.
-    //convertMorseFromArabic returns 0 if there were no errors.
+    //Check if there were any errors from convertMorseFromGreek.
+    //convertMorseFromGreek returns 0 if there were no errors.
     if (errorCode == 0)
     {
-        //Send the arabic and english messages to the Serial Monitor if you want
-        //to see the Arabic and the English translation used for the Morse code.
-        Serial.println(arabicMessage);
+        //Send the greek and english messages to the Serial Monitor if you want
+        //to see the Greek and the English translation used for the Morse code.
+        Serial.println(greekMessage);
         Serial.println(englishArray);
         
         //Since there were no errors, send Morse code using englishArray.
@@ -52,7 +51,7 @@ void loop()
         //The most likely reason an error happens is that the size of
         //englishArray is not big enough to contain the translation.
         Serial.println("There was an error converting this to English:");
-        Serial.println(arabicMessage);
+        Serial.println(greekMessage);
     }
 }
 
