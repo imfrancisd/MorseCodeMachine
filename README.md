@@ -40,15 +40,31 @@ void dahLed() {
 
 # Multiple Language Support
 
-See the examples to learn how to send Morse Code in another language, such as Greek and Hebrew.
+See the examples directory to learn how to send Morse Code in another language, such as Greek and Hebrew.
+
+https://github.com/imfrancisd/MorseCodeMachine/tree/master/examples
+
+# Documentation
+
+See the src directory to read the documentation for each function in the header files.
+
+https://github.com/imfrancisd/MorseCodeMachine/tree/master/src/arduino
+
+https://github.com/imfrancisd/MorseCodeMachine/tree/master/src/all
 
 # Installing the library
-
-Download the zip file of the latest release here:
-
-https://github.com/imfrancisd/MorseCodeMachine/releases
 
 Install the library by following the directions here:
 
 https://www.arduino.cc/en/guide/libraries
+
+**Install from the Library Manager**
+
+Install the library named "MorseCodeMachine" from the Library Manager.
+
+**Install from a zip file**
+
+Install the zip file of the latest release which can be downloaded here:
+
+https://github.com/imfrancisd/MorseCodeMachine/releases
 
