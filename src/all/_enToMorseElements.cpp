@@ -288,163 +288,152 @@ unsigned int _enToMorseElements(const char **bytes)
             goto MatchNothing;
         }
 
-        switch (diacritic[1])
+        switch (ascii)
         {
-            //Ascii followed by grave.
-            case 0x00:
-                switch (ascii)
+            case 0x61: //a
+                switch (diacritic[1])
                 {
-                    case 0x61: //a
+                    case 0x00: //grave
                         goto MatchAWithGrave;
 
-                    case 0x65: //e
-                        goto MatchEWithGrave;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by acute.
-            case 0x01:
-                switch (ascii)
-                {
-                    case 0x65: //e
-                        goto MatchEWithAcute;
-
-                    case 0x63: //c
-                        goto MatchCWithAcute;
-
-                    case 0x6e: //n
-                        goto MatchNWithAcute;
-
-                    case 0x6f: //o
-                        goto MatchOWithAcute;
-
-                    case 0x73: //s
-                        goto MatchSWithAcute;
-
-                    case 0x7a: //z
-                        goto MatchZWithAcute;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by circumflex.
-            case 0x02:
-                switch (ascii)
-                {
-                    case 0x63: //c
-                        goto MatchCWithCircumflex;
-
-                    case 0x67: //g
-                        goto MatchGWithCircumflex;
-
-                    case 0x68: //h
-                        goto MatchHWithCircumflex;
-
-                    case 0x6a: //j
-                        goto MatchJWithCircumflex;
-
-                    case 0x73: //s
-                        goto MatchSWithCircumflex;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by tilde.
-            case 0x03:
-                switch (ascii)
-                {
-                    case 0x6e: //n
-                        goto MatchNWithTilde;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by breve.
-            case 0x06:
-                switch (ascii)
-                {
-                    case 0x75: //u
-                        goto MatchUWithBreve;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by dot above.
-            case 0x07:
-                switch (ascii)
-                {
-                    case 0x7a: //z
-                        goto MatchZWithDotAbove;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by diaeresis.
-            case 0x08:
-                switch (ascii)
-                {
-                    case 0x61: //a
+                    case 0x08: //diaeresis
                         goto MatchAWithDiaeresis;
 
-                    case 0x6f: //o
-                        goto MatchOWithDiaeresis;
-
-                    case 0x75: //u
-                        goto MatchUWithDiaeresis;
-
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by ring above.
-            case 0x0a:
-                switch (ascii)
-                {
-                    case 0x61: //a
+                    case 0x0a: //ring above
                         goto MatchAWithRing;
 
-                    default:
-                        goto MatchNothing;
-                }
-
-            //Ascii followed by caron.
-            case 0x0c:
-                switch (ascii)
-                {
-                    case 0x73: //s
-                        goto MatchSWithCaron;
+                    case 0x28: //ogonek
+                        goto MatchAWithOgonek;
 
                     default:
                         goto MatchNothing;
                 }
 
-            //Ascii followed by cedilla.
-            case 0x27:
-                switch (ascii)
+            case 0x63: //c
+                switch (diacritic[1])
                 {
-                    case 0x63: //c
+                    case 0x01: //acute
+                        goto MatchCWithAcute;
+
+                    case 0x02: //circumflex
+                        goto MatchCWithCircumflex;
+
+                    case 0x27: //cedilla
                         goto MatchCWithCedilla;
 
                     default:
                         goto MatchNothing;
                 }
 
-            //Ascii followed by ogonek.
-            case 0x28:
-                switch (ascii)
+            case 0x65: //e
+                switch (diacritic[1])
                 {
-                    case 0x61: //a
-                        goto MatchAWithOgonek;
+                    case 0x00: //grave
+                        goto MatchEWithGrave;
 
-                    case 0x65: //e
+                    case 0x01: //acute
+                        goto MatchEWithAcute;
+
+                    case 0x28: //ogonek
                         goto MatchEWithOgonek;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x67: //g
+                switch (diacritic[1])
+                {
+                    case 0x02: //circumflex
+                        goto MatchGWithCircumflex;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x68: //h
+                switch (diacritic[1])
+                {
+                    case 0x02: //circumflex
+                        goto MatchHWithCircumflex;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x6a: //j
+                switch (diacritic[1])
+                {
+                    case 0x02: //circumflex
+                        goto MatchJWithCircumflex;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x6e: //n
+                switch (diacritic[1])
+                {
+                    case 0x01: //acute
+                        goto MatchNWithAcute;
+
+                    case 0x03: //tilde
+                        goto MatchNWithTilde;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x6f: //o
+                switch (diacritic[1])
+                {
+                    case 0x01: //acute
+                        goto MatchOWithAcute;
+
+                    case 0x08: //diaeresis
+                        goto MatchOWithDiaeresis;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x73: //s
+                switch (diacritic[1])
+                {
+                    case 0x01: //acute
+                        goto MatchSWithAcute;
+
+                    case 0x02: //circumflex
+                        goto MatchSWithCircumflex;
+
+                    case 0x0c: //caron
+                        goto MatchSWithCaron;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x75: //u
+                switch (diacritic[1])
+                {
+                    case 0x06: //breve
+                        goto MatchUWithBreve;
+
+                    case 0x08: //diaeresis
+                        goto MatchUWithDiaeresis;
+
+                    default:
+                        goto MatchNothing;
+                }
+
+            case 0x7a: //z
+                switch (diacritic[1])
+                {
+                    case 0x01: //acute
+                        goto MatchZWithAcute;
+
+                    case 0x07: //dot above
+                        goto MatchZWithDotAbove;
 
                     default:
                         goto MatchNothing;
