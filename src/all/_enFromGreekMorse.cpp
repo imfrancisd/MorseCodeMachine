@@ -1,6 +1,7 @@
 #include "_countUtf8Bytes.h"
 #include "_enFromGreekMorse.h"
 #include "_isDiacritic.h"
+#include "_utf8ToUnicode.h"
 
 
 
@@ -13,6 +14,9 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
 int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd)
 {
+    unsigned char unicodeHi;
+    unsigned char unicodeLo;
+
     //Check if there is space to write in *english.
     if (englishEnd <= (*english) + 1)
     {
@@ -26,14 +30,12 @@ int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd
     }
 
     //Convert 2 byte UTF-8 character to Unicode code point.
-    unsigned char unicode[2];
-    unicode[0] = 0x3f & (*greek)[0];
-    unicode[1] = 0x3f & (*greek)[1];
-    unicode[1] = unicode[1] | (0xc0 & (unicode[0] << 6));
-    unicode[0] = unicode[0] >> 2;
+    unicodeHi = 0xff & (*greek)[0];
+    unicodeLo = 0xff & (*greek)[1];
+    _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
     //Greek characters are Unicode code points U+0391 - U+03c9.
-    if (unicode[0] != 0x03)
+    if (unicodeHi != 0x03)
     {
         goto ErrorNoMatch;
     }
@@ -41,12 +43,12 @@ int _enFromGreekMorse(const char **greek, char **english, const char *englishEnd
     //Convert uppercase (Α-Ω) to lowercase (α-ω).
     //Uppercase (U+0391 - U+03A9)
     //Lowercase (U+03B1 - U+03C9)
-    if ((0x91 <= unicode[1]) && (unicode[1] <= 0xa9))
+    if ((0x91 <= unicodeLo) && (unicodeLo <= 0xa9))
     {
-        unicode[1] += 0x20;
+        unicodeLo += 0x20;
     }
 
-    switch (unicode[1])
+    switch (unicodeLo)
     {
         case 0xb1:
             //α (alpha) -> A

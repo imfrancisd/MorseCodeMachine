@@ -1,6 +1,7 @@
 #include "_countUtf8Bytes.h"
 #include "_enFromRussianMorse.h"
 #include "_isDiacritic.h"
+#include "_utf8ToUnicode.h"
 
 
 
@@ -13,6 +14,9 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
 int _enFromRussianMorse(const char **russian, char **english, const char *englishEnd)
 {
+    unsigned char unicodeHi;
+    unsigned char unicodeLo;
+
     //Check if there is space to write in *english.
     if (englishEnd <= (*english) + 1)
     {
@@ -28,8 +32,8 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
             goto ErrorNoMatch;
         }
 
-        unsigned char unicode = 0xff & (*russian)[0];
-        switch (unicode)
+        unsigned char ascii = 0xff & (*russian)[0];
+        switch (ascii)
         {
             case 0x21:
                 //! -> ,
@@ -87,14 +91,12 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
     }
 
     //Convert 2 byte UTF-8 character to Unicode code point.
-    unsigned char unicode[2];
-    unicode[0] = 0x3f & (*russian)[0];
-    unicode[1] = 0x3f & (*russian)[1];
-    unicode[1] = unicode[1] | (0xc0 & (unicode[0] << 6));
-    unicode[0] = unicode[0] >> 2;
+    unicodeHi = 0xff & (*russian)[0];
+    unicodeLo = 0xff & (*russian)[1];
+    _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
     //Russian characters are Unicode code points U+0400 - U+04FF.
-    if (unicode[0] != 0x04)
+    if (unicodeHi != 0x04)
     {
         goto ErrorNoMatch;
     }
@@ -102,12 +104,12 @@ int _enFromRussianMorse(const char **russian, char **english, const char *englis
     //Convert uppercase (А-Я) to lowercase (а-я).
     //Uppercase (U+0410 - U+042f)
     //Lowercase (U+0430 - U+044f)
-    if ((0x10 <= unicode[1]) && (unicode[1] <= 0x2f))
+    if ((0x10 <= unicodeLo) && (unicodeLo <= 0x2f))
     {
-        unicode[1] += 0x20;
+        unicodeLo += 0x20;
     }
 
-    switch (unicode[1])
+    switch (unicodeLo)
     {
         case 0x30:
             //а (A) -> A

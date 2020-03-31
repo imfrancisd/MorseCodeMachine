@@ -1,6 +1,7 @@
 #include "_countUtf8Bytes.h"
 #include "_enFromHebrewMorse.h"
 #include "_isDiacritic.h"
+#include "_utf8ToUnicode.h"
 
 
 
@@ -13,6 +14,9 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
 int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishEnd)
 {
+    unsigned char unicodeHi;
+    unsigned char unicodeLo;
+
     //Check if there is space to write in *english.
     if (englishEnd <= (*english) + 1)
     {
@@ -26,19 +30,17 @@ int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishE
     }
 
     //Convert 2 byte UTF-8 character to Unicode code point.
-    unsigned char unicode[2];
-    unicode[0] = 0x3f & (*hebrew)[0];
-    unicode[1] = 0x3f & (*hebrew)[1];
-    unicode[1] = unicode[1] | (0xc0 & (unicode[0] << 6));
-    unicode[0] = unicode[0] >> 2;
+    unicodeHi = 0xff & (*hebrew)[0];
+    unicodeLo = 0xff & (*hebrew)[1];
+    _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
     //Hebrew characters are Unicode code points U+05D0 - U+05EA.
-    if (unicode[0] != 0x05)
+    if (unicodeHi != 0x05)
     {
         goto ErrorNoMatch;
     }
 
-    switch (unicode[1])
+    switch (unicodeLo)
     {
         case 0xd0:
             //א (ALEF) -> A
