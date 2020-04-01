@@ -12,7 +12,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-int _enFromArabicMorse(const char **arabic, char **english, const char *englishEnd)
+int _enFromArabicMorse(const unsigned char **arabic, unsigned char **english, const unsigned char *englishEnd)
 {
     unsigned char unicodeHi;
     unsigned char unicodeLo;
@@ -27,16 +27,16 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
 
     if (_countUtf8Bytes(*arabic) == 3)
     {
-        if (((*arabic)[0] != '\xef') ||
-            ((*arabic)[1] != '\xba') ||
-            ((*arabic)[2] != '\x80') ||
+        if (((*arabic)[0] != 0xef) ||
+            ((*arabic)[1] != 0xba) ||
+            ((*arabic)[2] != 0x80) ||
             (_isDiacritic((*arabic) + 3)))
         {
             goto ErrorNoMatch;
         }
 
         //ﺀ (HAMZA ISOLATED FORM) -> E
-        *(*english)++ = '\x45';
+        *(*english)++ = 0x45;
         goto Success3;
     }
 
@@ -47,8 +47,8 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
     }
 
     //Convert 2 byte UTF-8 character to Unicode code point.
-    unicodeHi = 0xff & (*arabic)[0];
-    unicodeLo = 0xff & (*arabic)[1];
+    unicodeHi = (*arabic)[0];
+    unicodeLo = (*arabic)[1];
     _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
     //Arabic characters are Unicode code points U+0627 - U+064A.
@@ -61,52 +61,52 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
     {
         case 0x27:
             //ا (ALEF) -> A
-            *(*english)++ = '\x41';
+            *(*english)++ = 0x41;
             goto Success2;
 
         case 0x28:
             //ب (BEH) -> B
-            *(*english)++ = '\x42';
+            *(*english)++ = 0x42;
             goto Success2;
 
         case 0x2a:
             //ت (TEH) -> T
-            *(*english)++ = '\x54';
+            *(*english)++ = 0x54;
             goto Success2;
 
         case 0x2b:
             //ث (THEH) -> C
-            *(*english)++ = '\x43';
+            *(*english)++ = 0x43;
             goto Success2;
 
         case 0x2c:
             //ج (JEEM) -> J
-            *(*english)++ = '\x4a';
+            *(*english)++ = 0x4a;
             goto Success2;
 
         case 0x2d:
             //ح (HAH) -> H
-            *(*english)++ = '\x48';
+            *(*english)++ = 0x48;
             goto Success2;
 
         case 0x2e:
             //خ (KHAH) -> O
-            *(*english)++ = '\x4f';
+            *(*english)++ = 0x4f;
             goto Success2;
 
         case 0x2f:
             //د (DAL) -> D
-            *(*english)++ = '\x44';
+            *(*english)++ = 0x44;
             goto Success2;
 
         case 0x30:
             //ذ (THAL) -> Z
-            *(*english)++ = '\x5a';
+            *(*english)++ = 0x5a;
             goto Success2;
 
         case 0x31:
             //ر (REH) -> R
-            *(*english)++ = '\x52';
+            *(*english)++ = 0x52;
             goto Success2;
 
         case 0x32:
@@ -115,15 +115,15 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
             {
                 goto ErrorNoSpace;
             }
-            *(*english)++ = '\x3c';
-            *(*english)++ = '\x4f';
-            *(*english)++ = '\x45';
-            *(*english)++ = '\x3e';
+            *(*english)++ = 0x3c;
+            *(*english)++ = 0x4f;
+            *(*english)++ = 0x45;
+            *(*english)++ = 0x3e;
             goto Success2;
 
         case 0x33:
             //س (SEEN) -> S
-            *(*english)++ = '\x53';
+            *(*english)++ = 0x53;
             goto Success2;
 
         case 0x34:
@@ -132,30 +132,30 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
             {
                 goto ErrorNoSpace;
             }
-            *(*english)++ = '\x3c';
-            *(*english)++ = '\x4d';
-            *(*english)++ = '\x4d';
-            *(*english)++ = '\x3e';
+            *(*english)++ = 0x3c;
+            *(*english)++ = 0x4d;
+            *(*english)++ = 0x4d;
+            *(*english)++ = 0x3e;
             goto Success2;
 
         case 0x35:
             //ص (SAD) -> X
-            *(*english)++ = '\x58';
+            *(*english)++ = 0x58;
             goto Success2;
 
         case 0x36:
             //ض (DAD) -> V
-            *(*english)++ = '\x56';
+            *(*english)++ = 0x56;
             goto Success2;
 
         case 0x37:
             //ط (TAH) -> U
-            *(*english)++ = '\x55';
+            *(*english)++ = 0x55;
             goto Success2;
 
         case 0x38:
             //ظ (ZAH) -> Y
-            *(*english)++ = '\x59';
+            *(*english)++ = 0x59;
             goto Success2;
 
         case 0x39:
@@ -164,45 +164,45 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
             {
                 goto ErrorNoSpace;
             }
-            *(*english)++ = '\x3c';
-            *(*english)++ = '\x41';
-            *(*english)++ = '\x41';
-            *(*english)++ = '\x3e';
+            *(*english)++ = 0x3c;
+            *(*english)++ = 0x41;
+            *(*english)++ = 0x41;
+            *(*english)++ = 0x3e;
             goto Success2;
 
         case 0x3a:
             //غ (GHAIN) -> G
-            *(*english)++ = '\x47';
+            *(*english)++ = 0x47;
             goto Success2;
 
         case 0x41:
             //ف (FEH) -> F
-            *(*english)++ = '\x46';
+            *(*english)++ = 0x46;
             goto Success2;
 
         case 0x42:
             //ق (QAF) -> Q
-            *(*english)++ = '\x51';
+            *(*english)++ = 0x51;
             goto Success2;
 
         case 0x43:
             //ك (KAF) -> K
-            *(*english)++ = '\x4b';
+            *(*english)++ = 0x4b;
             goto Success2;
 
         case 0x44:
             //ل (LAM) -> L
-            *(*english)++ = '\x4c';
+            *(*english)++ = 0x4c;
             goto Success2;
 
         case 0x45:
             //م (MEEM) -> M
-            *(*english)++ = '\x4d';
+            *(*english)++ = 0x4d;
             goto Success2;
 
         case 0x46:
             //ن (NOON) -> N
-            *(*english)++ = '\x4e';
+            *(*english)++ = 0x4e;
             goto Success2;
 
         case 0x47:
@@ -211,20 +211,20 @@ int _enFromArabicMorse(const char **arabic, char **english, const char *englishE
             {
                 goto ErrorNoSpace;
             }
-            *(*english)++ = '\x3c';
-            *(*english)++ = '\x46';
-            *(*english)++ = '\x45';
-            *(*english)++ = '\x3e';
+            *(*english)++ = 0x3c;
+            *(*english)++ = 0x46;
+            *(*english)++ = 0x45;
+            *(*english)++ = 0x3e;
             goto Success2;
 
         case 0x48:
             //و (WAW) -> W
-            *(*english)++ = '\x57';
+            *(*english)++ = 0x57;
             goto Success2;
 
         case 0x4a:
             //ي (YEH) -> I
-            *(*english)++ = '\x49';
+            *(*english)++ = 0x49;
             goto Success2;
 
         default:

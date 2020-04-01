@@ -16,6 +16,6 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 //    *english is incremented and contents modified.
 //Returns 1 if *english does not have enough space. Nothing is modified.
 //Returns 2 if no Hebrew character found. Nothing is modified.
-int _enFromHebrewMorse(const char **hebrew, char **english, const char *englishEnd);
+int _enFromHebrewMorse(const unsigned char **hebrew, unsigned char **english, const unsigned char *englishEnd);
 }
 

@@ -9,8 +9,8 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-//unsigned int _enToMorseElements(char)
-//unsigned int _enToMorseElements(char **)
+//Returns Morse elements for utf8 character from **bytes.
+//Moves pointer *bytes to next utf8 character.
 //
 //16-bit return value format:
 //aaaaaaa0bbbbbbbb
@@ -30,14 +30,6 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 //For recognized characters that do not have Morse elements (' ', '<', '>'):
 //aaaaaaa0 = 00000000
 //bbbbbbbb = ascii code of recognized character that has no Morse elements.
-
-
-
-//Returns Morse elements for ascii character from char.
-unsigned int _enToMorseElements(char c);
-
-//Returns Morse elements for utf8 character from **bytes.
-//Moves pointer *bytes to next utf8 character.
-unsigned int _enToMorseElements(const char **bytes);
+unsigned int _enToMorseElements(const unsigned char **bytes);
 }
 

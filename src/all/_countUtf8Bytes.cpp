@@ -9,7 +9,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-unsigned char _countUtf8Bytes(const char *bytes)
+unsigned char _countUtf8Bytes(const unsigned char *bytes)
 {
     if ((bytes[0] & 0b10000000) == 0)
     {

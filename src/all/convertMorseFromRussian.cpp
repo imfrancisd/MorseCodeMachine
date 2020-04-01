@@ -8,17 +8,17 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], size_t englishBufferSize)
+static int convertMorseFromRussian(const unsigned char russianMessage[], unsigned char englishBuffer[], size_t englishBufferSize)
 {
     if (!(russianMessage && englishBuffer && (englishBufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = englishBuffer;
-    char *destinationEnd = englishBuffer + englishBufferSize;
-    const char *source = russianMessage;
-    const char *sourceReset = russianMessage;
+    unsigned char *destination = englishBuffer;
+    unsigned char *destinationEnd = destination + englishBufferSize;
+    const unsigned char *source = russianMessage;
+    const unsigned char *sourceReset = source;
 
     while (*source)
     {
@@ -29,7 +29,7 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
         if (_enFromRussianMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else if (sourceReset != source)
@@ -54,7 +54,7 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
             if (destinationEnd <= destination + countBytes)
             {
                 //Not enough space to translate.
-                *destination = '\x00';
+                *destination = 0x00;
                 return 1;
             }
             memcpy(destination, sourceReset, countBytes);
@@ -90,7 +90,7 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
         if (!_writeUnicodeFFFD(&destination, destinationEnd))
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else
@@ -101,7 +101,12 @@ int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], s
         }
     }
 
-    *destination = '\x00';
+    *destination = 0x00;
     return 0;
+}
+
+int convertMorseFromRussian(const char russianMessage[], char englishBuffer[], size_t englishBufferSize)
+{
+    return convertMorseFromRussian(reinterpret_cast<const unsigned char *>(russianMessage), reinterpret_cast<unsigned char *>(englishBuffer), englishBufferSize);
 }
 

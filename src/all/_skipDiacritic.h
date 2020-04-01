@@ -10,6 +10,6 @@
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
 //Skip combining diacritic character (U+0300 - U+036F).
-bool _skipDiacritic(const char **bytes);
+bool _skipDiacritic(const unsigned char **bytes);
 }
 

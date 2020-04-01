@@ -10,7 +10,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-bool _skipDiacritic(const char **bytes)
+bool _skipDiacritic(const unsigned char **bytes)
 {
     if (_isDiacritic(*bytes))
     {

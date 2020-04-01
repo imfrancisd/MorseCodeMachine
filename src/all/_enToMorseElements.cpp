@@ -13,20 +13,18 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-unsigned int _enToMorseElements(char c)
+static unsigned int _enToMorseElements(unsigned char ascii)
 {
     //ASCII characters are Unicode code points U+0000 - U+007F.
-    unsigned char unicode = 0xff & c;
-
     //Convert lowercase (a-z) to uppercase (A-Z).
     //Uppercase (U+0041 - U+005A)
     //Lowercase (U+0061 - U+007A)
-    if ((0x61 <= unicode) && (unicode <= 0x7a))
+    if ((0x61 <= ascii) && (ascii <= 0x7a))
     {
-        unicode -= 0x20;
+        ascii -= 0x20;
     }
 
-    switch (unicode)
+    switch (ascii)
     {
         //Digits 0-9.
 
@@ -239,7 +237,7 @@ unsigned int _enToMorseElements(char c)
         case 0x20: // 
         case 0x3c: //<
         case 0x3e: //>
-            return unicode;
+            return ascii;
 
         //Unrecognized characters.
 
@@ -248,7 +246,7 @@ unsigned int _enToMorseElements(char c)
     }
 }
 
-unsigned int _enToMorseElements(const char **bytes)
+unsigned int _enToMorseElements(const unsigned char **bytes)
 {
     unsigned int morseElements = 0;
     unsigned char countUtf8Bytes = _countUtf8Bytes(*bytes);
@@ -274,7 +272,7 @@ unsigned int _enToMorseElements(const char **bytes)
         //Convert uppercase (A-Z) to lowercase (a-z).
         //Uppercase (U+0041 - U+005A)
         //Lowercase (U+0061 - U+007A)
-        ascii = 0xff & (*bytes)[0];
+        ascii = (*bytes)[0];
         if ((0x41 <= ascii) && (ascii <= 0x5a))
         {
             ascii += 0x20;
@@ -453,8 +451,8 @@ unsigned int _enToMorseElements(const char **bytes)
     if ((countUtf8Bytes == 2) && (!_isDiacritic((*bytes) + 2)))
     {
         //Convert 2 byte UTF-8 character to Unicode code point.
-        unsigned char unicodeHi = 0xff & (*bytes)[0];
-        unsigned char unicodeLo = 0xff & (*bytes)[1];
+        unsigned char unicodeHi = (*bytes)[0];
+        unsigned char unicodeLo = (*bytes)[1];
         _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
         switch (unicodeHi)
