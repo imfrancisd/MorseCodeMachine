@@ -12,24 +12,20 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 //Returns Morse elements for utf8 character from **bytes.
 //Moves pointer *bytes to next utf8 character.
 //
-//16-bit return value format:
-//aaaaaaa0bbbbbbbb
-//aaaaaaa0 = number of morse elements as a series of 1
+//8-bit return value format:
 //bbbbbbbb = morse elements as a series of 0 1, 0 is dit, 1 is dah
+//           starts at msb
+//           end of morse elements is followed by a 1
 //
 //Example:
-//char '1' is morse dit dah dah dah dah
-//aaaaaaa0 = 11111000 (5 morse elements, 5 1 starting from msb)
-//bbbbbbbb = 01111000 (dit dah dah dah dah)
-//1111100001111000
+//char 'Z' is morse dah dah dit dit
+//bbbbbbbb = 11001000 (dah dah dit dit followed by a 1)
 //
 //For unrecognized characters:
-//aaaaaaa0 = 00000000
 //bbbbbbbb = 00000000
 //
 //For recognized characters that do not have Morse elements (' ', '<', '>'):
-//aaaaaaa0 = 00000000
-//bbbbbbbb = ascii code of recognized character that has no Morse elements.
-unsigned int _enToMorseElements(const unsigned char **bytes);
+//bbbbbbbb = 10000000
+unsigned char _enToMorseElements(const unsigned char **bytes);
 }
 
