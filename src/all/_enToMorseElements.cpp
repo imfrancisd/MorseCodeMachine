@@ -13,7 +13,7 @@
 
 namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 {
-static unsigned char _enToMorseElements(unsigned char ascii)
+static unsigned char _toUpperAscii(unsigned char ascii)
 {
     //ASCII characters are Unicode code points U+0000 - U+007F.
     //Convert lowercase (a-z) to uppercase (A-Z).
@@ -23,8 +23,12 @@ static unsigned char _enToMorseElements(unsigned char ascii)
     {
         ascii -= 0x20;
     }
+    return ascii;
+}
 
-    switch (ascii)
+static unsigned char _enToMorseElements(unsigned char ascii)
+{
+    switch (_toUpperAscii(ascii))
     {
         //Digits 0-9.
 
@@ -253,10 +257,6 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
 
     if (countUtf8Bytes == 1)
     {
-        unsigned char ascii;
-        unsigned char diacriticHi;
-        unsigned char diacriticLo;
-
         //Ascii followed by 0 diacritics.
         if (!_isDiacritic((*bytes) + 1))
         {
@@ -269,30 +269,21 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
             goto MatchNothing;
         }
 
-        //Convert uppercase (A-Z) to lowercase (a-z).
-        //Uppercase (U+0041 - U+005A)
-        //Lowercase (U+0061 - U+007A)
-        ascii = (*bytes)[0];
-        if ((0x41 <= ascii) && (ascii <= 0x5a))
-        {
-            ascii += 0x20;
-        }
-
         //Convert 2 byte UTF-8 diacritic to Unicode code point.
-        diacriticHi = (*bytes)[1];
-        diacriticLo = (*bytes)[2];
-        _utf8ToUnicode(&diacriticHi, &diacriticLo);
+        unsigned char unicodeHi = (*bytes)[1];
+        unsigned char unicodeLo = (*bytes)[2];
+        _utf8ToUnicode(&unicodeHi, &unicodeLo);
 
         //Diacritics needed are between U+0300 - U+036F
-        if (diacriticHi != 0x03)
+        if (unicodeHi != 0x03)
         {
             goto MatchNothing;
         }
 
-        switch (ascii)
+        switch (_toUpperAscii((*bytes)[0]))
         {
-            case 0x61: //a
-                switch (diacriticLo)
+            case 0x41: //A
+                switch (unicodeLo)
                 {
                     case 0x00: //grave
                         goto MatchAWithGrave;
@@ -310,8 +301,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x63: //c
-                switch (diacriticLo)
+            case 0x43: //C
+                switch (unicodeLo)
                 {
                     case 0x01: //acute
                         goto MatchCWithAcute;
@@ -326,8 +317,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x65: //e
-                switch (diacriticLo)
+            case 0x45: //E
+                switch (unicodeLo)
                 {
                     case 0x00: //grave
                         goto MatchEWithGrave;
@@ -342,8 +333,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x67: //g
-                switch (diacriticLo)
+            case 0x47: //G
+                switch (unicodeLo)
                 {
                     case 0x02: //circumflex
                         goto MatchGWithCircumflex;
@@ -352,8 +343,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x68: //h
-                switch (diacriticLo)
+            case 0x48: //H
+                switch (unicodeLo)
                 {
                     case 0x02: //circumflex
                         goto MatchHWithCircumflex;
@@ -362,8 +353,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x6a: //j
-                switch (diacriticLo)
+            case 0x4a: //J
+                switch (unicodeLo)
                 {
                     case 0x02: //circumflex
                         goto MatchJWithCircumflex;
@@ -372,8 +363,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x6e: //n
-                switch (diacriticLo)
+            case 0x4e: //N
+                switch (unicodeLo)
                 {
                     case 0x01: //acute
                         goto MatchNWithAcute;
@@ -385,8 +376,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x6f: //o
-                switch (diacriticLo)
+            case 0x4f: //O
+                switch (unicodeLo)
                 {
                     case 0x01: //acute
                         goto MatchOWithAcute;
@@ -398,8 +389,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x73: //s
-                switch (diacriticLo)
+            case 0x53: //S
+                switch (unicodeLo)
                 {
                     case 0x01: //acute
                         goto MatchSWithAcute;
@@ -414,8 +405,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x75: //u
-                switch (diacriticLo)
+            case 0x55: //U
+                switch (unicodeLo)
                 {
                     case 0x06: //breve
                         goto MatchUWithBreve;
@@ -427,8 +418,8 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
                         goto MatchNothing;
                 }
 
-            case 0x7a: //z
-                switch (diacriticLo)
+            case 0x5a: //Z
+                switch (unicodeLo)
                 {
                     case 0x01: //acute
                         goto MatchZWithAcute;
@@ -459,56 +450,58 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
         {
             case 0x00:
                 //Latin-1 Supplement Unicode block.
-                //Convert uppercase to lowercase.
+                //Convert lowercase to uppercase.
                 //Uppercase (U+00C0 - U+00D6, U+00D8 - U+00DE).
                 //Lowercase (U+00E0 - U+00F6, U+00F8 - U+00FE).
-                if ((0xc0 <= unicodeLo) && (unicodeLo <= 0xde))
+                //Note: U+00D7 is multiplication sign and
+                //      U+00F7 is division sign.
+                if ((0xe0 <= unicodeLo) && (unicodeLo <= 0xfe))
                 {
-                    unicodeLo += 0x20;
+                    unicodeLo -= 0x20;
                 }
                 
                 switch (unicodeLo)
                 {
-                    case 0xe0:
+                    case 0xc0:
                         goto MatchAWithGrave;
 
-                    case 0xe4:
+                    case 0xc4:
                         goto MatchAWithDiaeresis;
 
-                    case 0xe5:
+                    case 0xc5:
                         goto MatchAWithRing;
 
-                    case 0xe6:
+                    case 0xc6:
                         goto MatchAE;
 
-                    case 0xe7:
+                    case 0xc7:
                         goto MatchCWithCedilla;
 
-                    case 0xe8:
+                    case 0xc8:
                         goto MatchEWithGrave;
 
-                    case 0xe9:
+                    case 0xc9:
                         goto MatchEWithAcute;
 
-                    case 0xf0:
+                    case 0xd0:
                         goto MatchEth;
 
-                    case 0xf1:
+                    case 0xd1:
                         goto MatchNWithTilde;
 
-                    case 0xf3:
+                    case 0xd3:
                         goto MatchOWithAcute;
 
-                    case 0xf6:
+                    case 0xd6:
                         goto MatchOWithDiaeresis;
 
-                    case 0xf8:
+                    case 0xd8:
                         goto MatchOWithStroke;
 
-                    case 0xfc:
+                    case 0xdc:
                         goto MatchUWithDiaeresis;
 
-                    case 0xfe:
+                    case 0xde:
                         goto MatchThorn;
 
                     default:
@@ -517,6 +510,9 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
 
             case 0x01:
                 //Latin Extended-A Unicode block.
+                //Note: Converting lowercase to uppercase or
+                //      converting uppercase to lowercase
+                //      just makes the compiled program bigger.
                 switch (unicodeLo)
                 {
                     case 0x04:
@@ -597,7 +593,7 @@ unsigned char _enToMorseElements(const unsigned char **bytes)
     goto MatchNothing;
 
 MatchNothing:
-    morseElements = 0x0000;
+    morseElements = 0x00;
     goto Done;
 
 MatchAscii:
@@ -718,9 +714,13 @@ MatchZWithDotAbove:
 Done:
     //Go to next UTF-8 character.
     //Skip diacritics only if valid UTF-8 character found.
-    (*bytes) += (countUtf8Bytes > 0) ? countUtf8Bytes : 1;
-    if (countUtf8Bytes > 0)
+    if (countUtf8Bytes == 0)
     {
+        (*bytes)++;
+    }
+    else
+    {
+        (*bytes) += countUtf8Bytes;
         while (_skipDiacritic(bytes))
             ;
     }
