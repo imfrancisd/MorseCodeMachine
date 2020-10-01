@@ -6,35 +6,10 @@ https://dev.azure.com/imfrancisd/MorseCodeMachine/_build
 
 # Build Status
 
-## g++
-
-|                 | **master**      | **development** |
-| --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=12&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=13&branchName=development) |
-| **Description** | Build, Test     | Build, Test     |
-| **OS**          | Ubuntu          | Ubuntu          |
-| **Shell**       | pwsh            | pwsh            |
-| **Compiler**    | g++             | g++             |
-| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=12) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=13) |
-
-## cl.exe
-
-|                 | **master**      | **development** |
-| --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-windows?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=15&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development-windows?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=14&branchName=development) |
-| **Description** | Build, Test     | Build, Test     |
-| **OS**          | Windows         | Windows         |
-| **Shell**       | pwsh, cmd       | pwsh, cmd       |
-| **Compiler**    | cl.exe          | cl.exe          |
-| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=15) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=14) |
-
-## clang++
-
-|                 | **master**      | **development** |
-| --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-macOS?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=17&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development-macOS?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=16&branchName=development) |
-| **Description** | Build, Test     | Build, Test     |
-| **OS**          | macOS           | macOS           |
-| **Shell**       | pwsh            | pwsh            |
-| **Compiler**    | clang++         | clang++         |
-| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=17) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=16) |
+|                 | arduino-cli     | g++             |  cl.exe          |  clang++         |
+| ----------------| --------------- | --------------- | ---------------- | ---------------- |
+| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-macOS-arduino-cli?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=20&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=12&branchName=master) |  [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-windows?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=15&branchName=master) |  [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-macOS?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=17&branchName=master) |
+| **Description** | Build Examples  | Build, Test     |  Build, Test     |  Build, Test     |
+| **OS**          | macOS           | Ubuntu          |  Windows         |  macOS           |
+| **Shell**       | pwsh            | pwsh            |  pwsh, cmd       |  pwsh            |
+| **Links**       | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=20) | [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=12) |  [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=15) |  [build](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build?definitionId=17) |
