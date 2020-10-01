@@ -32,7 +32,7 @@ https://dev.azure.com/imfrancisd/MorseCodeMachine/_build
 
 |                 | **master**      | **development** |
 | --------------- | --------------- | --------------- |
-| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=17&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=16&branchName=development) |
+| **Status**      | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-master-macOS?branchName=master)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=17&branchName=master) | [![Build Status](https://dev.azure.com/imfrancisd/MorseCodeMachine/_apis/build/status/MorseCodeMachine-development-macOS?branchName=development)](https://dev.azure.com/imfrancisd/MorseCodeMachine/_build/latest?definitionId=16&branchName=development) |
 | **Description** | Build, Test     | Build, Test     |
 | **OS**          | macOS           | macOS           |
 | **Shell**       | pwsh            | pwsh            |
