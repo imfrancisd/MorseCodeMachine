@@ -172,6 +172,8 @@ Notes and Warnings
     all return nothing or all return an integer.
 */
 
+#ifdef __cplusplus
+
 void sendMorse(const char message[],
                void (*delayFunction)(),
                void (*dotFunction)(),
@@ -188,6 +190,11 @@ void sendMorse(const char message[],
                void (*dashFunction)(void *context),
                void *context);
 
+#endif
+
+#ifdef __cplusplus
+extern "C"
+#endif
 int sendMorse(const char message[],
               int (*delayFunction)(void *context),
               int (*dotFunction)(void *context),

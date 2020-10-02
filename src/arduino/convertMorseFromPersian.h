@@ -1,18 +1,6 @@
 #pragma once
 
-#ifdef ARDUINO
-
-#include <Arduino.h>
-#include <stddef.h>
-
-#else
-
-#include <stddef.h>
-#include <string>
-
-typedef std::string String;
-
-#endif
+#ifdef __cplusplus
 
 /*
 Name
@@ -93,6 +81,20 @@ Notes and Warnings
   Do not use accent marks on any Persian character.
 */
 
+#ifdef ARDUINO
+
+#include <Arduino.h>
+#include <stddef.h>
+
+#else
+
+#include <stddef.h>
+#include <string>
+
+typedef std::string String;
+
+#endif
+
 int convertMorseFromPersian(const String &persianMessage,
                             char englishBuffer[],
                             size_t englishBufferSize);
@@ -100,4 +102,6 @@ int convertMorseFromPersian(const String &persianMessage,
 int convertMorseFromPersian(const String *persianMessage,
                             char englishBuffer[],
                             size_t englishBufferSize);
+
+#endif
 

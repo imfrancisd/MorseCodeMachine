@@ -1,5 +1,8 @@
 //Basic tests for MorseCodeMachine.h.
 //
+//    ** TEST PASSES WHEN **
+//    ** Program compiles, runs, no output in error stream, and returns 0. **
+//
 //Compile with g++ and run:
 //    g++ -o test.out test.cpp ../src/all/*.cpp ../src/arduino/*.cpp
 //    ./test.out

@@ -1,16 +1,6 @@
 #pragma once
 
-#ifdef ARDUINO
-
-#include <Arduino.h>
-
-#else
-
-#include <string>
-
-typedef std::string String;
-
-#endif
+#ifdef __cplusplus
 
 /*
 Name
@@ -184,6 +174,18 @@ Notes and Warnings
     all return nothing or all return an integer.
 */
 
+#ifdef ARDUINO
+
+#include <Arduino.h>
+
+#else
+
+#include <string>
+
+typedef std::string String;
+
+#endif
+
 void sendMorse(const String &message,
                void (*delayFunction)(),
                void (*dotFunction)(),
@@ -227,4 +229,6 @@ int sendMorse(const String *message,
               int (*dotFunction)(void *context),
               int (*dashFunction)(void *context),
               void *context);
+
+#endif
 

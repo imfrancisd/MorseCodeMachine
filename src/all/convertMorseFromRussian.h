@@ -1,7 +1,5 @@
 #pragma once
 
-#include <stddef.h>
-
 /*
 Name
 
@@ -81,6 +79,11 @@ Notes and Warnings
   Do not use accent marks on any Russian character.
 */
 
+#include <stddef.h>
+
+#ifdef __cplusplus
+extern "C"
+#endif
 int convertMorseFromRussian(const char russianMessage[],
                             char englishBuffer[],
                             size_t englishBufferSize);
