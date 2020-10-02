@@ -1,6 +1,5 @@
 #include "../all/sendMorse.h"
 #include "sendMorse.h"
-#include <Arduino.h>
 
 void sendMorse(const String &message, void (*delayFunction)(), void (*dotFunction)(), void (*dashFunction)())
 {

@@ -1,7 +1,5 @@
 #include "../all/convertMorseFromRussian.h"
 #include "convertMorseFromRussian.h"
-#include <Arduino.h>
-#include <stddef.h>
 
 int convertMorseFromRussian(const String &russianMessage, char englishBuffer[], size_t englishBufferSize)
 {

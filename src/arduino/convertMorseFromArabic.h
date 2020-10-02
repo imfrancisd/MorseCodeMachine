@@ -1,7 +1,18 @@
 #pragma once
 
+#ifdef ARDUINO
+
 #include <Arduino.h>
 #include <stddef.h>
+
+#else
+
+#include <stddef.h>
+#include <string>
+
+typedef std::string String;
+
+#endif
 
 /*
 Name

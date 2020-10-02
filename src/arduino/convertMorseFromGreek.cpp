@@ -1,7 +1,5 @@
 #include "../all/convertMorseFromGreek.h"
 #include "convertMorseFromGreek.h"
-#include <Arduino.h>
-#include <stddef.h>
 
 int convertMorseFromGreek(const String &greekMessage, char englishBuffer[], size_t englishBufferSize)
 {

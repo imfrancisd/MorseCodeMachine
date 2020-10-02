@@ -1,7 +1,5 @@
 #include "../all/convertMorseFromPersian.h"
 #include "convertMorseFromPersian.h"
-#include <Arduino.h>
-#include <stddef.h>
 
 int convertMorseFromPersian(const String &persianMessage, char englishBuffer[], size_t englishBufferSize)
 {

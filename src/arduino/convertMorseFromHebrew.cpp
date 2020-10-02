@@ -1,7 +1,5 @@
 #include "../all/convertMorseFromHebrew.h"
 #include "convertMorseFromHebrew.h"
-#include <Arduino.h>
-#include <stddef.h>
 
 int convertMorseFromHebrew(const String &hebrewMessage, char englishBuffer[], size_t englishBufferSize)
 {
