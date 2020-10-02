@@ -73,7 +73,7 @@ Example Code
 
   void loop()
   {
-    convertMorseFromArabic("γεια", morseBuffer, morseBufferSize);
+    convertMorseFromArabic("ﻡﺮﺤﺑﺍ", morseBuffer, morseBufferSize);
   }
 
 Notes and Warnings

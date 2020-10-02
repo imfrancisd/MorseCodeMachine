@@ -16,6 +16,6 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 //    *english is incremented and contents modified.
 //Returns 1 if *english does not have enough space. Nothing is modified.
 //Returns 2 if no Persian character found. Nothing is modified.
-int _enFromPersianMorse(const char **persian, char **english, const char *englishEnd);
+int _enFromPersianMorse(const unsigned char **persian, unsigned char **english, const unsigned char *englishEnd);
 }
 

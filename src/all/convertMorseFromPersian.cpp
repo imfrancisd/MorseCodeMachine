@@ -8,17 +8,17 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], size_t englishBufferSize)
+static int convertMorseFromPersian(const unsigned char persianMessage[], unsigned char englishBuffer[], size_t englishBufferSize)
 {
     if (!(persianMessage && englishBuffer && (englishBufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = englishBuffer;
-    char *destinationEnd = englishBuffer + englishBufferSize;
-    const char *source = persianMessage;
-    const char *sourceReset = persianMessage;
+    unsigned char *destination = englishBuffer;
+    unsigned char *destinationEnd = destination + englishBufferSize;
+    const unsigned char *source = persianMessage;
+    const unsigned char *sourceReset = source;
 
     while (*source)
     {
@@ -29,7 +29,7 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
         if (_enFromPersianMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else if (sourceReset != source)
@@ -54,7 +54,7 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
             if (destinationEnd <= destination + countBytes)
             {
                 //Not enough space to translate.
-                *destination = '\x00';
+                *destination = 0x00;
                 return 1;
             }
             memcpy(destination, sourceReset, countBytes);
@@ -90,7 +90,7 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
         if (!_writeUnicodeFFFD(&destination, destinationEnd))
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else
@@ -101,7 +101,12 @@ int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], s
         }
     }
 
-    *destination = '\x00';
+    *destination = 0x00;
     return 0;
+}
+
+int convertMorseFromPersian(const char persianMessage[], char englishBuffer[], size_t englishBufferSize)
+{
+    return convertMorseFromPersian(reinterpret_cast<const unsigned char *>(persianMessage), reinterpret_cast<unsigned char *>(englishBuffer), englishBufferSize);
 }
 

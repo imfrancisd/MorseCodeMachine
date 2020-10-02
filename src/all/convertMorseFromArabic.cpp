@@ -8,17 +8,17 @@
 
 using namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795;
 
-int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], size_t englishBufferSize)
+static int convertMorseFromArabic(const unsigned char arabicMessage[], unsigned char englishBuffer[], size_t englishBufferSize)
 {
     if (!(arabicMessage && englishBuffer && (englishBufferSize >= 1)))
     {
         return -1;
     }
 
-    char *destination = englishBuffer;
-    char *destinationEnd = englishBuffer + englishBufferSize;
-    const char *source = arabicMessage;
-    const char *sourceReset = arabicMessage;
+    unsigned char *destination = englishBuffer;
+    unsigned char *destinationEnd = destination + englishBufferSize;
+    const unsigned char *source = arabicMessage;
+    const unsigned char *sourceReset = source;
 
     while (*source)
     {
@@ -29,7 +29,7 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
         if (_enFromArabicMorse(&source, &destination, destinationEnd) == 1)
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else if (sourceReset != source)
@@ -54,7 +54,7 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
             if (destinationEnd <= destination + countBytes)
             {
                 //Not enough space to translate.
-                *destination = '\x00';
+                *destination = 0x00;
                 return 1;
             }
             memcpy(destination, sourceReset, countBytes);
@@ -90,7 +90,7 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
         if (!_writeUnicodeFFFD(&destination, destinationEnd))
         {
             //Not enough space to translate.
-            *destination = '\x00';
+            *destination = 0x00;
             return 1;
         }
         else
@@ -101,7 +101,12 @@ int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], siz
         }
     }
 
-    *destination = '\x00';
+    *destination = 0x00;
     return 0;
+}
+
+int convertMorseFromArabic(const char arabicMessage[], char englishBuffer[], size_t englishBufferSize)
+{
+    return convertMorseFromArabic(reinterpret_cast<const unsigned char *>(arabicMessage), reinterpret_cast<unsigned char *>(englishBuffer), englishBufferSize);
 }
 

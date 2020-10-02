@@ -13,6 +13,6 @@ namespace b1ccef0c36f5537eb1a608b20bb25eb318bbf795
 //On successful write, *dest < destEnd.
 //Returns true on success.
 //Returns false if there is not enough space in dest.
-bool _writeUnicodeFFFD(char **dest, const char *destEnd);
+bool _writeUnicodeFFFD(unsigned char **dest, const unsigned char *destEnd);
 }
 
