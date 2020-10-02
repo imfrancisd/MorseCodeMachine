@@ -1,26 +1,21 @@
-//Basic tests for ../src/all/*.cpp.
+//Basic tests for MorseCodeMachine.h.
 //
 //Compile with g++ and run:
-//    g++ -o test.out test.cpp ../src/all/*.cpp
+//    g++ -o test.out test.cpp ../src/all/*.cpp ../src/arduino/*.cpp
 //    ./test.out
 //    ./test.out "hello world"
 //
 //Compile with cl.exe and run:
-//    cl.exe /nologo /EHsc /Fetest.exe test.cpp ..\src\all\*.cpp
+//    cl.exe /nologo /EHsc /Fetest.exe test.cpp ..\src\all\*.cpp ..\src\arduino\*.cpp
 //    test.exe
 //    test.exe "hello world"
 //
 //Compile with clang++ and run:
-//    clang++ -o test.out test.cpp ../src/all/*.cpp
+//    clang++ -o test.out test.cpp ../src/all/*.cpp ../src/arduino/*.cpp
 //    ./test.out
 //    ./test.out "hello world"
 
-#include "../src/all/sendMorse.h"
-#include "../src/all/convertMorseFromGreek.h"
-#include "../src/all/convertMorseFromHebrew.h"
-#include "../src/all/convertMorseFromArabic.h"
-#include "../src/all/convertMorseFromPersian.h"
-#include "../src/all/convertMorseFromRussian.h"
+#include "../src/MorseCodeMachine.h"
 #include <cstddef>
 #include <cstring>
 #include <iostream>
@@ -961,18 +956,18 @@ int main(int argc, char **argv)
 
     Machine1::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    sendMorse(NULL, Machine1::dly, Machine1::dit, Machine1::dah);
+    sendMorse((char *)NULL, Machine1::dly, Machine1::dit, Machine1::dah);
     std::cout << "Output : " << Machine1::out << std::endl;
     Test::printResult(testId, Machine1::out == "");
     std::cout << std::endl;
 
     Machine1::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    sendMorse(nullptr, Machine1::dly, Machine1::dit, Machine1::dah);
+    sendMorse((char *)nullptr, Machine1::dly, Machine1::dit, Machine1::dah);
     std::cout << "Output : " << Machine1::out << std::endl;
     Test::printResult(testId, Machine1::out == "");
     std::cout << std::endl;
@@ -1020,18 +1015,18 @@ int main(int argc, char **argv)
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    sendMorse(NULL, Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
+    sendMorse((char *)NULL, Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
     std::cout << "Output : " << Machine2::out << std::endl;
     Test::printResult(testId, Machine2::out == "");
     std::cout << std::endl;
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    sendMorse(nullptr, Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
+    sendMorse((char *)nullptr, Machine2::dly, Machine2::dit, Machine2::dah, &Machine2::out);
     std::cout << "Output : " << Machine2::out << std::endl;
     Test::printResult(testId, Machine2::out == "");
     std::cout << std::endl;
@@ -1065,18 +1060,18 @@ int main(int argc, char **argv)
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 5: NULL" << std::endl;
+    std::cout << "Argmt 5: (void *)NULL" << std::endl;
     std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
-    sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, NULL);
+    sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, (void *)NULL);
     std::cout << "Output : " << Machine2::outDefault << std::endl;
     Test::printResult(testId, Machine2::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << std::endl;
 
     Machine2::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 5: nullptr" << std::endl;
+    std::cout << "Argmt 5: (void *)nullptr" << std::endl;
     std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
-    sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, nullptr);
+    sendMorse("<sos>", Machine2::dly, Machine2::dit, Machine2::dah, (void *)nullptr);
     std::cout << "Output : " << Machine2::outDefault << std::endl;
     Test::printResult(testId, Machine2::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << std::endl;
@@ -1097,9 +1092,9 @@ int main(int argc, char **argv)
 
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine3::errorCode = sendMorse(NULL, Machine3::dly, Machine3::dit, Machine3::dah);
+    Machine3::errorCode = sendMorse((char *)NULL, Machine3::dly, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
     Test::printResult(testId, Machine3::out == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1109,9 +1104,9 @@ int main(int argc, char **argv)
 
     Machine3::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine3::errorCode = sendMorse(nullptr, Machine3::dly, Machine3::dit, Machine3::dah);
+    Machine3::errorCode = sendMorse((char *)nullptr, Machine3::dly, Machine3::dit, Machine3::dah);
     std::cout << "Output : " << Machine3::out << std::endl;
     Test::printResult(testId, Machine3::out == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1234,9 +1229,9 @@ int main(int argc, char **argv)
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine4::errorCode = sendMorse(NULL, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    Machine4::errorCode = sendMorse((char *)NULL, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
     Test::printResult(testId, Machine4::out == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1246,9 +1241,9 @@ int main(int argc, char **argv)
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine4::errorCode = sendMorse(nullptr, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
+    Machine4::errorCode = sendMorse((char *)nullptr, Machine4::dly, Machine4::dit, Machine4::dah, &Machine4::out);
     std::cout << "Output : " << Machine4::out << std::endl;
     Test::printResult(testId, Machine4::out == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1294,9 +1289,9 @@ int main(int argc, char **argv)
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 5: NULL" << std::endl;
+    std::cout << "Argmt 5: (void *)NULL" << std::endl;
     std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
-    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, NULL);
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, (void *)NULL);
     std::cout << "Output : " << Machine4::outDefault << std::endl;
     Test::printResult(testId, Machine4::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << "Expect : 0" << std::endl;
@@ -1306,9 +1301,9 @@ int main(int argc, char **argv)
 
     Machine4::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 5: nullptr" << std::endl;
+    std::cout << "Argmt 5: (void *)nullptr" << std::endl;
     std::cout << "Expect : *,*,*,-,-,-,*,*,*,,,,,,," << std::endl;
-    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, nullptr);
+    Machine4::errorCode = sendMorse("<sos>", Machine4::dly, Machine4::dit, Machine4::dah, (void *)nullptr);
     std::cout << "Output : " << Machine4::outDefault << std::endl;
     Test::printResult(testId, Machine4::outDefault == "*,*,*,-,-,-,*,*,*,,,,,,,");
     std::cout << "Expect : 0" << std::endl;
@@ -1395,9 +1390,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromGreek(NULL, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromGreek((char *)NULL, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1407,9 +1402,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromGreek(nullptr, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromGreek((char *)nullptr, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1419,9 +1414,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Argmt 2: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromGreek("", NULL, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromGreek("", (char *)NULL, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1431,9 +1426,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Argmt 2: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromGreek("", nullptr, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromGreek("", (char *)nullptr, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1615,9 +1610,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromHebrew(NULL, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromHebrew((char *)NULL, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1627,9 +1622,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromHebrew(nullptr, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromHebrew((char *)nullptr, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1639,9 +1634,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Argmt 2: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromHebrew("", NULL, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromHebrew("", (char *)NULL, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1651,9 +1646,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Argmt 2: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromHebrew("", nullptr, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromHebrew("", (char *)nullptr, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1796,9 +1791,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromArabic(NULL, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromArabic((char *)NULL, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1808,9 +1803,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromArabic(nullptr, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromArabic((char *)nullptr, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1820,9 +1815,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Argmt 2: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromArabic("", NULL, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromArabic("", (char *)NULL, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -1832,9 +1827,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Argmt 2: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromArabic("", nullptr, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromArabic("", (char *)nullptr, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2003,9 +1998,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromPersian(NULL, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromPersian((char *)NULL, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2015,9 +2010,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromPersian(nullptr, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromPersian((char *)nullptr, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2027,9 +2022,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Argmt 2: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromPersian("", NULL, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromPersian("", (char *)NULL, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2039,9 +2034,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Argmt 2: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromPersian("", nullptr, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromPersian("", (char *)nullptr, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2184,9 +2179,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: NULL"  << std::endl;
+    std::cout << "Argmt 1: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromRussian(NULL, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromRussian((char *)NULL, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2196,9 +2191,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 1: nullptr"  << std::endl;
+    std::cout << "Argmt 1: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromRussian(nullptr, Machine5::out, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromRussian((char *)nullptr, Machine5::out, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2208,9 +2203,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: NULL"  << std::endl;
+    std::cout << "Argmt 2: (char *)NULL"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromRussian("", NULL, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromRussian("", (char *)NULL, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
@@ -2220,9 +2215,9 @@ int main(int argc, char **argv)
 
     Machine5::reset();
     std::cout << "Test ID: " << ++testId << std::endl;
-    std::cout << "Argmt 2: nullptr"  << std::endl;
+    std::cout << "Argmt 2: (char *)nullptr"  << std::endl;
     std::cout << "Expect : " << std::endl;
-    Machine5::errorCode = convertMorseFromRussian("", nullptr, Machine5::outSize);
+    Machine5::errorCode = convertMorseFromRussian("", (char *)nullptr, Machine5::outSize);
     std::cout << "Output : " << Machine5::out << std::endl;
     Test::printResult(testId, std::string(Machine5::out) == "");
     std::cout << "Expect : -1" << std::endl;
