@@ -40,7 +40,6 @@ class LEDMorseCodeMachine
         //The context will be the object calling ledSendMorse, so use "this"
         //which is a pointer to the object calling ledSendMorse.
 
-        pinMode(_outputPin, OUTPUT);
         return sendMorse(message, s_ledDelay, s_ledDot, s_ledDash, this);
     }
     
@@ -66,6 +65,7 @@ class LEDMorseCodeMachine
 
 void setup()
 {
+    pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop()
