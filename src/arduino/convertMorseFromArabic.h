@@ -25,11 +25,11 @@ Parameters
 
   arabicMessage
   The message containing English and Arabic characters.
-  Any characters between <>, like "<SOS>", will be sent as a single pattern.
+  Characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
   Angle brackets can be nested ("<SOS>" is the same as "<S<OS>>").
-  Any unrecognized characters in the string converted to the Unicode
+  An unrecognized character in the string is converted to the Unicode
   replacement character (U+FFFD).
 
     The message can contain the following characters:

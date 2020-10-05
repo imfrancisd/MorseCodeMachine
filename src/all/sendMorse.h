@@ -18,12 +18,12 @@ Parameters
 
   message
   The message to send as Morse code.
-  Any characters between <>, like "<SOS>", will be sent as a single pattern.
+  Characters between <>, like "<SOS>", will be sent as a single pattern.
   "SK" would be the abbreviation for "Silent Key".
   "<SK>" would be the prosign for "End of contact".
   Angle brackets can be nested ("<SOS>" is the same as "<S<OS>>").
-  Any unrecognized characters in the string will be considered as a space.
-  Any unrecognized characters and spaces between <> will be ignored.
+  An unrecognized character in the string will be considered as a space.
+  Unrecognized characters and spaces between <> will be ignored.
 
     The message can contain the following characters:
     Digits : 0123456789
