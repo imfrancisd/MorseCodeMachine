@@ -13,9 +13,10 @@
 //    mkdir arduino/
 //    mv *.o arduino/
 //
-//Compile testInteropC.c
-//    # telling the compiler and linker to remove unused functions.
+//Compile testInteropC.c and run:
+//    # Tell the compiler and linker to remove unused functions.
 //    gcc -fdata-sections -ffunction-sections -o testInteropC.out testInteropC.c all/*.o arduino/*.o -Wl,--gc-sections
+//    ./testInteropC.out
 
 #include "../src/MorseCodeMachine.h"
 #include <stdio.h>
